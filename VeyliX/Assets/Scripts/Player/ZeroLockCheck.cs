@@ -5,7 +5,7 @@ using TMPro;
 public class ZeroLockCheck : MonoBehaviour
 {
     [SerializeField] private Button lockCheck;
-    [SerializeField] private TMP_Text lockCheckText;
+    [SerializeField] private TMP_Text[] lockCheckText;
     private bool isLocked = true;
 
     void Awake()
@@ -33,6 +33,9 @@ public class ZeroLockCheck : MonoBehaviour
     }
     public void SetButton()
     {
-        lockCheckText.fontStyle = isLocked ? FontStyles.Normal : FontStyles.Italic;
+        foreach (TMP_Text text in lockCheckText)
+        {
+            text.fontStyle = isLocked ? FontStyles.Normal : FontStyles.Italic;
+        }
     }
 }
