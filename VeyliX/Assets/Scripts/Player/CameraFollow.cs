@@ -19,8 +19,6 @@ public class CameraFollow : MonoBehaviour
     void FixedUpdate()
     {
         if (player == null) return;
-        Debug.Log(player.localScale.x);
-        Debug.Log(player.localScale);
         Vector3 targetPos = player.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.fixedDeltaTime);
     }

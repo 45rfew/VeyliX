@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     private Rigidbody rb;
     private PlayerStats playerStats;
+    private ZeroLockCheck zeroLockCheck;
     private float mass;
     private float moveSpeed ;
     private float acceleration;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerStats = GetComponent<PlayerStats>();
+        zeroLockCheck = GetComponent<ZeroLockCheck>();
         mass = playerStats.GetMass();
         moveSpeed = playerStats.GetSpeed()[0];
         acceleration = playerStats.GetAcceleration()[0];
@@ -28,9 +29,13 @@ public class PlayerMovement : MonoBehaviour
             Vector3 targetVelocity = transform.forward * moveSpeed;
             rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
         }
-        else
+        else if (zeroLockCheck.IsLocked())
         {
             rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.zero, acceleration * Time.fixedDeltaTime);
+        } 
+        else
+        {
+            return;
         }
     }
     
@@ -47,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         float massEffect = referenceMass / mass;
         float baseSlowdown = 0.3f;
         float slowdownFactor = baseSlowdown * impactAngle * massEffect;
-        slowdownFactor = Mathf.Clamp(slowdownFactor, 0.5f, 0.5f);
+        slowdownFactor = Mathf.Clamp(slowdownFactor, 0.3f, 0.6f);
         rb.linearVelocity *= slowdownFactor;
     }
 }
