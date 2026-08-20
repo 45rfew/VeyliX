@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     private int[] bulletSpeed = { 80, 100 };
     private int[] speed = { 90/4, 120/4 };
     private int[] acceleration = { 60/2, 80/2 };
-    private int[] rotationSpeed = { 60, 80 };
+    private int[] rotationSpeed = { 80*6, 100*6 };
 
     private void Awake()
     {
