@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AsteroidHealth : Health
 {
+    [SerializeField] private GameObject crysatalPrefab;
     private float size;
     private int[] healthValues =
     {
@@ -42,6 +43,14 @@ public class AsteroidHealth : Health
     }
     void HandleDeath()
     {
-        Destroy(gameObject, 0.1f);
+        if (crysatalPrefab != null)
+        {
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y-1, transform.position.z);
+            GameObject crystal = Instantiate(crysatalPrefab, pos, Quaternion.identity);
+            Debug.Log("fd: " + pos);
+            Debug.Log("Size: " + size);
+            crystal.transform.localScale = new Vector3(size, size, size)/2;
+        }
+        Destroy(gameObject, 0.01f);
     }
 }

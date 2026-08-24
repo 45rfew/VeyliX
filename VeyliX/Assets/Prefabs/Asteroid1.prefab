@@ -222,3 +222,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxHealth: 100
+  crysatalPrefab: {fileID: 4005926295966989593, guid: 1d17b32025cf8644b9a1ade3e41eef21, type: 3}
