@@ -38,17 +38,29 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
+
             for (int i = 0; i < bulletTransform.Length; i++)
             {
-                GameObject newBullet = Instantiate(bullet, bulletTransform[i].position, bulletTransform[i].rotation);
-                newBullet.GetComponent<BulletScript>().owner = transform.root.gameObject; //set the owner so bullets cant damage its origin spite 
+                GameObject newBullet = Instantiate(
+                    bullet,
+                    bulletTransform[i].position,
+                    bulletTransform[i].rotation
+                );
+
+                BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
+                bulletScript.owner = transform.root.gameObject;
+                bulletScript.SetDamage(playerStats.GetDamage()[0]);
                 float bulletSpeed = playerStats.GetBulletSpeed()[0];
                 Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
                 Vector3 bulletVelocity = bulletTransform[i].forward * bulletSpeed + rb.linearVelocity;
                 bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
                 bulletRb.linearVelocity = bulletVelocity;
                 playerMovement.AddRecoil(-bulletTransform[i].forward,playerStats.recoil);
+
             }
+
+
+
         }
     }
     public void SetFireRate(float newFireRate)

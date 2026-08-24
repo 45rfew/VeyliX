@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private PlayerStats playerStats;
     private ZeroLockCheck zeroLockCheck;
+    [SerializeField] private ParticleSystem[] flamePrefabs;
     private float mass;
     private float moveSpeed ;
     private float acceleration;
@@ -23,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
         rotationSpeed = playerStats.GetRotationSpeed()[0];
     }
 
+    void Awake()
+    {
+        flamePrefabs = GetComponentsInChildren<ParticleSystem>(true);
+    }
+
     void FixedUpdate()
     {
         Vector3 targetVelocity;
@@ -30,14 +36,34 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             targetVelocity = transform.forward * moveSpeed;
-        }
-        else if (zeroLockCheck.IsLocked())
-        {
-            targetVelocity = Vector3.zero;
+            foreach (ParticleSystem flame in flamePrefabs ?? System.Array.Empty<ParticleSystem>())
+            {
+                if (flame != null)
+                {
+                    flame.Play();
+                }
+            }
         }
         else
         {
-            targetVelocity = rb.linearVelocity;
+            foreach (ParticleSystem flame in flamePrefabs ?? System.Array.Empty<ParticleSystem>())
+            {
+                if (flame != null)
+                {
+                    flame.Stop(
+                        false,
+                        ParticleSystemStopBehavior.StopEmitting
+                    );
+                }
+            }
+            if (zeroLockCheck.IsLocked())
+            {
+                targetVelocity = Vector3.zero;
+            }
+            else
+            {
+                targetVelocity = rb.linearVelocity;
+            }
         }
         Vector3 movementVelocity = rb.linearVelocity - recoilVelocity;
         movementVelocity = Vector3.MoveTowards(movementVelocity,targetVelocity,acceleration * Time.fixedDeltaTime);
