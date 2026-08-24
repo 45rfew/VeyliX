@@ -8,11 +8,11 @@ public class PlayerStats : MonoBehaviour
     private int[] healthRegen = { 4, 6 };
     private int[] energy = { 50, 70  };
     private int[] energyRegen = { 10, 15 };
-    private int[] damage = { 8, 12 };
-    private int[] bulletSpeed = { 80/10, 100/10 };
-    private int[] speed = { 90/6, 120/6 };
-    private int[] acceleration = { 60, 80 };
-    private int[] rotationSpeed = { 80 * 6, 100 * 6 };
+    private int[] damage = { 80, 12 };
+    private int[] bulletSpeed = { 80/5, 100/5 };
+    private int[] speed = { 90/6, 115/6 };
+    private int[] acceleration = { 90, 140 };
+    private int[] rotationSpeed = { 60 * 5, 80 * 5 };
     public float fireRate = 2f;
     public float recoil = 15f;
 

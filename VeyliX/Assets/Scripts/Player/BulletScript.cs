@@ -31,13 +31,13 @@ public class BulletScript : MonoBehaviour
         {
             return;
         }
-        /*
+        
         Health health = collision.gameObject.GetComponent<Health>() ?? null;
         if (health != null)
         {
-            health.TakeDamage(playerStats.damage);
+            health.TakeDamage(playerStats.GetDamage()[0]);
         }
-        */
+        
         Destroy(gameObject);
     }
     public void SetBulletSpeed(float newSpeed)

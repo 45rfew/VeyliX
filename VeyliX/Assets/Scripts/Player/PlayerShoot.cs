@@ -43,7 +43,10 @@ public class PlayerShoot : MonoBehaviour
                 GameObject newBullet = Instantiate(bullet, bulletTransform[i].position, bulletTransform[i].rotation);
                 newBullet.GetComponent<BulletScript>().owner = transform.root.gameObject; //set the owner so bullets cant damage its origin spite 
                 float bulletSpeed = playerStats.GetBulletSpeed()[0];
-                newBullet.GetComponent<Rigidbody>().linearVelocity = bulletTransform[i].forward * bulletSpeed + rb.linearVelocity;
+                Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
+                Vector3 bulletVelocity = bulletTransform[i].forward * bulletSpeed + rb.linearVelocity;
+                bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
+                bulletRb.linearVelocity = bulletVelocity;
                 playerMovement.AddRecoil(-bulletTransform[i].forward,playerStats.recoil);
             }
         }

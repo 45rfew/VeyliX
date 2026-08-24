@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     void Awake()
     {
         cam = GetComponent<Camera>();
-        updateZoom(5+Mathf.Round(player.localScale.x/100));
+        updateZoom(8+Mathf.Round(player.localScale.x/100));
     }
     void updateZoom(float zoom)
     {
@@ -21,5 +21,6 @@ public class CameraFollow : MonoBehaviour
         if (player == null) return;
         Vector3 targetPos = player.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.fixedDeltaTime);
+        transform.position = targetPos;
     }
 }
