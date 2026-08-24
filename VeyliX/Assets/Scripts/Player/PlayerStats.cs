@@ -9,10 +9,11 @@ public class PlayerStats : MonoBehaviour
     private int[] energy = { 50, 70  };
     private int[] energyRegen = { 10, 15 };
     private int[] damage = { 8, 12 };
-    private int[] bulletSpeed = { 80, 100 };
+    private int[] bulletSpeed = { 80/10, 100/10 };
     private int[] speed = { 90/4, 120/4 };
     private int[] acceleration = { 60/2, 80/2 };
-    private int[] rotationSpeed = { 80*6, 100*6 };
+    private int[] rotationSpeed = { 80 * 6, 100 * 6 };
+    public float fireRate = 2f;
 
     private void Awake()
     {
