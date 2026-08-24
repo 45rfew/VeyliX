@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed ;
     private float acceleration;
     private float rotationSpeed;
-
+    private Vector3 recoilVelocity;
+    private float recoilDecay = 10f;
+        
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,24 +21,33 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = playerStats.GetSpeed()[0];
         acceleration = playerStats.GetAcceleration()[0];
         rotationSpeed = playerStats.GetRotationSpeed()[0];
-
     }
 
     void FixedUpdate()
     {
+        Vector3 targetVelocity;
+
         if (Input.GetMouseButton(1))
         {
-            Vector3 targetVelocity = transform.forward * moveSpeed;
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+            targetVelocity = transform.forward * moveSpeed;
         }
         else if (zeroLockCheck.IsLocked())
         {
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.zero, acceleration * Time.fixedDeltaTime);
-        } 
+            targetVelocity = Vector3.zero;
+        }
         else
         {
-            return;
+            targetVelocity = rb.linearVelocity;
         }
+        Vector3 movementVelocity = rb.linearVelocity - recoilVelocity;
+        movementVelocity = Vector3.MoveTowards(movementVelocity,targetVelocity,acceleration * Time.fixedDeltaTime);
+        recoilVelocity = Vector3.MoveTowards(recoilVelocity,Vector3.zero,recoilDecay * Time.fixedDeltaTime);
+        rb.linearVelocity = movementVelocity + recoilVelocity;
+    }
+
+    public void AddRecoil(Vector3 direction, float strength)
+    {
+        recoilVelocity += direction.normalized * strength;
     }
     
     private void OnCollisionEnter(Collision collision)

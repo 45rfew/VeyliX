@@ -14,14 +14,16 @@ public class PlayerShoot : MonoBehaviour
     private Rigidbody rb;
     private float timer;
     private float timeBetweenFiring;
+    private PlayerMovement playerMovement;
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         playerStats = FindAnyObjectByType<PlayerStats>();
         rb = GetComponent<Rigidbody>();
         timeBetweenFiring = 1f / playerStats.fireRate;
     }
-    void Update()
+    void FixedUpdate()
     {
         if (!canFire)
         {
@@ -42,6 +44,7 @@ public class PlayerShoot : MonoBehaviour
                 newBullet.GetComponent<BulletScript>().owner = transform.root.gameObject; //set the owner so bullets cant damage its origin spite 
                 float bulletSpeed = playerStats.GetBulletSpeed()[0];
                 newBullet.GetComponent<Rigidbody>().linearVelocity = bulletTransform[i].forward * bulletSpeed + rb.linearVelocity;
+                playerMovement.AddRecoil(-bulletTransform[i].forward,playerStats.recoil);
             }
         }
     }
