@@ -48,8 +48,13 @@ public class PlayerShoot : MonoBehaviour
                 );
 
                 BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
+                //BulletScript bulletScript = newBullet.GetComponentInChildren<BulletScript>();
                 bulletScript.owner = transform.root.gameObject;
-                bulletScript.SetDamage(playerStats.GetDamage()[0]);
+                float damage = playerStats.GetDamage()[0];
+                bulletScript.SetDamage(damage);
+                float t = Mathf.InverseLerp(1f, 255f, damage);
+                float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
+                newBullet.transform.localScale = Vector3.one * scale;
                 float bulletSpeed = playerStats.GetBulletSpeed()[0];
                 Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
                 Vector3 bulletVelocity = bulletTransform[i].forward * bulletSpeed + rb.linearVelocity;
