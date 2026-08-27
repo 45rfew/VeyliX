@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    protected float currentHealth;
+    protected float maxHealth = 100f;
+    [SerializeField] protected float currentHealth;
     public Action<float,float> OnDamage;
     public Action<float,float> OnHeal;
     public Action OnDeath;
