@@ -1035,6 +1035,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!1 &632423970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632423971}
+  m_Layer: 6
+  m_Name: BulletPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &632423971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632423970}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.19, z: 1.862}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 710277470}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!4 &637623454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2372875417497056100, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
@@ -1090,6 +1121,7 @@ MonoBehaviour:
   gemText: {fileID: 1478136296}
   scoreText: {fileID: 0}
   lvlText: {fileID: 0}
+  playerEnergy: {fileID: 710277471}
 --- !u!1 &710277462 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
@@ -1108,6 +1140,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   currentHealth: 0
+--- !u!4 &710277470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3525965512477208390, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+  m_PrefabInstance: {fileID: 7114082954121858847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &710277471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710277462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79a73837bb4f134eb662920d0540da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEnergy
 --- !u!1 &710549544
 GameObject:
   m_ObjectHideFlags: 0
@@ -22443,6 +22492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23418,8 +23471,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3525965512477208390, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 632423971}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 710277471}
     - targetCorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 710277463}

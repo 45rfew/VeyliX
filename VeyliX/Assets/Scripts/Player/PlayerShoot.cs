@@ -17,6 +17,7 @@ public class PlayerShoot : MonoBehaviour
     private float timeBetweenFiring;
     private PlayerMovement playerMovement;
     private PlayerEnergy playerEnergy;
+    private int currentCannon = 0; 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -43,36 +44,44 @@ public class PlayerShoot : MonoBehaviour
         {
 
             //canFire = false;
-
-            for (int i = 0; i < bulletTransform.Length; i++){
-                if (playerEnergy.GetEnergy() < damage) return;
-            
-                    GameObject newBullet = Instantiate(
-                        bullet,
-                        bulletTransform[i].position,
-                        bulletTransform[i].rotation
-                    );
-
-                    BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
-                    //BulletScript bulletScript = newBullet.GetComponentInChildren<BulletScript>();
-                    bulletScript.owner = transform.root.gameObject;
-                    //float damage = playerStats.GetDamage()[0];
-                    bulletScript.SetDamage(damage);
-                    float t = Mathf.InverseLerp(1f, 255f, damage);
-                    float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
-                    newBullet.transform.localScale = Vector3.one * scale;
-                    float bulletSpeed = playerStats.GetBulletSpeed()[0];
-                    Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
-                    Vector3 bulletVelocity = bulletTransform[i].forward * bulletSpeed + rb.linearVelocity;
-                    bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
-                    bulletRb.linearVelocity = bulletVelocity;
-                    playerMovement.AddRecoil(-bulletTransform[i].forward,playerStats.recoil);
-                    playerEnergy.SetEnergy(damage);
-                }
+            if (playerEnergy.GetEnergy() < damage) return;
+            Transform cannon = bulletTransform[currentCannon];
 
 
-
+            GameObject newBullet = Instantiate(bullet, cannon.position, cannon.rotation);
+            BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
+            bulletScript.owner = transform.root.gameObject;
+            bulletScript.SetDamage(damage);
+            float t = Mathf.InverseLerp(1f, 255f, damage);
+            float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
+            newBullet.transform.localScale = Vector3.one * scale;
+            float bulletSpeed = playerStats.GetBulletSpeed()[0];
+            Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
+            Vector3 bulletVelocity = cannon.forward * bulletSpeed + rb.linearVelocity;
+            bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
+            bulletRb.linearVelocity = bulletVelocity;
+            playerMovement.AddRecoil(-cannon.forward, playerStats.recoil);
+            playerEnergy.SetEnergy(damage);
+            currentCannon++;
+            if (currentCannon >= bulletTransform.Length) currentCannon = 0;
         }
+    }
+    void ShootBullet(Transform cannon, float damage)
+    {
+        GameObject newBullet = Instantiate(bullet, cannon.position, cannon.rotation);
+        BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
+        bulletScript.owner = transform.root.gameObject;
+        bulletScript.SetDamage(damage);
+        float t = Mathf.InverseLerp(1f, 255f, damage);
+        float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
+        newBullet.transform.localScale = Vector3.one * scale;      
+        float bulletSpeed = playerStats.GetBulletSpeed()[0];
+        Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
+        Vector3 bulletVelocity = cannon.forward * bulletSpeed + rb.linearVelocity;
+        bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
+        bulletRb.linearVelocity = bulletVelocity;
+        playerMovement.AddRecoil(-cannon.forward, playerStats.recoil);
+        
     }
     public void SetFireRate(float newFireRate)
     {

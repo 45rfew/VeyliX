@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 targetVelocity;
-
         if (Input.GetMouseButton(1))
         {
             targetVelocity = transform.forward * moveSpeed;
@@ -50,10 +49,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (flame != null)
                 {
-                    flame.Stop(
-                        false,
-                        ParticleSystemStopBehavior.StopEmitting
-                    );
+                    flame.Stop(false,ParticleSystemStopBehavior.StopEmitting);
                 }
             }
             if (zeroLockCheck.IsLocked())
@@ -82,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 collisionNormal = collision.contacts[0].normal;
         Vector3 velocity = rb.linearVelocity;
         if (velocity.magnitude <= 0.1f) return;
-
         //check how direct we are hitting it - 0 = glancing, 1 = direct
         float impactAngle = Mathf.Abs(Vector3.Dot(velocity, collisionNormal));
         float referenceMass = 100f;

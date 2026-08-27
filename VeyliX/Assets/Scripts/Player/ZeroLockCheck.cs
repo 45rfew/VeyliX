@@ -7,13 +7,11 @@ public class ZeroLockCheck : MonoBehaviour
     [SerializeField] private Button lockCheck;
     [SerializeField] private TMP_Text[] lockCheckText;
     private bool isLocked = true;
-
     void Awake()
     {
         lockCheck.onClick.AddListener(ToggleLock);
         SetButton();
     }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -26,7 +24,6 @@ public class ZeroLockCheck : MonoBehaviour
         isLocked = !isLocked;
         SetButton();
     }
-
     public bool IsLocked()
     {
         return isLocked;

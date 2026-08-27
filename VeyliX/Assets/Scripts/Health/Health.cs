@@ -21,7 +21,6 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-
     public virtual void Heal(float amount)
     {
         if (currentHealth + amount >= maxHealth)
