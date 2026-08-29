@@ -11,17 +11,18 @@ public class PlayerMovement : MonoBehaviour
     private float acceleration;
     private float rotationSpeed;
     private Vector3 recoilVelocity;
-    private float recoilDecay = 10f;
-        
+    [SerializeField] private float recoilDecay = 80f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerStats = GetComponent<PlayerStats>();
         zeroLockCheck = GetComponent<ZeroLockCheck>();
-        mass = playerStats.GetMass();
-        moveSpeed = playerStats.GetSpeed()[0];
-        acceleration = playerStats.GetAcceleration()[0];
-        rotationSpeed = playerStats.GetRotationSpeed()[0];
+        Ship ship = playerStats.GetCurrentShip();
+        moveSpeed = ship.speed.GetValue();
+        acceleration = ship.acceleration.GetValue();
+        rotationSpeed = ship.rotationSpeed.GetValue();
+        mass = ship.mass.GetValue();
+
     }
 
     void Awake()
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 targetVelocity;
+
         if (Input.GetMouseButton(1))
         {
             targetVelocity = transform.forward * moveSpeed;
@@ -49,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (flame != null)
                 {
-                    flame.Stop(false,ParticleSystemStopBehavior.StopEmitting);
+                    flame.Stop(
+                        false,
+                        ParticleSystemStopBehavior.StopEmitting
+                    );
                 }
             }
             if (zeroLockCheck.IsLocked())
@@ -78,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 collisionNormal = collision.contacts[0].normal;
         Vector3 velocity = rb.linearVelocity;
         if (velocity.magnitude <= 0.1f) return;
+
         //check how direct we are hitting it - 0 = glancing, 1 = direct
         float impactAngle = Mathf.Abs(Vector3.Dot(velocity, collisionNormal));
         float referenceMass = 100f;

@@ -9,11 +9,10 @@ public class PlayerHealth : Health
     private PlayerStats playerStats;
     protected override void Start()
     {
-//base.Start();
         playerStats = FindAnyObjectByType<PlayerStats>();
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
-        maxHealth = playerStats.GetHealth()[0];
+        maxHealth = playerStats.GetCurrentShip().health.GetValue();
         currentHealth = maxHealth;
         OnDamage?.Invoke(maxHealth, maxHealth);
     }

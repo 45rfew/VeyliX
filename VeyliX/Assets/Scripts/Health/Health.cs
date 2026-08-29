@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public Action OnDeath;
     protected virtual void Start()
     {
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
     }
     public virtual void TakeDamage(float amount)
     {

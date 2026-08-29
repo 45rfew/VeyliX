@@ -4,12 +4,11 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public GameObject owner;
-
     private Rigidbody rb;
     private float force;
     private float damage;
     private float timeToLive = 5f;
-
+    //todo: make the bullet life base off its distance traveled
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

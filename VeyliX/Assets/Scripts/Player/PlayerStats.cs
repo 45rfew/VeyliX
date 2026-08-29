@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats2 : MonoBehaviour
 {
     private int mass = 100;
     private int[] health = { 80, 100 };
