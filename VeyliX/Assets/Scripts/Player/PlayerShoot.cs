@@ -71,7 +71,7 @@ public class PlayerShoot : MonoBehaviour
     }
     void ShootBullet(Transform cannonTransform, Cannon cannonStats)
     {
-        GameObject newBullet = Instantiate(bullet,cannonTransform.position,cannonTransform.rotation);
+        GameObject newBullet = Instantiate(bullet, cannonTransform.position, cannonTransform.rotation);
         BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
         bulletScript.owner = transform.root.gameObject;
         float damage = cannonStats.damage.GetValue();
@@ -84,8 +84,13 @@ public class PlayerShoot : MonoBehaviour
         Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
         Vector3 bulletVelocity = cannonTransform.forward * bulletSpeed + rb.linearVelocity;
         //don't allow the player's velocity to make the bullet exceed its maximum speed
-        bulletVelocity = Vector3.ClampMagnitude(bulletVelocity,bulletSpeed);
+        bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
         bulletRb.linearVelocity = bulletVelocity;
-        playerMovement.AddRecoil(-cannonTransform.forward,cannonStats.recoil.GetValue());
+        playerMovement.AddRecoil(-cannonTransform.forward, cannonStats.recoil.GetValue());
+    }
+    public void ResetCannons(){
+        Ship ship = playerStats.GetCurrentShip();
+        cannonTimers = new float[ship.cannons.Count];
+        nextCannon = 0;
     }
 }

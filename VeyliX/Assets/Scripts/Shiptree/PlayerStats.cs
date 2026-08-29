@@ -3,16 +3,21 @@ using UnityEngine;
 //hard code each ship zzz
 public class PlayerStats : MonoBehaviour
 {
-    private List<Ship> ships = new List<Ship>();
+    //private List<Ship> ships = new List<Ship>();
+    private Dictionary<int, Ship> ships = new Dictionary<int, Ship>();
     private Ship currentShip;
+    private int currentShipCode;
+    private PlayerShoot playerShoot;
     void Awake()
     {
         BuildShipTree();
-        currentShip = ships[0];
+        currentShip = ships[101];
+        playerShoot = GetComponentInChildren<PlayerShoot>();
     }
     void BuildShipTree()
     {
         Ship ship1 = new Ship();
+        ship1.code = 101;
         ship1.name = "poo";
         ship1.health = new StatRange(80, 120);
         ship1.healthRegen = new StatRange(4, 8);
@@ -55,6 +60,7 @@ public class PlayerStats : MonoBehaviour
         );
 
         Ship ship2A = new Ship();
+        ship2A.code = 201;
         ship2A.name = "Fighter";
         ship2A.health = new StatRange(100, 160);
         ship2A.healthRegen = new StatRange(5, 10);
@@ -65,42 +71,19 @@ public class PlayerStats : MonoBehaviour
         ship2A.rotationSpeed = new StatRange(350, 450);
         ship2A.mass = new StatRange(90, 110);
         ship2A.cannons = new List<Cannon>();
-
-        // ship2A.cannons.Add(
-        //     new Cannon(
-        //         "Main Cannon",
-        //         30, 80,
-        //         20, 35,
-        //         1, 3,
-        //         80, 120,
-        //         5, 15,2
-        //     )
-        // );
-
-        // ship2A.cannons.Add(
-        //     new Cannon(
-        //         "Left Cannon",
-        //         8, 18,
-        //         5, 10,
-        //         5, 8,
-        //         80, 110,
-        //         2, 5,2
-        //     )
-        // );
-
-        // ship2A.cannons.Add(
-        //     new Cannon(
-        //         "Right Cannon",
-        //         8, 18,
-        //         5, 10,
-        //         5, 8,
-        //         80, 110,
-        //         2, 5,2
-        //     )
-        // );
+        ship2A.cannons.Add(
+            new Cannon(
+                "Main Cannon",
+                10,
+                50, 60,
+                60, 80,
+                1, 1,
+                60
+            )
+        );
 
         Ship ship2B = new Ship();
-
+        ship2B.code = 202;
         ship2B.name = "Tank";
 
         ship2B.health = new StatRange(150, 250);
@@ -132,16 +115,25 @@ public class PlayerStats : MonoBehaviour
         ship1.upgrades.Add(ship2A);
         ship1.upgrades.Add(ship2B);
 
-        ships.Add(ship1);
-        ships.Add(ship2A);
-        ships.Add(ship2B);
+        ships.Add(ship1.code,ship1);
+        ships.Add(ship2A.code,ship2A);
+        ships.Add(ship2B.code,ship2B);
     }
     public Ship GetCurrentShip()
     {
         return currentShip;
     }
-    public void UpgradeTo(Ship ship)
+    public void UpgradeTo(int ship)
     {
-        currentShip = ship;
+        currentShip = ships[ship];
+        SetCurrentShipCode(ship);
+        //playerShoot.ResetCannons();
+    }
+    public int GetCurrentShipCode()
+    {
+        return currentShipCode;
+    }
+    public void SetCurrentShipCode(int code){
+        currentShipCode = code;
     }
 }

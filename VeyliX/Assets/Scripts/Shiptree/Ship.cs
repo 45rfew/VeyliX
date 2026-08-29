@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Ship
 {
+    public int code;
     public string name;
 
     public GameObject modelPrefab;

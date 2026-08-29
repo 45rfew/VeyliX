@@ -6,10 +6,12 @@ public class ShipModels : MonoBehaviour
 {
     public List<ShipLevel> shipModels;
     private GameObject currentShip;
-
+    private PlayerStats playerStats;
     void Start()
     {
         SetShip(101);
+        playerStats = GetComponent<PlayerStats>();
+        playerStats.UpgradeTo(101);
     }
     void SetShip(int code)
     {
@@ -27,7 +29,6 @@ public class ShipModels : MonoBehaviour
         }
         newShip.SetActive(true);
         currentShip = newShip;
-
     }
 }
 
