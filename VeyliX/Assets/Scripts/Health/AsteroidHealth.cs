@@ -27,6 +27,7 @@ public class AsteroidHealth : Health
         size = rb.transform.localScale.x;
         Debug.Log("Size: " + size);
         maxHealth = healthValues[Mathf.FloorToInt(size - 1)];
+        currentHealth = maxHealth;
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
         OnDamage?.Invoke(maxHealth, maxHealth);
