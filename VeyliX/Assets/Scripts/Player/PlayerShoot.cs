@@ -1,90 +1,116 @@
-using System;
-using System.Data;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    private Camera mainCam;
-    private Vector3 mousePos;
     public GameObject bullet;
+
+    // These will eventually come from the ship model
     public Transform[] bulletTransform;
-    public bool canFire = true;
+
     private PlayerStats playerStats;
-    private Rigidbody rb;
-    private float timer;
-    private float timeBetweenFiring;
     private PlayerMovement playerMovement;
     private PlayerEnergy playerEnergy;
-    private int currentCannon = 0; 
+    private Rigidbody rb;
+
+    private float[] cannonTimers;
+
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        playerStats = FindAnyObjectByType<PlayerStats>();
-        rb = GetComponent<Rigidbody>();
         playerEnergy = GetComponent<PlayerEnergy>();
-        timeBetweenFiring = 1f / playerStats.fireRate;
+        rb = GetComponent<Rigidbody>();
+
+        Ship ship = playerStats.GetCurrentShip();
+        cannonTimers = new float[ship.cannons.Count];
     }
+
     void FixedUpdate()
     {
-        if (!canFire)
+        Ship ship = playerStats.GetCurrentShip();
+        // Update timers
+        for (int i = 0; i < cannonTimers.Length; i++)
         {
-            timer += Time.deltaTime;
-            if (timer > timeBetweenFiring)
-            {
-                canFire = true;
-                timer = 0;
-            }
+            cannonTimers[i] += Time.fixedDeltaTime;
         }
-        float damage = playerStats.GetDamage()[0];
-        Debug.Log(playerEnergy.GetEnergy());
-        if (Input.GetMouseButton(0))
+        if (!Input.GetMouseButton(0))
+            return;
+
+        // Check every cannon
+        for (int i = 0; i < ship.cannons.Count; i++)
         {
+            Cannon cannonStats = ship.cannons[i];
 
-            //canFire = false;
-            if (playerEnergy.GetEnergy() < damage) return;
-            Transform cannon = bulletTransform[currentCannon];
+            float fireRate = cannonStats.fireRate.GetValue();
+            float timeBetweenShots = 1f / fireRate;
 
+            float energyCost = cannonStats.energyCost.GetValue();
 
-            GameObject newBullet = Instantiate(bullet, cannon.position, cannon.rotation);
-            BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
-            bulletScript.owner = transform.root.gameObject;
-            bulletScript.SetDamage(damage);
-            float t = Mathf.InverseLerp(1f, 255f, damage);
-            float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
-            newBullet.transform.localScale = Vector3.one * scale;
-            float bulletSpeed = playerStats.GetBulletSpeed()[0];
-            Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
-            Vector3 bulletVelocity = cannon.forward * bulletSpeed + rb.linearVelocity;
-            bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
-            bulletRb.linearVelocity = bulletVelocity;
-            playerMovement.AddRecoil(-cannon.forward, playerStats.recoil);
-            playerEnergy.SetEnergy(damage);
-            currentCannon++;
-            if (currentCannon >= bulletTransform.Length) currentCannon = 0;
+            // Cannon isn't ready
+            if (cannonTimers[i] < timeBetweenShots)
+                continue;
+            // Not enough energy
+            if (playerEnergy.GetEnergy() < energyCost)
+                continue;
+            // Make sure we actually have a fire point
+            if (i >= bulletTransform.Length)
+                continue;
+
+            // Fire
+            ShootBullet(
+                bulletTransform[i],
+                cannonStats
+            );
+
+            // Reset this cannon's timer
+            cannonTimers[i] = 0f;
+
+            // Consume energy
+            playerEnergy.SetEnergy(energyCost);
         }
     }
-    void ShootBullet(Transform cannon, float damage)
+
+    void ShootBullet(Transform cannonTransform, Cannon cannonStats)
     {
-        GameObject newBullet = Instantiate(bullet, cannon.position, cannon.rotation);
-        BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
+        GameObject newBullet = Instantiate(
+            bullet,
+            cannonTransform.position,
+            cannonTransform.rotation
+        );
+
+        BulletScript bulletScript =
+            newBullet.GetComponent<BulletScript>();
+
         bulletScript.owner = transform.root.gameObject;
+
+        float damage = cannonStats.damage.GetValue();
+        float bulletSpeed = cannonStats.bulletSpeed.GetValue();
+        float bulletSize = cannonStats.bulletSize.GetValue();
+
         bulletScript.SetDamage(damage);
-        float t = Mathf.InverseLerp(1f, 255f, damage);
-        float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
-        newBullet.transform.localScale = Vector3.one * scale;      
-        float bulletSpeed = playerStats.GetBulletSpeed()[0];
-        Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
-        Vector3 bulletVelocity = cannon.forward * bulletSpeed + rb.linearVelocity;
-        bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
+
+        // Apply bullet size
+        newBullet.transform.localScale =
+            Vector3.one * bulletSize;
+
+        // Give bullet its velocity
+        Rigidbody bulletRb =
+            newBullet.GetComponent<Rigidbody>();
+
+        Vector3 bulletVelocity =
+            cannonTransform.forward * bulletSpeed
+            + rb.linearVelocity;
+
+        // Don't allow the player's velocity to make
+        // the bullet exceed its maximum speed
+        bulletVelocity =
+            Vector3.ClampMagnitude(
+                bulletVelocity,
+                bulletSpeed
+            );
+
         bulletRb.linearVelocity = bulletVelocity;
-        playerMovement.AddRecoil(-cannon.forward, playerStats.recoil);
-        
-    }
-    public void SetFireRate(float newFireRate)
-    {
-        timeBetweenFiring = 1f / newFireRate;
+
+        playerMovement.AddRecoil(-cannonTransform.forward,cannonStats.recoil);
     }
 }

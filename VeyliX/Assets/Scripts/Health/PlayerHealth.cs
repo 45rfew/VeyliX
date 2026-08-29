@@ -13,7 +13,7 @@ public class PlayerHealth : Health
         playerStats = FindAnyObjectByType<PlayerStats>();
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
-        maxHealth = playerStats.GetHealth()[0];
+        maxHealth = playerStats.GetCurrentShip().health.GetValue();
         currentHealth = maxHealth;
         OnDamage?.Invoke(maxHealth, maxHealth);
     }

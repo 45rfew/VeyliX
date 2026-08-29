@@ -11,9 +11,11 @@ public class PlayerEnergy : MonoBehaviour
     
     private void Awake() {    
         playerStats = GetComponent<PlayerStats>();
-        maxEnergy = playerStats.GetEnergy()[0];
+        Ship ship = playerStats.GetCurrentShip();
+
+        maxEnergy = ship.energy.GetValue();
         currentEnergy = maxEnergy;
-        energyRegen = playerStats.GetEnergyRegen()[0];
+        energyRegen = ship.energyRegen.GetValue();
         OnEnergyRegen?.Invoke(currentEnergy, maxEnergy);
     }
 
