@@ -1157,6 +1157,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79a73837bb4f134eb662920d0540da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEnergy
+--- !u!114 &710277478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710277462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b767dc240ee78bb4982e3641b137819c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+--- !u!114 &710277479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710277462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b767dc240ee78bb4982e3641b137819c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
 --- !u!1 &710549544
 GameObject:
   m_ObjectHideFlags: 0
@@ -23393,6 +23417,14 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
+    - target: {fileID: 2130450091936624297, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      propertyPath: bulletTransform.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130450091936624297, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      propertyPath: 'bulletTransform.Array.data[2]'
+      value: 
+      objectReference: {fileID: 632423971}
     - target: {fileID: 3525965512477208390, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23478,10 +23510,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 710277478}
+    - targetCorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 710277471}
     - targetCorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 710277463}
+    - targetCorrespondingSourceObject: {fileID: 8000632763655005814, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 710277479}
   m_SourcePrefab: {fileID: 100100000, guid: 5f8fdc026b7b83d4190b9a2d7de4741f, type: 3}
 --- !u!1001 &7379274863162194900
 PrefabInstance:

@@ -84,22 +84,20 @@ public class PlayerShoot : MonoBehaviour
         bulletScript.owner = transform.root.gameObject;
 
         float damage = cannonStats.damage.GetValue();
+        Debug.Log("bullet damage " + damage);
         float bulletSpeed = cannonStats.bulletSpeed.GetValue();
         float bulletSize = cannonStats.bulletSize.GetValue();
-
+        float t = Mathf.InverseLerp(1f, 255f, damage);
+        float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
         bulletScript.SetDamage(damage);
 
         // Apply bullet size
-        newBullet.transform.localScale =
-            Vector3.one * bulletSize;
+        newBullet.transform.localScale = Vector3.one * scale;
 
         // Give bullet its velocity
-        Rigidbody bulletRb =
-            newBullet.GetComponent<Rigidbody>();
+        Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
 
-        Vector3 bulletVelocity =
-            cannonTransform.forward * bulletSpeed
-            + rb.linearVelocity;
+        Vector3 bulletVelocity = cannonTransform.forward * bulletSpeed + rb.linearVelocity;
 
         // Don't allow the player's velocity to make
         // the bullet exceed its maximum speed
@@ -111,6 +109,6 @@ public class PlayerShoot : MonoBehaviour
 
         bulletRb.linearVelocity = bulletVelocity;
 
-        playerMovement.AddRecoil(-cannonTransform.forward,cannonStats.recoil);
+        playerMovement.AddRecoil(-cannonTransform.forward,cannonStats.recoil.GetValue());
     }
 }

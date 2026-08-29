@@ -1,7 +1,7 @@
 public class Cannon
 {
     public string name;
-
+    public float piority; 
     public StatRange damage;
     public StatRange energyCost;
     public StatRange fireRate;
@@ -10,6 +10,7 @@ public class Cannon
     public StatRange recoil;
     public Cannon(
         string name,
+        float piority,
         float damageMin,
         float damageMax,
         float energyMin,
@@ -24,9 +25,9 @@ public class Cannon
         )
     {
         this.name = name;
-
+        this.piority = piority;
         damage = new StatRange(damageMin, damageMax);
-        energyCost = new StatRange(energyMin, energyMax);
+        energyCost = new StatRange(damageMin, damageMax);
         fireRate = new StatRange(fireRateMin, fireRateMax);
         bulletSpeed = new StatRange(bulletSpeedMin, bulletSpeedMax);
         bulletSize = new StatRange(bulletSizeMin, bulletSizeMax);

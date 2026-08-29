@@ -9,7 +9,7 @@ public class PlayerEnergy : MonoBehaviour
     private float maxEnergy;
     private float energyRegen;
     
-    private void Awake() {    
+    private void Start() {    
         playerStats = GetComponent<PlayerStats>();
         Ship ship = playerStats.GetCurrentShip();
 

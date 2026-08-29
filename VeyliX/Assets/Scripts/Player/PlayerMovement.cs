@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float acceleration;
     private float rotationSpeed;
     private Vector3 recoilVelocity;
-    private float recoilDecay = 10f;
+    [SerializeField] private float recoilDecay = 80f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();

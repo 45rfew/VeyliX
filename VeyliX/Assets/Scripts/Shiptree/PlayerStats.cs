@@ -39,9 +39,10 @@ public class PlayerStats : MonoBehaviour
 
         ship1.cannons.Add(
             new Cannon(
-                "Left Cannon",
-                10, 20,
-                5, 10,
+                "Middle Cannon",
+                1,
+                30, 20,
+                20, 30,
                 4, 7,
                 80, 100,
                 2, 5,
@@ -51,13 +52,27 @@ public class PlayerStats : MonoBehaviour
 
         ship1.cannons.Add(
             new Cannon(
-                "Right Cannon",
+                "Left Cannon",
+                2,
                 10, 20,
                 5, 10,
                 4, 7,
                 80, 100,
                 2, 5,
-                20
+                0
+            )
+        );
+
+        ship1.cannons.Add(
+            new Cannon(
+                "Right Cannon",
+                2,
+                10, 20,
+                5, 10,
+                4, 7,
+                80, 100,
+                2, 5,
+                0
             )
         );
 
@@ -83,38 +98,38 @@ public class PlayerStats : MonoBehaviour
 
         ship2A.cannons = new List<Cannon>();
 
-        ship2A.cannons.Add(
-            new Cannon(
-                "Main Cannon",
-                30, 80,
-                20, 35,
-                1, 3,
-                80, 120,
-                5, 15,2
-            )
-        );
+        // ship2A.cannons.Add(
+        //     new Cannon(
+        //         "Main Cannon",
+        //         30, 80,
+        //         20, 35,
+        //         1, 3,
+        //         80, 120,
+        //         5, 15,2
+        //     )
+        // );
 
-        ship2A.cannons.Add(
-            new Cannon(
-                "Left Cannon",
-                8, 18,
-                5, 10,
-                5, 8,
-                80, 110,
-                2, 5,2
-            )
-        );
+        // ship2A.cannons.Add(
+        //     new Cannon(
+        //         "Left Cannon",
+        //         8, 18,
+        //         5, 10,
+        //         5, 8,
+        //         80, 110,
+        //         2, 5,2
+        //     )
+        // );
 
-        ship2A.cannons.Add(
-            new Cannon(
-                "Right Cannon",
-                8, 18,
-                5, 10,
-                5, 8,
-                80, 110,
-                2, 5,2
-            )
-        );
+        // ship2A.cannons.Add(
+        //     new Cannon(
+        //         "Right Cannon",
+        //         8, 18,
+        //         5, 10,
+        //         5, 8,
+        //         80, 110,
+        //         2, 5,2
+        //     )
+        // );
 
 
         // =========================
@@ -138,16 +153,16 @@ public class PlayerStats : MonoBehaviour
 
         ship2B.cannons = new List<Cannon>();
 
-        ship2B.cannons.Add(
-            new Cannon(
-                "Heavy Cannon",
-                50, 120,
-                30, 50,
-                0.5f, 2,
-                60, 100,
-                8, 20,2
-            )
-        );
+        // ship2B.cannons.Add(
+        //     new Cannon(
+        //         "Heavy Cannon",
+        //         50, 120,
+        //         30, 50,
+        //         0.5f, 2,
+        //         60, 100,
+        //         8, 20,2
+        //     )
+        // );
 
 
         // =========================
