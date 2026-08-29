@@ -25,7 +25,6 @@ public class AsteroidHealth : Health
     {
         rb = GetComponent<Rigidbody>();
         size = rb.transform.localScale.x;
-        Debug.Log("Size: " + size);
         maxHealth = healthValues[Mathf.FloorToInt(size - 1)];
         currentHealth = maxHealth;
         OnDamage += HandleDamage;
@@ -48,8 +47,6 @@ public class AsteroidHealth : Health
         {
             Vector3 pos = new Vector3(transform.position.x, transform.position.y-1, transform.position.z);
             GameObject crystal = Instantiate(crysatalPrefab, pos, Quaternion.identity);
-            Debug.Log("fd: " + pos);
-            Debug.Log("Size: " + size);
             crystal.transform.localScale = new Vector3(size, size, size)/2;
         }
         Destroy(gameObject, 0.01f);

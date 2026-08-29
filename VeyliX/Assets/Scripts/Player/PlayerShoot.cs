@@ -9,47 +9,66 @@ public class PlayerShoot : MonoBehaviour
     private PlayerEnergy playerEnergy;
     private Rigidbody rb;
     private float[] cannonTimers;
-
+    private int nextCannon = 0;
     void Start()
     {
-        playerStats = GetComponent<PlayerStats>();
-        playerMovement = GetComponent<PlayerMovement>();
-        playerEnergy = GetComponent<PlayerEnergy>();
-        rb = GetComponent<Rigidbody>();
+        playerStats = GetComponentInParent<PlayerStats>();
+        playerMovement = GetComponentInParent<PlayerMovement>();
+        playerEnergy = GetComponentInParent<PlayerEnergy>();
+        rb = GetComponentInParent<Rigidbody>();
         Ship ship = playerStats.GetCurrentShip();
         cannonTimers = new float[ship.cannons.Count];
     }
-
     void FixedUpdate()
     {
-        Ship ship = playerStats.GetCurrentShip();
         for (int i = 0; i < cannonTimers.Length; i++)
         {
             cannonTimers[i] += Time.fixedDeltaTime;
         }
         if (!Input.GetMouseButton(0))
             return;
-        for (int i = 0; i < ship.cannons.Count; i++)
+        TryShoot();        
+    }
+    void TryShoot()
+    {
+        Ship ship = playerStats.GetCurrentShip();
+        int cannonCount = ship.cannons.Count;
+        int selectedCannon = -1;
+        int highestPriority = int.MinValue;
+        for (int offset = 0; offset < cannonCount; offset++)
         {
-            Cannon cannonStats = ship.cannons[i];
-            float fireRate = cannonStats.fireRate.GetValue();
+            int i = (nextCannon + offset) % cannonCount;
+            Cannon cannon = ship.cannons[i];
+            float fireRate = cannon.fireRate.GetValue();
             float timeBetweenShots = 1f / fireRate;
-            float energyCost = cannonStats.damage.GetValue();
-            //cannon isn't ready
+            float energyCost = cannon.damage.GetValue();
+            Debug.Log(energyCost);
+            Debug.Log(playerEnergy.GetEnergy());
+            //cannon not ready
             if (cannonTimers[i] < timeBetweenShots)
                 continue;
-            //not enough energy
+            //cant afford
             if (playerEnergy.GetEnergy() < energyCost)
                 continue;
-            //make sure we actually have a fire point
+            //no fire point
             if (i >= bulletTransform.Length)
                 continue;
-            ShootBullet(bulletTransform[i],cannonStats);
-            cannonTimers[i] = 0f;
-            playerEnergy.SetEnergy(energyCost);
+            //priority is more important than rotation
+            if (cannon.priority > highestPriority)
+            {
+                highestPriority = cannon.priority;
+                selectedCannon = i;
+            }
         }
+        if (selectedCannon == -1)
+            return;
+        Cannon selected = ship.cannons[selectedCannon];
+        ShootBullet(bulletTransform[selectedCannon],selected);
+        cannonTimers[selectedCannon] = 0f;
+        playerEnergy.SetEnergy(selected.damage.GetValue());
+        //start searching from the next cannon next time
+        nextCannon = (selectedCannon + 1) % cannonCount;
     }
-
     void ShootBullet(Transform cannonTransform, Cannon cannonStats)
     {
         GameObject newBullet = Instantiate(bullet,cannonTransform.position,cannonTransform.rotation);

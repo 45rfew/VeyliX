@@ -26,6 +26,7 @@ public class PlayerStats : MonoBehaviour
         ship1.cannons.Add(
             new Cannon(
                 "Middle Cannon",
+                10,
                 20, 30,
                 60, 80,
                 2, 2,
@@ -35,6 +36,7 @@ public class PlayerStats : MonoBehaviour
         ship1.cannons.Add(
             new Cannon(
                 "Left Cannon",
+                1,
                 10, 20,
                 60, 80,
                 4, 4,
@@ -44,6 +46,7 @@ public class PlayerStats : MonoBehaviour
         ship1.cannons.Add(
             new Cannon(
                 "Right Cannon",
+                1,
                 10, 20,
                 80, 100,
                 4, 4,
