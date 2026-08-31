@@ -45,7 +45,7 @@ public class AsteroidHealth : Health
     {
         if (crysatalPrefab != null)
         {
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y-1, transform.position.z);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             GameObject crystal = Instantiate(crysatalPrefab, pos, Quaternion.identity);
             crystal.transform.localScale = new Vector3(size, size, size)/2;
         }
