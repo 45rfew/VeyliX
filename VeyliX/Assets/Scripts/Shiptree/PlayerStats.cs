@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour
         ship1.health = new StatRange(80, 120);
         ship1.healthRegen = new StatRange(4, 8);
         ship1.energy = new StatRange(50, 80);
-        ship1.energyRegen = new StatRange(10, 15);
+        ship1.energyRegen = new StatRange(100, 15);
         ship1.speed = new StatRange(90/5, 115/5);
         ship1.acceleration = new StatRange(90, 140);
         ship1.rotationSpeed = new StatRange(80*5, 100*5);

@@ -47,7 +47,10 @@ public class AsteroidHealth : Health
         {
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             GameObject crystal = Instantiate(crysatalPrefab, pos, Quaternion.identity);
-            crystal.transform.localScale = new Vector3(size, size, size)/2;
+            float t = Mathf.InverseLerp(1f, 9f, size);
+            float scale = 0.6f + 2f * Mathf.Pow(t, 0.7f);
+
+            crystal.transform.localScale = Vector3.one * scale;
         }
         Destroy(gameObject, 0.01f);
     }
