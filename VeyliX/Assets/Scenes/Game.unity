@@ -26462,7 +26462,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785497652}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -26493,7 +26493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1557fab2089534e9164d629766640a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  recoilDecay: 80
+  speed: 0
 --- !u!114 &1785497660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27902,6 +27902,26 @@ PrefabInstance:
       propertyPath: crysatalPrefab
       value: 
       objectReference: {fileID: 4005926295966989593, guid: 1d17b32025cf8644b9a1ade3e41eef21, type: 3}
+    - target: {fileID: 917081924450505944, guid: 9c09eba4c13e84740b9a459cf13a4aaa, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 917081924450505944, guid: 9c09eba4c13e84740b9a459cf13a4aaa, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085682049966567350, guid: 9c09eba4c13e84740b9a459cf13a4aaa, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085682049966567350, guid: 9c09eba4c13e84740b9a459cf13a4aaa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467069874155048897, guid: 9c09eba4c13e84740b9a459cf13a4aaa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
