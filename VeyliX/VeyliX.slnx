@@ -30,6 +30,7 @@
   <Project Path="Unity.VisualScripting.Flow.Editor.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
   <Project Path="Unity.InputSystem.csproj" />
+  <Project Path="ParallelCascades.ProceduralShaders.Editor.csproj" />
   <Project Path="Unity.InferenceEngine.csproj" />
   <Project Path="Unity.AI.Mesh.csproj" />
   <Project Path="Unity.AI.Assistant.Editor.csproj" />
@@ -56,6 +57,7 @@
   <Project Path="Unity.AppUI.Navigation.Editor.csproj" />
   <Project Path="Unity.Burst.Editor.csproj" />
   <Project Path="Unity.AI.Image.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.Runtime.csproj" />
   <Project Path="Unity.AI.Generators.UI.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
   <Project Path="Unity.AI.Generators.IO.csproj" />
@@ -81,6 +83,7 @@
   <Project Path="Unity.InputSystem.ForUI.csproj" />
   <Project Path="Unity.AI.Generators.Asset.csproj" />
   <Project Path="Unity.AI.Navigation.csproj" />
+  <Project Path="ParallelCascades.ProceduralShaders.Runtime.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
   <Project Path="Unity.AI.Assistant.AssetGenerators.Editor.csproj" />
   <Project Path="Unity.Mathematics.Editor.csproj" />
@@ -89,6 +92,7 @@
   <Project Path="Unity.PathTracing.Runtime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.PathTracing.Editor.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationLite.Runtime.csproj" />
   <Project Path="Unity.AI.Assistant.Annotations.Editor.csproj" />
   <Project Path="Unity.AppUI.Editor.csproj" />
   <Project Path="Unity.AI.MCP.Runtime.csproj" />
@@ -97,6 +101,7 @@
   <Project Path="Unity.AI.Generators.Tools.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
   <Project Path="Unity.AppUI.Redux.Editor.csproj" />
+  <Project Path="ParallelCascades.Common.Runtime.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.AI.Pbr.Srp.csproj" />
   <Project Path="Unity.AppUI.Undo.csproj" />
@@ -106,7 +111,9 @@
   <Project Path="Unity.AI.Toolkit.Async.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="Unity.AI.Assistant.Bridge.Editor.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationLite.Editor.csproj" />
   <Project Path="Unity.AI.Toolkit.Compliance.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.Editor.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.004.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
@@ -114,13 +121,17 @@
   <Project Path="Unity.InferenceEngine.MacBLAS.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.ShaderGraph.Editor.csproj" />
   <Project Path="Unity.AppUI.InternalAPIBridge.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGenerationCommon.PostProcessing.csproj" />
   <Project Path="Unity.InferenceEngine.ONNX.Editor.csproj" />
+  <Project Path="ParallelCascades.Common.Editor.csproj" />
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
   <Project Path="Unity.InferenceEngine.iOSBLAS.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
+  <Project Path="ParallelCascades.ProceduralPlanetGeneration.Runtime.csproj" />
   <Project Path="Unity.AI.Generators.Contexts.csproj" />
   <Project Path="Unity.AI.Generators.IO.Srp.csproj" />
   <Project Path="Unity.AI.Animate.Motion.Runtime.csproj" />
+  <Project Path="ParallelCascades.Common.Rendering.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.Collections.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
