@@ -32,6 +32,12 @@ public class PlayerHealth : Health
         score += amount;
         OnScoreChanged?.Invoke(amount);
     }
+    public void NewShip(){
+        playerStats = FindAnyObjectByType<PlayerStats>();
+        maxHealth = playerStats.GetCurrentShip().health.GetValue();
+        currentHealth = maxHealth;
+        OnDamage?.Invoke(maxHealth, maxHealth);
+    }
     void HandleDeath()
     {
         Debug.Log("player die");

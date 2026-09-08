@@ -4,15 +4,21 @@ using System;
 public class PlayerCrystals : MonoBehaviour
 {
     public Action<float> OnplayerCrystalChange;
-
+    public PlayerStats playerStats;
     private int crystalCount = 0;
 
     public int GetCrystalCount() => crystalCount;
 
     public void AddCrystals(float value)
     {
-        crystalCount += Mathf.FloorToInt(value);
-
+        float maxCrystals = playerStats.GetMaxCrystals();
+        if (crystalCount + Mathf.FloorToInt(value) > maxCrystals)
+        {
+            crystalCount = Mathf.FloorToInt(maxCrystals);
+        } else
+        {
+            crystalCount += Mathf.FloorToInt(value);
+        }
         OnplayerCrystalChange?.Invoke(crystalCount);
 
         Debug.Log("Player Crystals: " + crystalCount);

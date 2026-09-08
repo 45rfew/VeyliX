@@ -10,13 +10,7 @@ public class PlayerEnergy : MonoBehaviour
     private float energyRegen;
     
     private void Start() {    
-        playerStats = GetComponent<PlayerStats>();
-        Ship ship = playerStats.GetCurrentShip();
-
-        maxEnergy = ship.energy.GetValue();
-        currentEnergy = maxEnergy;
-        energyRegen = ship.energyRegen.GetValue();
-        OnEnergyRegen?.Invoke(currentEnergy, maxEnergy);
+        NewShip();
     }
 
     void Update()
@@ -42,4 +36,13 @@ public class PlayerEnergy : MonoBehaviour
         energyRegen = value;
     }
     public float GetEnergy() => currentEnergy;
+    public void NewShip(){
+        playerStats = GetComponent<PlayerStats>();
+        Ship ship = playerStats.GetCurrentShip();
+
+        maxEnergy = ship.energy.GetValue();
+        currentEnergy = maxEnergy;
+        energyRegen = ship.energyRegen.GetValue();
+        OnEnergyRegen?.Invoke(currentEnergy, maxEnergy);
+    }
 }

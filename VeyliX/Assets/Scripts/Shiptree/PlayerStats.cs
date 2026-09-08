@@ -3,10 +3,13 @@ using UnityEngine;
 //hard code each ship zzz
 public class PlayerStats : MonoBehaviour
 {
+    public PlayerEnergy playerEnergy;
+    public PlayerHealth playerHealth;
     private Dictionary<int, Ship> ships = new Dictionary<int, Ship>();
     private Ship currentShip;
     private int currentShipCode;
     private PlayerShoot playerShoot;
+
     void Awake()
     {
         BuildShipTree();
@@ -58,19 +61,19 @@ public class PlayerStats : MonoBehaviour
             )
         );
 
-        Ship ship2A = new Ship();
-        ship2A.code = 201;
-        ship2A.name = "Fighter";
-        ship2A.health = new StatRange(100, 160);
-        ship2A.healthRegen = new StatRange(5, 10);
-        ship2A.energy = new StatRange(60, 100);
-        ship2A.energyRegen = new StatRange(12, 18);
-        ship2A.speed = new StatRange(20, 32);
-        ship2A.acceleration = new StatRange(100, 160);
-        ship2A.rotationSpeed = new StatRange(350, 450);
-        ship2A.mass = 120;
-        ship2A.cannons = new List<Cannon>();
-        ship2A.cannons.Add(
+        Ship ship201 = new Ship();
+        ship201.code = 201;
+        ship201.name = "Fighter";
+        ship201.health = new StatRange(100, 160);
+        ship201.healthRegen = new StatRange(5, 10);
+        ship201.energy = new StatRange(60, 100);
+        ship201.energyRegen = new StatRange(12, 18);
+        ship201.speed = new StatRange(20, 32);
+        ship201.acceleration = new StatRange(100, 160);
+        ship201.rotationSpeed = new StatRange(350, 450);
+        ship201.mass = 120;
+        ship201.cannons = new List<Cannon>();
+        ship201.cannons.Add(
             new Cannon(
                 "Main Cannon",
                 10,
@@ -81,24 +84,21 @@ public class PlayerStats : MonoBehaviour
             )
         );
 
-        Ship ship2B = new Ship();
-        ship2B.code = 202;
-        ship2B.name = "Tank";
+        Ship ship202 = new Ship();
+        ship202.code = 202;
+        ship202.name = "Tank";
+        ship202.health = new StatRange(150, 250);
+        ship202.healthRegen = new StatRange(3, 6);
+        ship202.energy = new StatRange(80, 120);
+        ship202.energyRegen = new StatRange(8, 12);
+        ship202.speed = new StatRange(10, 18);
+        ship202.acceleration = new StatRange(70, 100);
+        ship202.rotationSpeed = new StatRange(200, 300);
+        ship202.mass = 200;
 
-        ship2B.health = new StatRange(150, 250);
-        ship2B.healthRegen = new StatRange(3, 6);
+        ship202.cannons = new List<Cannon>();
 
-        ship2B.energy = new StatRange(80, 120);
-        ship2B.energyRegen = new StatRange(8, 12);
-
-        ship2B.speed = new StatRange(10, 18);
-        ship2B.acceleration = new StatRange(70, 100);
-        ship2B.rotationSpeed = new StatRange(200, 300);
-        ship2B.mass = 200;
-
-        ship2B.cannons = new List<Cannon>();
-
-        // ship2B.cannons.Add(
+        // ship202.cannons.Add(
         //     new Cannon(
         //         "Heavy Cannon",
         //         50, 120,
@@ -109,14 +109,36 @@ public class PlayerStats : MonoBehaviour
         //     )
         // );
 
-
+        Ship ship301 = new Ship();
+        ship301.code = 301;
+        ship301.name = "Fighter";
+        ship301.health = new StatRange(222, 160);
+        ship301.healthRegen = new StatRange(5, 10);
+        ship301.energy = new StatRange(260, 300);
+        ship301.energyRegen = new StatRange(100, 180);
+        ship301.speed = new StatRange(20, 32);
+        ship301.acceleration = new StatRange(66, 160);
+        ship301.rotationSpeed = new StatRange(350, 450);
+        ship301.mass = 222;
+        ship301.cannons = new List<Cannon>();
+        ship301.cannons.Add(
+            new Cannon(
+                "Main Cannon",
+                1,
+                250, 300,
+                20, 30,
+                1, 1,
+                200
+            )
+        );
         //tree path
-        ship1.upgrades.Add(ship2A);
-        ship1.upgrades.Add(ship2B);
-
+        ship1.upgrades.Add(ship201);
+        ship1.upgrades.Add(ship202);
+        ship201.upgrades.Add(ship301);
         ships.Add(ship1.code,ship1);
-        ships.Add(ship2A.code,ship2A);
-        ships.Add(ship2B.code,ship2B);
+        ships.Add(ship201.code,ship201);
+        ships.Add(ship202.code,ship202);
+        ships.Add(ship301.code,ship301);
     }
     public Ship GetCurrentShip()
     {
@@ -126,6 +148,8 @@ public class PlayerStats : MonoBehaviour
     {
         currentShip = ships[ship];
         SetCurrentShipCode(ship);
+        playerEnergy.NewShip();
+        playerHealth.NewShip();
         //playerShoot.ResetCannons();
     }
     public int GetCurrentShipCode()
