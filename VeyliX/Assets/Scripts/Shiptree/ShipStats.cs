@@ -9,7 +9,7 @@ public class ShipStats
     public StatRange speed;
     public StatRange acceleration;
     public StatRange rotationSpeed;
-    public StatRange mass;
+    public int mass;
     public StatRange health;
     public StatRange healthRegen;
     public StatRange energy;

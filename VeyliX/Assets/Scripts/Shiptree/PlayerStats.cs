@@ -3,7 +3,6 @@ using UnityEngine;
 //hard code each ship zzz
 public class PlayerStats : MonoBehaviour
 {
-    //private List<Ship> ships = new List<Ship>();
     private Dictionary<int, Ship> ships = new Dictionary<int, Ship>();
     private Ship currentShip;
     private int currentShipCode;
@@ -26,7 +25,7 @@ public class PlayerStats : MonoBehaviour
         ship1.speed = new StatRange(90/5, 115/5);
         ship1.acceleration = new StatRange(90, 140);
         ship1.rotationSpeed = new StatRange(80*5, 100*5);
-        ship1.mass = new StatRange(100, 100);
+        ship1.mass = 100;
         ship1.cannons = new List<Cannon>();
         ship1.cannons.Add(
             new Cannon(
@@ -69,7 +68,7 @@ public class PlayerStats : MonoBehaviour
         ship2A.speed = new StatRange(20, 32);
         ship2A.acceleration = new StatRange(100, 160);
         ship2A.rotationSpeed = new StatRange(350, 450);
-        ship2A.mass = new StatRange(90, 110);
+        ship2A.mass = 120;
         ship2A.cannons = new List<Cannon>();
         ship2A.cannons.Add(
             new Cannon(
@@ -95,7 +94,7 @@ public class PlayerStats : MonoBehaviour
         ship2B.speed = new StatRange(10, 18);
         ship2B.acceleration = new StatRange(70, 100);
         ship2B.rotationSpeed = new StatRange(200, 300);
-        ship2B.mass = new StatRange(150, 200);
+        ship2B.mass = 200;
 
         ship2B.cannons = new List<Cannon>();
 
@@ -140,5 +139,9 @@ public class PlayerStats : MonoBehaviour
     public int GetShipTier()
     {
         return Mathf.FloorToInt(currentShipCode / 100);
+    }
+    public float GetMaxCrystals()
+    {
+        return Mathf.Pow(GetShipTier(), 2)*20;
     }
 }

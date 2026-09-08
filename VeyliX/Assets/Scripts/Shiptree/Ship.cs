@@ -17,7 +17,7 @@ public class Ship
     public StatRange speed;
     public StatRange acceleration;
     public StatRange rotationSpeed;
-    public StatRange mass;
+    public int mass;
 
     public List<Cannon> cannons;
     public List<Ship> upgrades;

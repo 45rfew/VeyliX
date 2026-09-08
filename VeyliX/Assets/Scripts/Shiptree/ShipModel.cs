@@ -9,11 +9,11 @@ public class ShipModels : MonoBehaviour
     private PlayerStats playerStats;
     void Start()
     {
-        SetShip(101);
         playerStats = GetComponent<PlayerStats>();
+        SetShip(101);
         playerStats.UpgradeTo(101);
     }
-    void SetShip(int code)
+    public void SetShip(int code)
     {
         int level = code / 100;
         int number = code % 100;
@@ -29,6 +29,7 @@ public class ShipModels : MonoBehaviour
         }
         newShip.SetActive(true);
         currentShip = newShip;
+        newShip.transform.parent.GetComponent<Rigidbody>().mass = playerStats.GetCurrentShip().mass;
     }
 }
 

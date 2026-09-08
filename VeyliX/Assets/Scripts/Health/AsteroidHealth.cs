@@ -50,7 +50,7 @@ public class AsteroidHealth : Health
             GameObject crystal = Instantiate(crysatalPrefab, pos, Quaternion.identity);
             float t = Mathf.InverseLerp(1f, 9f, size);
             float scale = 0.6f + 2f * Mathf.Pow(t, 0.7f);
-            crystal.GetComponentInChildren<CrystalPickup>().SetValue(Mathf.Floor(1f * scale));
+            crystal.GetComponentInChildren<CrystalPickup>().SetValue(size);
             crystal.transform.localScale = Vector3.one * scale;
         }
         Destroy(gameObject, 0.01f);

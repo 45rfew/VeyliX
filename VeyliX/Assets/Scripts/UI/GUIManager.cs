@@ -40,7 +40,7 @@ public class GUIManager : MonoBehaviour
     }
     void UpdateGem(float currentGem)
     {
-        float maxGem = playerStats.GetShipTier();
+        float maxGem = playerStats.GetMaxCrystals();
         gemText.text = $"Gems: {currentGem}/{maxGem}";    
     }
     
