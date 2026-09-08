@@ -1,18 +1,32 @@
+using System;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 public class CrystalPickup : MonoBehaviour
 {
+    private float value = 0;
 
-    void Start()
+    private void OnTriggerEnter(Collider collision)
     {
-        
-    }
-    private void OnTriggerEnter(Collider collision) {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(transform.parent.localScale.x);
-            Destroy(gameObject);
-        }    
+            PlayerCrystals playerCrystals = collision.GetComponentInParent<PlayerCrystals>();
+
+            if (playerCrystals != null)
+            {
+                playerCrystals.AddCrystals(value);
+                Debug.Log("Crystal value: " + value);
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void SetValue(float value)
+    {
+        this.value = value;
+    }
+
+    public float GetValue()
+    {
+        return value;
     }
 }

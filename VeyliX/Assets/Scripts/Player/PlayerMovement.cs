@@ -60,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
             }
         }
-        else
-        {
+        
+        
             //brake once recoil has fully finished
             if (!thrusting && zeroLockCheck.IsLocked())
             {
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
                 rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
             }
-        }
+        
     }
 
     public void AddRecoil(Vector3 direction, float force)

@@ -133,7 +133,12 @@ public class PlayerStats : MonoBehaviour
     {
         return currentShipCode;
     }
-    public void SetCurrentShipCode(int code){
+    public void SetCurrentShipCode(int code)
+    {
         currentShipCode = code;
+    }
+    public int GetShipTier()
+    {
+        return Mathf.FloorToInt(currentShipCode / 100);
     }
 }

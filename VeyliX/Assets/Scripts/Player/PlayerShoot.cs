@@ -42,8 +42,6 @@ public class PlayerShoot : MonoBehaviour
             float fireRate = cannon.fireRate.GetValue();
             float timeBetweenShots = 1f / fireRate;
             float energyCost = cannon.damage.GetValue();
-            Debug.Log(energyCost);
-            Debug.Log(playerEnergy.GetEnergy());
             //cannon not ready
             if (cannonTimers[i] < timeBetweenShots)
                 continue;

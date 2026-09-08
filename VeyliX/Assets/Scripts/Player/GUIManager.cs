@@ -13,6 +13,8 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI lvlText;
     public PlayerEnergy playerEnergy;
     //public Slider healthBar;
+    public PlayerCrystals crystalPickup;
+    public PlayerStats playerStats;
     private int playerScore;
     
     void Start()
@@ -20,6 +22,7 @@ public class GUIManager : MonoBehaviour
         health.OnDamage += UpdateHealth;
         health.OnHeal += UpdateHealth;
         health.OnScoreChanged += UpdateScore;
+        crystalPickup.OnplayerCrystalChange += UpdateGem;
         playerEnergy.OnEnergyRegen += UpdateEnergy;
         UpdateEnergy(playerEnergy.GetEnergy(),playerEnergy.GetEnergy());
     }
@@ -35,8 +38,9 @@ public class GUIManager : MonoBehaviour
     {
         energyText.text = $"Energy: {Mathf.Floor(currentEnergy)}/{Mathf.Floor(maxEnergy)}";    
     }
-    void UpdateGem(float currentGem, float maxGem)
+    void UpdateGem(float currentGem)
     {
+        float maxGem = playerStats.GetShipTier();
         gemText.text = $"Gems: {currentGem}/{maxGem}";    
     }
     
