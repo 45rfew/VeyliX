@@ -166,6 +166,21 @@ public class PlayerStats : MonoBehaviour
     }
     public float GetMaxCrystals()
     {
-        return Mathf.Pow(GetShipTier(), 2)*20;
+        return Mathf.Pow(GetShipTier(), 2) * 20;
+    }
+    public void UpgradeHealth(int amount)
+    {
+        currentShip.health.Upgrade(amount);
+        playerHealth.NewShip();
+    }
+    public void UpgradeHealthRegen(int amount)
+    {
+        currentShip.healthRegen.Upgrade(amount);
+        playerHealth.NewShip();
+    }
+    public void UpgradeEnergy(int amount)
+    {
+        currentShip.energy.Upgrade(amount);
+        playerEnergy.NewShip();
     }
 }
