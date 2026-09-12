@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class UpgradeButtons : MonoBehaviour
 {
     public PlayerStats playerStats;
+    public PlayerCrystals playerCrystals;
     private int shipTier;
     private Dictionary<string, int> upgradeCounts = new Dictionary<string, int>()
     {
@@ -37,49 +38,44 @@ public class UpgradeButtons : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            upgradeActions["Health"](shipTier);
-        }
+            Upgrade("Health");
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            upgradeActions["HealthRegen"](shipTier);
-        }
+            Upgrade("HealthRegen");
+
         if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            upgradeActions["Energy"](shipTier);
-        }
+            Upgrade("Energy");
+
         if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            upgradeActions["EnergyRegen"](shipTier);
-        }
+            Upgrade("EnergyRegen");
+
         if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            upgradeActions["Damage"](shipTier);
-        }
+            Upgrade("Damage");
+
         if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            upgradeActions["BulletSpeed"](shipTier);
-        }
+            Upgrade("BulletSpeed");
+
         if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            upgradeActions["Speed"](shipTier);
-        }
+            Upgrade("Speed");
+
         if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            upgradeActions["Acceleration"](shipTier);
-        }
+            Upgrade("Acceleration");
+    }
+    public void Upgrade(string upgradeName)
+    {
+        if (!EnoughCrystals())
+            return;
+        if (upgradeCounts[upgradeName] >= shipTier)
+            return;
+        playerCrystals.RemoveCrystals(shipTier * 10);
+        upgradeActions[upgradeName](shipTier);
+        upgradeCounts[upgradeName]++;
     }
     public void GetUpgradeType()
     {
-        shipTier = playerStats.GetShipTier();
-
         string btn = EventSystem.current.currentSelectedGameObject.name;
 
-        if (upgradeCounts[btn] < shipTier)
-        {
-            upgradeActions[btn](shipTier);
-            upgradeCounts[btn]++;
-        }
+        Upgrade(btn);
     }
     public void ResetUpgradeCounts()
     {
@@ -94,5 +90,17 @@ public class UpgradeButtons : MonoBehaviour
             {"Speed", 0 },
             {"Acceleration", 0 }
         };
+    }
+    public bool EnoughCrystals()
+    {
+        shipTier = playerStats.GetShipTier();
+        if (playerCrystals.GetCrystalCount() >= shipTier * 10)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
