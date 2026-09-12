@@ -18,79 +18,69 @@ public class UpgradeButtons : MonoBehaviour
         {"Speed", 0 },
         {"Acceleration", 0 }
     };
-
+    private Dictionary<string, Action<int>> upgradeActions = new Dictionary<string, Action<int>>();
+    void Start()
+    {
+        upgradeActions = new Dictionary<string, Action<int>>()
+        {
+            {"Health", playerStats.UpgradeHealth},
+            {"HealthRegen", playerStats.UpgradeHealthRegen},
+            {"Energy", playerStats.UpgradeEnergy},
+            {"EnergyRegen", playerStats.UpgradeEnergyRegen},
+            {"Damage", playerStats.UpgradeDamage},
+            {"BulletSpeed", playerStats.UpgradeBulletSpeed},
+            {"Speed", playerStats.UpgradeSpeed},
+            {"Acceleration", playerStats.UpgradeAcceleration },
+        };
+        upgradeActions["Acceleration"] += playerStats.UpgradeRotationSpeed;
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            upgradeActions["Health"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            upgradeActions["HealthRegen"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            upgradeActions["Energy"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            upgradeActions["EnergyRegen"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            upgradeActions["Damage"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            upgradeActions["BulletSpeed"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            upgradeActions["Speed"](shipTier);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            upgradeActions["Acceleration"](shipTier);
+        }
+    }
     public void GetUpgradeType()
     {
         shipTier = playerStats.GetShipTier();
-        string btn = EventSystem.current.currentSelectedGameObject.name;
-        if (btn == "Health")
-        {
-            if (upgradeCounts["Health"] < shipTier)
-            {
-                playerStats.UpgradeHealth(shipTier);
-                upgradeCounts["Health"]++;
-            }
-        }
-        else if (btn == "HealthRegen")
-        {
-            if (upgradeCounts["HealthRegen"] < shipTier)
-            {
-                playerStats.UpgradeHealthRegen(shipTier);
-                upgradeCounts["HealthRegen"]++;
-            }
-        }
-        else if (btn == "Energy")
-        {
-            if (upgradeCounts["Energy"] < shipTier)
-            {
-                playerStats.UpgradeEnergy(shipTier);
-                upgradeCounts["Energy"]++;
-            }
-        }
-        else if (btn == "EnergyRegen")
-        {
-            if (upgradeCounts["EnergyRegen"] < shipTier)
-            {
-                playerStats.UpgradeEnergyRegen(shipTier);
-                upgradeCounts["EnergyRegen"]++;
-            }
-        }
-        else if (btn == "Damage")
-        {
-            if (upgradeCounts["Damage"] < shipTier)
-            {
-                playerStats.UpgradeDamage(shipTier);
-                upgradeCounts["Damage"]++;
-            }
-        }
-        else if (btn == "BulletSpeed")
-        {
-            if (upgradeCounts["BulletSpeed"] < shipTier)
-            {
-                playerStats.UpgradeBulletSpeed(shipTier);
-                upgradeCounts["BulletSpeed"]++;
-            }
-        }
-        else if (btn == "Speed")
-        {
-            if (upgradeCounts["Speed"] < shipTier)
-            {
-                playerStats.UpgradeSpeed(shipTier);
-                upgradeCounts["Speed"]++;
-            }
-        }
-        else if (btn == "Acceleration")
-        {
-            if (upgradeCounts["Acceleration"] < shipTier)
-            {
-                playerStats.UpgradeAcceleration(shipTier);
-                playerStats.UpgradeRotationSpeed(shipTier);
-                upgradeCounts["Acceleration"]++;
-            }
-        }
-        Debug.Log("Upgrade type: " + btn);
-    }
 
+        string btn = EventSystem.current.currentSelectedGameObject.name;
+
+        if (upgradeCounts[btn] < shipTier)
+        {
+            upgradeActions[btn](shipTier);
+            upgradeCounts[btn]++;
+        }
+    }
     public void ResetUpgradeCounts()
     {
         upgradeCounts = new Dictionary<string, int>()

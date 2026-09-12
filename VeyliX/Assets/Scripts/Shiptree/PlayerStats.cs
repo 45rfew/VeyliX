@@ -23,6 +23,92 @@ public class PlayerStats : MonoBehaviour
         playerLook = GetComponent<PlayerLook>();
         playerMovement = GetComponent<PlayerMovement>();
     }
+    public Ship GetCurrentShip()
+    {
+        return currentShip;
+    }
+    public void UpgradeTo(int ship)
+    {
+        currentShip = ships[ship];
+        SetCurrentShipCode(ship);
+        playerEnergy.NewShip();
+        playerHealth.NewShip();
+        //playerShoot.ResetCannons();
+        UpdateAllStats();
+        upgradeButtons.ResetUpgradeCounts();
+    }
+    public int GetCurrentShipCode()
+    {
+        return currentShipCode;
+    }
+    public void SetCurrentShipCode(int code)
+    {
+        currentShipCode = code;
+    }
+    public int GetShipTier()
+    {
+        return Mathf.FloorToInt(currentShipCode / 100);
+    }
+    public float GetMaxCrystals()
+    {
+        return Mathf.Pow(GetShipTier(), 2) * 20;
+    }
+    public void UpgradeHealth(int amount)
+    {
+        currentShip.health.Upgrade(amount);
+        playerHealth.NewShip();
+    }
+    public void UpgradeHealthRegen(int amount)
+    {
+        currentShip.healthRegen.Upgrade(amount);
+        playerHealth.NewShip();
+    }
+    public void UpgradeEnergy(int amount)
+    {
+        currentShip.energy.Upgrade(amount);
+        playerEnergy.NewShip();
+    }
+    public void UpgradeEnergyRegen(int amount)
+    {
+        currentShip.energyRegen.Upgrade(amount);
+        playerEnergy.NewShip();
+    }
+    public void UpgradeDamage(int amount)
+    {
+        for (int i = 0; i < currentShip.cannons.Count; i++)
+        {
+            currentShip.cannons[i].damage.Upgrade(amount);
+        }   
+    }
+    public void UpgradeBulletSpeed(int amount)
+    {
+        for (int i = 0; i < currentShip.cannons.Count; i++)
+        {
+            currentShip.cannons[i].bulletSpeed.Upgrade(amount);
+        }   
+    }
+    public void UpgradeSpeed(int amount)
+    {
+        currentShip.speed.Upgrade(amount);
+        playerMovement.UpdateMovementStats();
+    }
+    public void UpgradeAcceleration(int amount)
+    {
+        currentShip.acceleration.Upgrade(amount);
+        playerMovement.UpdateMovementStats();
+    }
+    public void UpgradeRotationSpeed(int amount)
+    {
+        currentShip.rotationSpeed.Upgrade(amount);
+        playerLook.UpdateRotationSpeed();
+    }
+    public void UpdateAllStats()
+    {
+        playerHealth.NewShip();
+        playerEnergy.NewShip();
+        playerMovement.UpdateMovementStats();
+        playerLook.UpdateRotationSpeed();
+    }
     void BuildShipTree()
     {
         Ship ship1 = new Ship();
@@ -41,8 +127,8 @@ public class PlayerStats : MonoBehaviour
             new Cannon(
                 "Middle Cannon",
                 10,
-                20, 30,
-                60, 80,
+                20, 50,
+                30, 40,
                 2, 2,
                 50
             )
@@ -52,7 +138,7 @@ public class PlayerStats : MonoBehaviour
                 "Left Cannon",
                 1,
                 10, 20,
-                60, 80,
+                30, 40,
                 4, 4,
                 0
             )
@@ -62,7 +148,7 @@ public class PlayerStats : MonoBehaviour
                 "Right Cannon",
                 1,
                 10, 20,
-                80, 100,
+                30, 40,
                 4, 4,
                 0
             )
@@ -146,85 +232,5 @@ public class PlayerStats : MonoBehaviour
         ships.Add(ship201.code,ship201);
         ships.Add(ship202.code,ship202);
         ships.Add(ship301.code,ship301);
-    }
-    public Ship GetCurrentShip()
-    {
-        return currentShip;
-    }
-    public void UpgradeTo(int ship)
-    {
-        currentShip = ships[ship];
-        SetCurrentShipCode(ship);
-        playerEnergy.NewShip();
-        playerHealth.NewShip();
-        //playerShoot.ResetCannons();
-        UpdateAllStats();
-        upgradeButtons.ResetUpgradeCounts();
-    }
-    public int GetCurrentShipCode()
-    {
-        return currentShipCode;
-    }
-    public void SetCurrentShipCode(int code)
-    {
-        currentShipCode = code;
-    }
-    public int GetShipTier()
-    {
-        return Mathf.FloorToInt(currentShipCode / 100);
-    }
-    public float GetMaxCrystals()
-    {
-        return Mathf.Pow(GetShipTier(), 2) * 20;
-    }
-    public void UpgradeHealth(int amount)
-    {
-        currentShip.health.Upgrade(amount);
-        playerHealth.NewShip();
-    }
-    public void UpgradeHealthRegen(int amount)
-    {
-        currentShip.healthRegen.Upgrade(amount);
-        playerHealth.NewShip();
-    }
-    public void UpgradeEnergy(int amount)
-    {
-        currentShip.energy.Upgrade(amount);
-        playerEnergy.NewShip();
-    }
-    public void UpgradeEnergyRegen(int amount)
-    {
-        currentShip.energyRegen.Upgrade(amount);
-        playerEnergy.NewShip();
-    }
-    public void UpgradeDamage(int amount)
-    {
-        //currentShip.damage.Upgrade(amount);
-    }
-    public void UpgradeBulletSpeed(int amount)
-    {
-        //currentShip.bulletSpeed.Upgrade(amount);
-    }
-    public void UpgradeSpeed(int amount)
-    {
-        currentShip.speed.Upgrade(amount);
-        playerMovement.UpdateMovementStats();
-    }
-    public void UpgradeAcceleration(int amount)
-    {
-        currentShip.acceleration.Upgrade(amount);
-        playerMovement.UpdateMovementStats();
-    }
-    public void UpgradeRotationSpeed(int amount)
-    {
-        currentShip.rotationSpeed.Upgrade(amount);
-        playerLook.UpdateRotationSpeed();
-    }
-    public void UpdateAllStats()
-    {
-        playerHealth.NewShip();
-        playerEnergy.NewShip();
-        playerMovement.UpdateMovementStats();
-        playerLook.UpdateRotationSpeed();
     }
 }
