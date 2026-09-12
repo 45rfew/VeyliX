@@ -62,17 +62,17 @@ public class PlayerMovement : MonoBehaviour
         }
         
         
-            //brake once recoil has fully finished
-            if (!thrusting && zeroLockCheck.IsLocked())
-            {
-                rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity,Vector3.zero,acceleration * Time.fixedDeltaTime);
-            }
-            else if (rb.linearVelocity.magnitude > moveSpeed)
-            {
-                float currentSpeed = rb.linearVelocity.magnitude;
-                float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
-                rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
-            }
+        //brake once recoil has fully finished
+        if (!thrusting && zeroLockCheck.IsLocked())
+        {
+            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity,Vector3.zero,acceleration * Time.fixedDeltaTime);
+        }
+        else if (rb.linearVelocity.magnitude > moveSpeed)
+        {
+            float currentSpeed = rb.linearVelocity.magnitude;
+            float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
+            rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
+        }
         
     }
 

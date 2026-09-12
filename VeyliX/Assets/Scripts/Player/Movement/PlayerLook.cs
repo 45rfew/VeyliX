@@ -9,7 +9,8 @@ public class PlayerLook : MonoBehaviour
     {
         viewCamera = Camera.main;
         playerStats = GetComponent<PlayerStats>();
-        //rotation = playerStats.GetRotationSpeed()[0];
+        Ship ship = playerStats.GetCurrentShip();
+        rotation = ship.rotationSpeed.GetValue();
     }
 
     void Update()
@@ -27,11 +28,17 @@ public class PlayerLook : MonoBehaviour
 
             if (direction.sqrMagnitude > 0.01f)
             {
-                Ship ship = playerStats.GetCurrentShip();
-                rotation = ship.rotationSpeed.GetValue();
+                //Ship ship = playerStats.GetCurrentShip();
+                //rotation = ship.rotationSpeed.GetValue();
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotation * Time.deltaTime);
             }
         }
+    }
+    public void UpdateRotationSpeed()
+    {
+        Ship ship = playerStats.GetCurrentShip();
+        rotation = ship.rotationSpeed.GetValue();
+        Debug.Log("Updated rotation speed: " + rotation);
     }
 }

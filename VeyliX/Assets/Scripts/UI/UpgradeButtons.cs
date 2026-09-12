@@ -25,42 +25,43 @@ public class UpgradeButtons : MonoBehaviour
         string btn = EventSystem.current.currentSelectedGameObject.name;
         if (btn == "Health")
         {
-            playerStats.UpgradeHealth();
+            playerStats.UpgradeHealth(3);
             upgradeCounts["Health"]++;
         }
         else if (btn == "HealthRegen")
         {
-            playerStats.UpgradeHealthRegen();
+            playerStats.UpgradeHealthRegen(3);
             upgradeCounts["HealthRegen"]++;
         }
         else if (btn == "Energy")
         {
-            playerStats.UpgradeEnergy();
+            playerStats.UpgradeEnergy(3);
             upgradeCounts["Energy"]++;
         }
         else if (btn == "EnergyRegen")
         {
-            playerStats.UpgradeEnergyRegen();
+            playerStats.UpgradeEnergyRegen(3);
             upgradeCounts["EnergyRegen"]++;
         }
         else if (btn == "Damage")
         {
-            playerStats.UpgradeDamage();
+            playerStats.UpgradeDamage(3);
             upgradeCounts["Damage"]++;
         }
         else if (btn == "BulletSpeed")
         {
-            playerStats.UpgradeBulletSpeed();
+            playerStats.UpgradeBulletSpeed(33);
             upgradeCounts["BulletSpeed"]++;
         }
         else if (btn == "Speed")
         {
-            playerStats.UpgradeSpeed();
+            playerStats.UpgradeSpeed(3);
             upgradeCounts["Speed"]++;
         }
         else if (btn == "Acceleration")
         {
-            playerStats.UpgradeAcceleration();
+            playerStats.UpgradeAcceleration(3);
+            playerStats.UpgradeRotationSpeed(3);
             upgradeCounts["Acceleration"]++;
         }
         Debug.Log("Upgrade type: " + btn);

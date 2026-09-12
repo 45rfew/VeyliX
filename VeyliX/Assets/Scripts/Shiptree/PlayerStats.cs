@@ -3,18 +3,22 @@ using UnityEngine;
 //hard code each ship zzz
 public class PlayerStats : MonoBehaviour
 {
-    public PlayerEnergy playerEnergy;
-    public PlayerHealth playerHealth;
+    private PlayerEnergy playerEnergy;
+    private PlayerHealth playerHealth;
     private Dictionary<int, Ship> ships = new Dictionary<int, Ship>();
     private Ship currentShip;
     private int currentShipCode;
     private PlayerShoot playerShoot;
+    private PlayerLook playerLook;
 
     void Awake()
     {
         BuildShipTree();
         currentShip = ships[101];
+        playerEnergy = GetComponent<PlayerEnergy>();
+        playerHealth = GetComponent<PlayerHealth>();
         playerShoot = GetComponentInChildren<PlayerShoot>();
+        playerLook = GetComponent<PlayerLook>();
     }
     void BuildShipTree()
     {
@@ -182,5 +186,31 @@ public class PlayerStats : MonoBehaviour
     {
         currentShip.energy.Upgrade(amount);
         playerEnergy.NewShip();
+    }
+    public void UpgradeEnergyRegen(int amount)
+    {
+        currentShip.energyRegen.Upgrade(amount);
+        playerEnergy.NewShip();
+    }
+    public void UpgradeDamage(int amount)
+    {
+        //currentShip.damage.Upgrade(amount);
+    }
+    public void UpgradeBulletSpeed(int amount)
+    {
+        //currentShip.bulletSpeed.Upgrade(amount);
+    }
+    public void UpgradeSpeed(int amount)
+    {
+        currentShip.speed.Upgrade(amount);
+    }
+    public void UpgradeAcceleration(int amount)
+    {
+        currentShip.acceleration.Upgrade(amount);
+    }
+    public void UpgradeRotationSpeed(int amount)
+    {
+        currentShip.rotationSpeed.Upgrade(amount);
+        playerLook.UpdateRotationSpeed();
     }
 }
