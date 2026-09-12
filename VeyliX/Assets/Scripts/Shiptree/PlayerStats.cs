@@ -3,6 +3,7 @@ using UnityEngine;
 //hard code each ship zzz
 public class PlayerStats : MonoBehaviour
 {
+    public UpgradeButtons upgradeButtons;
     private PlayerEnergy playerEnergy;
     private PlayerHealth playerHealth;
     private Dictionary<int, Ship> ships = new Dictionary<int, Ship>();
@@ -158,6 +159,7 @@ public class PlayerStats : MonoBehaviour
         playerHealth.NewShip();
         //playerShoot.ResetCannons();
         UpdateAllStats();
+        upgradeButtons.ResetUpgradeCounts();
     }
     public int GetCurrentShipCode()
     {

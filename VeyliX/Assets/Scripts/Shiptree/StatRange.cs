@@ -12,9 +12,10 @@ public class StatRange
         current = min;
     }
 
-    public void Upgrade(float amount)
+    public void Upgrade(float tier)
     {
-        current = Mathf.Clamp(current + amount, min, max);
+        float value = (max - min) / tier;
+        current = Mathf.Clamp(current + value, min, max);
     }
     public float GetValue()
     {

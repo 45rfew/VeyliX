@@ -25,54 +25,84 @@ public class UpgradeButtons : MonoBehaviour
         string btn = EventSystem.current.currentSelectedGameObject.name;
         if (btn == "Health")
         {
-            playerStats.UpgradeHealth(3);
-            upgradeCounts["Health"]++;
+            if (upgradeCounts["Health"] < shipTier)
+            {
+                playerStats.UpgradeHealth(shipTier);
+                upgradeCounts["Health"]++;
+            }
         }
         else if (btn == "HealthRegen")
         {
-            playerStats.UpgradeHealthRegen(3);
-            upgradeCounts["HealthRegen"]++;
+            if (upgradeCounts["HealthRegen"] < shipTier)
+            {
+                playerStats.UpgradeHealthRegen(shipTier);
+                upgradeCounts["HealthRegen"]++;
+            }
         }
         else if (btn == "Energy")
         {
-            playerStats.UpgradeEnergy(3);
-            upgradeCounts["Energy"]++;
+            if (upgradeCounts["Energy"] < shipTier)
+            {
+                playerStats.UpgradeEnergy(shipTier);
+                upgradeCounts["Energy"]++;
+            }
         }
         else if (btn == "EnergyRegen")
         {
-            playerStats.UpgradeEnergyRegen(3);
-            upgradeCounts["EnergyRegen"]++;
+            if (upgradeCounts["EnergyRegen"] < shipTier)
+            {
+                playerStats.UpgradeEnergyRegen(shipTier);
+                upgradeCounts["EnergyRegen"]++;
+            }
         }
         else if (btn == "Damage")
         {
-            playerStats.UpgradeDamage(3);
-            upgradeCounts["Damage"]++;
+            if (upgradeCounts["Damage"] < shipTier)
+            {
+                playerStats.UpgradeDamage(shipTier);
+                upgradeCounts["Damage"]++;
+            }
         }
         else if (btn == "BulletSpeed")
         {
-            playerStats.UpgradeBulletSpeed(33);
-            upgradeCounts["BulletSpeed"]++;
+            if (upgradeCounts["BulletSpeed"] < shipTier)
+            {
+                playerStats.UpgradeBulletSpeed(shipTier);
+                upgradeCounts["BulletSpeed"]++;
+            }
         }
         else if (btn == "Speed")
         {
-            playerStats.UpgradeSpeed(3);
-            upgradeCounts["Speed"]++;
+            if (upgradeCounts["Speed"] < shipTier)
+            {
+                playerStats.UpgradeSpeed(shipTier);
+                upgradeCounts["Speed"]++;
+            }
         }
         else if (btn == "Acceleration")
         {
-            playerStats.UpgradeAcceleration(3);
-            playerStats.UpgradeRotationSpeed(3);
-            upgradeCounts["Acceleration"]++;
+            if (upgradeCounts["Acceleration"] < shipTier)
+            {
+                playerStats.UpgradeAcceleration(shipTier);
+                playerStats.UpgradeRotationSpeed(shipTier);
+                upgradeCounts["Acceleration"]++;
+            }
         }
         Debug.Log("Upgrade type: " + btn);
     }
 
-    public void resetUpgradeCounts()
+    public void ResetUpgradeCounts()
     {
-        foreach (var key in upgradeCounts.Keys)
+        upgradeCounts = new Dictionary<string, int>()
         {
-            upgradeCounts[key] = 0;
-        }
+            {"Health", 0 },
+            {"HealthRegen", 0 },
+            {"Energy", 0 },
+            {"EnergyRegen", 0 },
+            {"Damage", 0 },
+            {"BulletSpeed", 0 },
+            {"Speed", 0 },
+            {"Acceleration", 0 }
+        };
     }
-    
 }
