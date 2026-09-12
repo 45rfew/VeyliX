@@ -4,9 +4,12 @@ using System;
 public class PlayerCrystals : MonoBehaviour
 {
     public Action<float> OnplayerCrystalChange;
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
     private int crystalCount = 0;
-
+    void Start()
+    {
+        playerStats = GetComponent<PlayerStats>();
+    }
     public int GetCrystalCount() => crystalCount;
 
     public void AddCrystals(float value)

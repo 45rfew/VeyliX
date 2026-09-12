@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     private int currentShipCode;
     private PlayerShoot playerShoot;
     private PlayerLook playerLook;
+    private PlayerMovement playerMovement;
 
     void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerStats : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         playerShoot = GetComponentInChildren<PlayerShoot>();
         playerLook = GetComponent<PlayerLook>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
     void BuildShipTree()
     {
@@ -28,8 +30,8 @@ public class PlayerStats : MonoBehaviour
         ship1.health = new StatRange(80, 120);
         ship1.healthRegen = new StatRange(4, 8);
         ship1.energy = new StatRange(50, 80);
-        ship1.energyRegen = new StatRange(100, 15);
-        ship1.speed = new StatRange(90/5, 115/5);
+        ship1.energyRegen = new StatRange(100, 1005);
+        ship1.speed = new StatRange(90/5, 215/5);
         ship1.acceleration = new StatRange(90, 140);
         ship1.rotationSpeed = new StatRange(80*5, 100*5);
         ship1.mass = 100;
@@ -155,6 +157,7 @@ public class PlayerStats : MonoBehaviour
         playerEnergy.NewShip();
         playerHealth.NewShip();
         //playerShoot.ResetCannons();
+        UpdateAllStats();
     }
     public int GetCurrentShipCode()
     {
@@ -203,14 +206,23 @@ public class PlayerStats : MonoBehaviour
     public void UpgradeSpeed(int amount)
     {
         currentShip.speed.Upgrade(amount);
+        playerMovement.UpdateMovementStats();
     }
     public void UpgradeAcceleration(int amount)
     {
         currentShip.acceleration.Upgrade(amount);
+        playerMovement.UpdateMovementStats();
     }
     public void UpgradeRotationSpeed(int amount)
     {
         currentShip.rotationSpeed.Upgrade(amount);
+        playerLook.UpdateRotationSpeed();
+    }
+    public void UpdateAllStats()
+    {
+        playerHealth.NewShip();
+        playerEnergy.NewShip();
+        playerMovement.UpdateMovementStats();
         playerLook.UpdateRotationSpeed();
     }
 }

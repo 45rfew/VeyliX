@@ -26,7 +26,13 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = ship.speed.GetValue();
         acceleration = ship.acceleration.GetValue();
     }
-
+    public void UpdateMovementStats()
+    {
+        Ship ship = playerStats.GetCurrentShip();
+        recoilMaxSpeed = ship.speed.GetValue() * 1f;
+        moveSpeed = ship.speed.GetValue();
+        acceleration = ship.acceleration.GetValue();
+    }
     void FixedUpdate()
     {
         if (playerStats == null) return;

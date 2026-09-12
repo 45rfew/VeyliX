@@ -7,11 +7,13 @@ public class PlayerShipTierUpgrade : MonoBehaviour
     [SerializeField] private Button upgrade1;
     [SerializeField] private Button upgrade2;
 
-    public PlayerStats playerStats;
-    public PlayerCrystals playerCrystals;
+    private PlayerStats playerStats;
+    private PlayerCrystals playerCrystals;
     public ShipModels shipModels;
     void Awake()
     {
+        playerStats = GetComponent<PlayerStats>();
+        playerCrystals = GetComponent<PlayerCrystals>();
         upgrade1.onClick.AddListener(() => Upgrade(0));
         upgrade2.onClick.AddListener(() => Upgrade(1));
     }
