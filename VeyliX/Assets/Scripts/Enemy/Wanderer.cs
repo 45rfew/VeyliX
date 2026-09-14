@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Wander : MonoBehaviour
+public class Wanderer : MonoBehaviour
 {
     public float speed; //follow speed, can be set in inspector
     public float shootInterval;
