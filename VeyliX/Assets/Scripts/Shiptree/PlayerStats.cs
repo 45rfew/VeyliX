@@ -110,7 +110,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship1 = new Ship();
         ship1.code = 101;
         ship1.name = "poo";
-        ship1.health = new StatRange(80, 120);
+        ship1.health = new StatRange(8000, 120);
         ship1.healthRegen = new StatRange(4, 8);
         ship1.energy = new StatRange(50, 80);
         ship1.energyRegen = new StatRange(100, 1005);
