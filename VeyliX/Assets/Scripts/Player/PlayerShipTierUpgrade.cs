@@ -20,13 +20,9 @@ public class PlayerShipTierUpgrade : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftBracket))
-        {
             Upgrade(0);
-        }
         if (Input.GetKeyDown(KeyCode.RightBracket))
-        {
             Upgrade(1);
-        }
     }
     private void Upgrade(int i)
     {

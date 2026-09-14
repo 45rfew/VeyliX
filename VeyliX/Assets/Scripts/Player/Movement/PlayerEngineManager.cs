@@ -10,9 +10,7 @@ public class PlayerEngineManager : MonoBehaviour
             foreach (ParticleSystem flame in flamePrefabs ?? System.Array.Empty<ParticleSystem>())
             {
                 if (flame != null)
-                {
                     flame.Play();
-                }
             }
         }
         else
@@ -20,9 +18,7 @@ public class PlayerEngineManager : MonoBehaviour
             foreach (ParticleSystem flame in flamePrefabs ?? System.Array.Empty<ParticleSystem>())
             {
                 if (flame != null)
-                {
                     flame.Stop(false,ParticleSystemStopBehavior.StopEmitting);
-                }
             }
         }
     }

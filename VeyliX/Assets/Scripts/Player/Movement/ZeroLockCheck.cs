@@ -15,9 +15,7 @@ public class ZeroLockCheck : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
             ToggleLock();
-        }
     }
     private void ToggleLock()
     {
@@ -31,8 +29,6 @@ public class ZeroLockCheck : MonoBehaviour
     public void SetButton()
     {
         foreach (TMP_Text text in lockCheckText)
-        {
             text.fontStyle = isLocked ? FontStyles.Normal : FontStyles.Italic;
-        }
     }
 }

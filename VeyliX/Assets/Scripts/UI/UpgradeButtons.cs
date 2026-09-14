@@ -39,25 +39,18 @@ public class UpgradeButtons : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Upgrade("Health");
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
             Upgrade("HealthRegen");
-
         if (Input.GetKeyDown(KeyCode.Alpha3))
             Upgrade("Energy");
-
         if (Input.GetKeyDown(KeyCode.Alpha4))
             Upgrade("EnergyRegen");
-
         if (Input.GetKeyDown(KeyCode.Alpha5))
             Upgrade("Damage");
-
         if (Input.GetKeyDown(KeyCode.Alpha6))
             Upgrade("BulletSpeed");
-
         if (Input.GetKeyDown(KeyCode.Alpha7))
             Upgrade("Speed");
-
         if (Input.GetKeyDown(KeyCode.Alpha8))
             Upgrade("Acceleration");
     }
@@ -74,7 +67,6 @@ public class UpgradeButtons : MonoBehaviour
     public void GetUpgradeType()
     {
         string btn = EventSystem.current.currentSelectedGameObject.name;
-
         Upgrade(btn);
     }
     public void ResetUpgradeCounts()
@@ -94,13 +86,6 @@ public class UpgradeButtons : MonoBehaviour
     public bool EnoughCrystals()
     {
         shipTier = playerStats.GetShipTier();
-        if (playerCrystals.GetCrystalCount() >= shipTier * 10)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return playerCrystals.GetCrystalCount() >= shipTier * 10;
     }
 }

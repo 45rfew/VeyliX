@@ -22,9 +22,7 @@ public class PlayerShoot : MonoBehaviour
     void FixedUpdate()
     {
         for (int i = 0; i < cannonTimers.Length; i++)
-        {
             cannonTimers[i] += Time.fixedDeltaTime;
-        }
         if (!Input.GetMouseButton(0))
             return;
         TryShoot();        

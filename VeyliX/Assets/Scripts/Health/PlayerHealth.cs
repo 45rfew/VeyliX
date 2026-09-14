@@ -41,7 +41,6 @@ public class PlayerHealth : Health
     void HandleDeath()
     {
         Debug.Log("player die");
-        
         Destroy(gameObject, 0.1f);
     }
 }

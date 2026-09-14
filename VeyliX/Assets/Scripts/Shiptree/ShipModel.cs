@@ -22,10 +22,8 @@ public class ShipModels : MonoBehaviour
         GameObject newShip = shipModels[levelIndex].ships[shipIndex];
         foreach (ShipLevel shiplevel in shipModels)
         {
-            foreach (GameObject ship in shiplevel.ships)
-            {
+            foreach (GameObject ship in shiplevel.ships)            
                 ship.SetActive(false);
-            }
         }
         newShip.SetActive(true);
         currentShip = newShip;

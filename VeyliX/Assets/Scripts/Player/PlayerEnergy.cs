@@ -39,7 +39,6 @@ public class PlayerEnergy : MonoBehaviour
     public void NewShip(){
         playerStats = GetComponent<PlayerStats>();
         Ship ship = playerStats.GetCurrentShip();
-
         maxEnergy = ship.energy.GetValue();
         currentEnergy = maxEnergy;
         energyRegen = ship.energyRegen.GetValue();

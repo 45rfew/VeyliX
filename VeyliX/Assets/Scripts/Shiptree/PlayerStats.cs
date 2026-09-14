@@ -76,16 +76,12 @@ public class PlayerStats : MonoBehaviour
     public void UpgradeDamage(int amount)
     {
         for (int i = 0; i < currentShip.cannons.Count; i++)
-        {
-            currentShip.cannons[i].damage.Upgrade(amount);
-        }   
+            currentShip.cannons[i].damage.Upgrade(amount); 
     }
     public void UpgradeBulletSpeed(int amount)
     {
         for (int i = 0; i < currentShip.cannons.Count; i++)
-        {
             currentShip.cannons[i].bulletSpeed.Upgrade(amount);
-        }   
     }
     public void UpgradeSpeed(int amount)
     {

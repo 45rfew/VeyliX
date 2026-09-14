@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = GetComponent<PlayerStats>();
         zeroLockCheck = GetComponent<ZeroLockCheck>();
-
         Ship ship = playerStats.GetCurrentShip();
         recoilMaxSpeed = ship.speed.GetValue() * 1f;
         moveSpeed = ship.speed.GetValue();
@@ -59,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(recoilDirection * recoilForce * curve, ForceMode.Acceleration);
             }
-             if (rb.linearVelocity.magnitude > moveSpeed*1.2f)
+            if (rb.linearVelocity.magnitude > moveSpeed*1.2f)
             {
                 float currentSpeed = rb.linearVelocity.magnitude;
                 float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
@@ -79,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
             float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
             rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
         }
-        
     }
 
     public void AddRecoil(Vector3 direction, float force)

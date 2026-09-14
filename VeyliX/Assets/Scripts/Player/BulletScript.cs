@@ -12,7 +12,6 @@ public class BulletScript : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
         rb.useGravity = false;
         rb.isKinematic = false;
     }
@@ -27,20 +26,12 @@ public class BulletScript : MonoBehaviour
         if (owner != null)
         {
             if (collision.transform.root == owner.transform.root)
-            {
                 return;
-            }
         }
-
         Debug.Log("Bullet hit: " + collision.gameObject.name);
-
         Health health = collision.GetComponentInParent<Health>();
-
         if (health != null)
-        {
             health.TakeDamage(damage);
-        }
-
         Destroy(gameObject);
     }
 

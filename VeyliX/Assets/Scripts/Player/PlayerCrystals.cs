@@ -30,11 +30,8 @@ public class PlayerCrystals : MonoBehaviour
     public void RemoveCrystals(int value)
     {
         crystalCount -= value;
-
         if (crystalCount < 0) crystalCount = 0;
-
         OnplayerCrystalChange?.Invoke(crystalCount);
-
         Debug.Log("Player Crystals: " + crystalCount);
     }
 }
