@@ -39,6 +39,7 @@ public class Wanderer : MonoBehaviour
         if (distanceToPlayer < distanceToShoot)
         //spotted player, shoot and move towards them 
         {
+            WanderAround();
             if (shootTimer >= shootInterval)
             {
                 Shoot();
@@ -59,7 +60,7 @@ public class Wanderer : MonoBehaviour
         {
             wanderTimer = 0f;
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
-            currentDirection = Vector2.Lerp(currentDirection, randomDirection, Time.fixedDeltaTime * steeringSmoothness);
+            currentDirection = Vector2.Lerp(currentDirection, randomDirection, Time.fixedDeltaTime * 20);
         }
         rb.MovePosition(rb.position + new Vector3(currentDirection.x, 0f, currentDirection.y) * speed * Time.fixedDeltaTime);
     }

@@ -1,4 +1,6 @@
 using System;
+using Unity.InferenceEngine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AsteroidHealth : Health
@@ -9,14 +11,15 @@ public class AsteroidHealth : Health
     {
         20,
         30,
-        45, 
+        45,
         65,
-        90, 
+        90,
         130,
         250,
-        300,  
-        500 
+        300,
+        500
     };
+    
     private int[] scoreValues =
     {
         1,2,3,4,5,6,7,8,9
@@ -46,13 +49,21 @@ public class AsteroidHealth : Health
     {
         if (crysatalPrefab != null)
         {
+
+            
+
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             GameObject crystal = Instantiate(crysatalPrefab, pos, Quaternion.identity);
             float t = Mathf.InverseLerp(1f, 9f, size);
             float scale = 0.6f + 2f * Mathf.Pow(t, 0.7f);
-            crystal.GetComponentInChildren<CrystalPickup>().SetValue(size*10);
+            crystal.GetComponentInChildren<CrystalPickup>().SetValue(size * 10);
             crystal.transform.localScale = Vector3.one * scale;
         }
         Destroy(gameObject, 0.01f);
     }
+    void DropCrystals(float amount)
+    {
+        
+    }
 }
+
