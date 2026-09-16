@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,6 +42,10 @@ public class PlayerHealth : Health
     void HandleDeath()
     {
         Debug.Log("player die");
+        float t = Mathf.InverseLerp(1f,7f,playerStats.GetShipTier());
+        float amount = 100f * Mathf.Pow(t, 1.7f);
+        Vector3 pos = transform.position;
+        CrystalSpawner.Instance.DropCrystals(amount, pos);
         Destroy(gameObject, 0.1f);
     }
 }
