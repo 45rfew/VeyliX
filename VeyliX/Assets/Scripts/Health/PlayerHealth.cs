@@ -23,7 +23,6 @@ public class PlayerHealth : Health
     {
         if (currentHealth < maxHealth)
         {
-            //float regen = playerStats.GetCurrentShip().healthRegen.GetValue();
             Heal(regen * Time.deltaTime);
         } 
     }
@@ -33,13 +32,7 @@ public class PlayerHealth : Health
     }
     public void Heal(float amount)
     {
-        if (currentHealth + amount >= maxHealth)
-        {
-            currentHealth = maxHealth;
-        } else
-        {
-            currentHealth += amount;
-        }
+        currentHealth = Math.Min(currentHealth + amount, maxHealth);
         OnHeal?.Invoke(currentHealth,maxHealth);
     }
     public void SetMaxHealth(float newHealth)

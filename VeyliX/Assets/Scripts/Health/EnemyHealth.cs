@@ -14,8 +14,19 @@ public class EnemyHealth : Health
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
     }
+    void Update()
+    {
+        if (currentHealth < maxHealth)
+        {
+            Heal(healthRegen * Time.deltaTime);
+        }
+    }
     protected virtual void HandleDamage(float damage, float maxHealth)
     {
+    }
+    public void Heal(float amount)
+    {
+        currentHealth = Math.Min(currentHealth + amount, maxHealth);
     }
     protected virtual void HandleDeath()
     {
@@ -29,11 +40,4 @@ public class EnemyHealth : Health
         CrystalSpawner.Instance.DropCrystals(crystalDrop, pos);
         Destroy(gameObject);
     }
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
-        {
-        }
-    }
-
 }
