@@ -21,17 +21,6 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-    public virtual void Heal(float amount)
-    {
-        if (currentHealth + amount >= maxHealth)
-        {
-            currentHealth = maxHealth;
-        } else
-        {
-            currentHealth += amount;
-        }
-        OnHeal?.Invoke(currentHealth,maxHealth);
-    }
     protected virtual void Die()
     {
         OnDeath?.Invoke();

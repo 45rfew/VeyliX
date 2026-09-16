@@ -31,8 +31,6 @@ public class PlayerStats : MonoBehaviour
     {
         currentShip = ships[ship];
         SetCurrentShipCode(ship);
-        playerEnergy.NewShip();
-        playerHealth.NewShip();
         //playerShoot.ResetCannons();
         UpdateAllStats();
         upgradeButtons.ResetUpgradeCounts();
@@ -56,22 +54,22 @@ public class PlayerStats : MonoBehaviour
     public void UpgradeHealth(int amount)
     {
         currentShip.health.Upgrade(amount);
-        playerHealth.NewShip();
+        playerHealth.Upgrade();
     }
     public void UpgradeHealthRegen(int amount)
     {
         currentShip.healthRegen.Upgrade(amount);
-        playerHealth.NewShip();
+        playerHealth.Upgrade();
     }
     public void UpgradeEnergy(int amount)
     {
         currentShip.energy.Upgrade(amount);
-        playerEnergy.NewShip();
+        playerEnergy.Upgrade();
     }
     public void UpgradeEnergyRegen(int amount)
     {
         currentShip.energyRegen.Upgrade(amount);
-        playerEnergy.NewShip();
+        playerEnergy.Upgrade();
     }
     public void UpgradeDamage(int amount)
     {
@@ -112,8 +110,8 @@ public class PlayerStats : MonoBehaviour
         ship1.name = "poo";
         ship1.health = new StatRange(8000, 120);
         ship1.healthRegen = new StatRange(4, 8);
-        ship1.energy = new StatRange(50, 80);
-        ship1.energyRegen = new StatRange(100, 1005);
+        ship1.energy = new StatRange(100, 180);
+        ship1.energyRegen = new StatRange(10, 1005);
         ship1.speed = new StatRange(90/5, 215/5);
         ship1.acceleration = new StatRange(90, 140);
         ship1.rotationSpeed = new StatRange(80*5, 100*5);

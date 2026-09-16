@@ -28,7 +28,7 @@ public class AsteroidHealth : Health
     {
         rb = GetComponent<Rigidbody>();
         size = rb.transform.parent.localScale.x;
-        maxHealth = healthValues[Mathf.FloorToInt(size - 1)];
+        maxHealth = healthValues[Mathf.FloorToInt(size - 1)]/10;
         currentHealth = maxHealth;
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;

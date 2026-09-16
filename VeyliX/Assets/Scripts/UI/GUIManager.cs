@@ -29,8 +29,7 @@ public class GUIManager : MonoBehaviour
 
     void UpdateHealth(float currentHealth, float maxHealth)
     {
-        Debug.Log(currentHealth);
-        healthText.text = $"Shield: {currentHealth}/{maxHealth}";
+        healthText.text = $"Shield: {Math.Floor(currentHealth)}/{Math.Floor(maxHealth)}";
         //healthBar.value = currentHealth / maxHealth * 100 <= 0 ? 0.01f : currentHealth / maxHealth * 100; 
         //healthText.text = currentHealth < 0 ? $"0 / {maxHealth}" : $"{currentHealth} / {maxHealth}";
     }
@@ -41,7 +40,7 @@ public class GUIManager : MonoBehaviour
     void UpdateGem(float currentGem)
     {
         float maxGem = playerStats.GetMaxCrystals();
-        gemText.text = $"Gems: {currentGem}/{maxGem}";    
+        gemText.text = $"Gems: {Math.Floor(currentGem)}/{maxGem}";    
     }
     
     void UpdateScore(int score)
