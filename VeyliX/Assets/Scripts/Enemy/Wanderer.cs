@@ -6,7 +6,7 @@ public class Wanderer : MonoBehaviour
     public float shootInterval;
     public GameObject bulletPrefab;
     public float bulletSpeed;
-    public float bulletDamage;
+    public int bulletDamage;
     public float maxDistance;
     public float distanceToShoot;
     private Transform player;
@@ -77,7 +77,7 @@ public class Wanderer : MonoBehaviour
         if (bullet != null)
         {
             bullet.owner = transform.root.gameObject;
-            float damage = bulletDamage;
+            int damage = bulletDamage;
             float bulletSpeed = this.bulletSpeed;
             //set the bullet size based on damage
             float t = Mathf.InverseLerp(1f, 255f, damage);

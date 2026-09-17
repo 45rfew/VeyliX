@@ -36,18 +36,21 @@ public class AsteroidHealth : Health
         base.Start();
     }
 
-    void HandleDamage(float currentHealth, float maxHealth)
+    void HandleDamage(int currentHealth, int maxHealth)
     {
-        float damage = maxHealth - currentHealth;
+        int damage = maxHealth - currentHealth;
     }
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(int amount)
     {
         base.TakeDamage(amount);
     }
     void HandleDeath()
     {
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        CrystalSpawner.Instance.DropCrystals(size * UnityEngine.Random.Range(2.0f,2.5f), pos);
+        CrystalSpawner.Instance.DropCrystals(
+            Mathf.RoundToInt(size * UnityEngine.Random.Range(2.0f, 2.5f)),
+            pos
+        );
         Destroy(gameObject, 0.01f);
     }
 }   

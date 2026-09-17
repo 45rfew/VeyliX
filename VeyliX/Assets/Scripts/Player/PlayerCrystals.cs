@@ -3,7 +3,7 @@ using System;
 
 public class PlayerCrystals : MonoBehaviour
 {
-    public Action<float> OnplayerCrystalChange;
+    public Action<int> OnplayerCrystalChange;
     private PlayerStats playerStats;
     private int crystalCount = 0;
     void Start()
@@ -12,17 +12,10 @@ public class PlayerCrystals : MonoBehaviour
     }
     public int GetCrystalCount() => crystalCount;
 
-    public void AddCrystals(float value)
+    public void AddCrystals(int value)
     {
-        float maxCrystals = playerStats.GetMaxCrystals();
-        crystalCount = Math.Min(Mathf.FloorToInt(maxCrystals), crystalCount + Mathf.FloorToInt(value));
-        // if (crystalCount + Mathf.FloorToInt(value) > maxCrystals)
-        // {
-        //     crystalCount = Mathf.FloorToInt(maxCrystals);
-        // } else
-        // {
-        //     crystalCount += Mathf.FloorToInt(value);
-        // }
+        int maxCrystals = playerStats.GetMaxCrystals();
+        crystalCount = Math.Min(maxCrystals, crystalCount + value);
         OnplayerCrystalChange?.Invoke(crystalCount);
         Debug.Log("Player Crystals: " + crystalCount);
     }

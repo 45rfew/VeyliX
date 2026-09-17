@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrystalPickup : MonoBehaviour
 {
-    private float value = 0;
+    private int value;
     private float timer;
     private float pickupDelay = 0.2f;
     private Rigidbody rb;
@@ -30,12 +30,12 @@ public class CrystalPickup : MonoBehaviour
             }
         }
     }
-    public void SetValue(float value)
+    public void SetValue(int value)
     {
         this.value = value;
     }
 
-    public float GetValue()
+    public int GetValue()
     {
         return value;
     }

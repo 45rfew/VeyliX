@@ -6,7 +6,7 @@ public class BulletScript : MonoBehaviour
     public GameObject owner;
     private Rigidbody rb;
     private float force;
-    private float damage;
+    private int damage;
     private float timeToLive = 5f;
     //todo: make the bullet life base off its distance traveled
     void Awake()
@@ -40,7 +40,7 @@ public class BulletScript : MonoBehaviour
         force = newSpeed;
     }
 
-    public void SetDamage(float newDamage)
+    public void SetDamage(int newDamage)
     {
         damage = newDamage;
     }

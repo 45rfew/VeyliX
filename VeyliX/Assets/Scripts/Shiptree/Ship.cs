@@ -8,8 +8,8 @@ public class Ship
 
     public GameObject modelPrefab;
 
-    public StatRange health;
-    public StatRange healthRegen;
+    public IntStatRange health;
+    public IntStatRange healthRegen;
 
     public StatRange energy;
     public StatRange energyRegen;

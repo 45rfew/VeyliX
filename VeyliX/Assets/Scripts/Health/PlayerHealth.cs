@@ -9,7 +9,8 @@ public class PlayerHealth : Health
     private int score;
     private PlayerStats playerStats;
     private PlayerCrystals playerCrystals;
-    private float regen;
+    private int regen;
+    private float regenAccumulator;
     protected override void Start()
     {
         playerStats = FindAnyObjectByType<PlayerStats>();
@@ -25,61 +26,65 @@ public class PlayerHealth : Health
     {
         if (currentHealth < maxHealth)
         {
-            Heal(regen * Time.deltaTime);
+            regenAccumulator += regen * Time.deltaTime;
+            int healing = Mathf.FloorToInt(regenAccumulator);
+            if (healing > 0)
+            {
+                regenAccumulator -= healing;
+                Heal(healing);
+            }
         }
     }
-public override void TakeDamage(float amount)
-{
-    if (amount <= currentHealth)
+    public override void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-    }
-    else
-    {
-        float overflow = amount - currentHealth;
-
-        currentHealth = 0;
-
-        int crystals = playerCrystals.GetCrystalCount();
-
-        if (crystals >= overflow)
+        if (amount <= currentHealth)
         {
-            int crystalDamage = Mathf.CeilToInt(overflow);
-
-            playerCrystals.RemoveCrystals(crystalDamage);
-
-            CrystalSpawner.Instance.DropCrystals(
-                crystalDamage,
-                transform.position
-            );
+            currentHealth -= amount;
         }
         else
         {
-            playerCrystals.RemoveCrystals(crystals);
+            int overflow = amount - currentHealth;
 
-            CrystalSpawner.Instance.DropCrystals(
-                crystals,
-                transform.position
-            );
+            currentHealth = 0;
 
-            Die();
+            int crystals = playerCrystals.GetCrystalCount();
+
+            if (crystals >= overflow)
+            {
+                playerCrystals.RemoveCrystals(overflow);
+
+                CrystalSpawner.Instance.DropCrystals(
+                    overflow,
+                    transform.position
+                );
+            }
+            else
+            {
+                playerCrystals.RemoveCrystals(crystals);
+
+                CrystalSpawner.Instance.DropCrystals(
+                    crystals,
+                    transform.position
+                );
+
+                Die();
+            }
         }
-    }
 
-    OnDamage?.Invoke(currentHealth, maxHealth);
-}
-    void HandleDamage(float currentHealth, float maxHealth)
-    {
-        float damage = maxHealth - currentHealth;
+        OnDamage?.Invoke(currentHealth, maxHealth);
     }
-    public void Heal(float amount)
+    void HandleDamage(int currentHealth, int maxHealth)
+    {
+        int damage = maxHealth - currentHealth;
+    }
+    public void Heal(int amount)
     {
         currentHealth = Math.Min(currentHealth + amount, maxHealth);
         OnHeal?.Invoke(currentHealth,maxHealth);
     }
-    public void SetMaxHealth(float newHealth)
+    public void SetMaxHealth(int newHealth)
     {
-        float damageTaken = maxHealth - currentHealth;
+        int damageTaken = maxHealth - currentHealth;
         maxHealth = newHealth;
         currentHealth = maxHealth - damageTaken;
         OnDamage?.Invoke(currentHealth, maxHealth);
@@ -107,8 +112,8 @@ public override void TakeDamage(float amount)
     void HandleDeath()
     {
         Debug.Log("player die");
-        float[] gemValues = {0, 5, 15, 25, 40, 85, 100};
-        float amount = gemValues[playerStats.GetShipTier() - 1];
+        int[] gemValues = {0, 5, 15, 25, 40, 85, 100};
+        int amount = gemValues[playerStats.GetShipTier() - 1];
         Vector3 pos = transform.position;
         CrystalSpawner.Instance.DropCrystals(amount, pos);
         Destroy(gameObject, 0.1f);

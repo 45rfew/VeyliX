@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] protected float maxHealth = 100f;
-    [SerializeField] protected float currentHealth;
-    public Action<float,float> OnDamage;
-    public Action<float,float> OnHeal;
+    [SerializeField] protected int maxHealth = 100;
+    [SerializeField] protected int currentHealth;
+    public Action<int, int> OnDamage;
+    public Action<int, int> OnHeal;
     public Action OnDeath;
     protected virtual void Start()
     {
         //currentHealth = maxHealth;
     }
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(int amount)
     {
         currentHealth -= amount;
         OnDamage?.Invoke(currentHealth,maxHealth);

@@ -31,7 +31,7 @@ public class PlayerShipTierUpgrade : MonoBehaviour
             Ship ship = playerStats.GetCurrentShip();
             playerStats.UpgradeTo(ship.upgrades[i].code);
             shipModels.SetShip(ship.upgrades[i].code);
-            playerCrystals.RemoveCrystals((int)playerStats.GetMaxCrystals());
+            playerCrystals.RemoveCrystals(playerStats.GetMaxCrystals());
             playerCrystals.OnplayerCrystalChange?.Invoke(playerCrystals.GetCrystalCount());
         }
     }

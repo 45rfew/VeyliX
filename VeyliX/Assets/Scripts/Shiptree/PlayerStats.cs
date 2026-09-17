@@ -47,9 +47,9 @@ public class PlayerStats : MonoBehaviour
     {
         return Mathf.FloorToInt(currentShipCode / 100);
     }
-    public float GetMaxCrystals()
+    public int GetMaxCrystals()
     {
-        return Mathf.Pow(GetShipTier(), 2) * 20;
+        return GetShipTier() * GetShipTier() * 20;
     }
     public void UpgradeHealth(int amount)
     {
@@ -108,8 +108,8 @@ public class PlayerStats : MonoBehaviour
         Ship ship1 = new Ship();
         ship1.code = 101;
         ship1.name = "poo";
-        ship1.health = new StatRange(80, 120);
-        ship1.healthRegen = new StatRange(4, 8);
+        ship1.health = new IntStatRange(80, 120);
+        ship1.healthRegen = new IntStatRange(4, 8);
         ship1.energy = new StatRange(100, 180);
         ship1.energyRegen = new StatRange(10, 1005);
         ship1.speed = new StatRange(90/5, 215/5);
@@ -151,8 +151,8 @@ public class PlayerStats : MonoBehaviour
         Ship ship201 = new Ship();
         ship201.code = 201;
         ship201.name = "Fighter";
-        ship201.health = new StatRange(100, 160);
-        ship201.healthRegen = new StatRange(5, 10);
+        ship201.health = new IntStatRange(100, 160);
+        ship201.healthRegen = new IntStatRange(5, 10);
         ship201.energy = new StatRange(60, 100);
         ship201.energyRegen = new StatRange(12, 18);
         ship201.speed = new StatRange(20, 32);
@@ -174,8 +174,8 @@ public class PlayerStats : MonoBehaviour
         Ship ship202 = new Ship();
         ship202.code = 202;
         ship202.name = "Tank";
-        ship202.health = new StatRange(150, 250);
-        ship202.healthRegen = new StatRange(3, 6);
+        ship202.health = new IntStatRange(150, 250);
+        ship202.healthRegen = new IntStatRange(3, 6);
         ship202.energy = new StatRange(80, 120);
         ship202.energyRegen = new StatRange(8, 12);
         ship202.speed = new StatRange(10, 18);
@@ -199,8 +199,8 @@ public class PlayerStats : MonoBehaviour
         Ship ship301 = new Ship();
         ship301.code = 301;
         ship301.name = "Fighter";
-        ship301.health = new StatRange(222, 160);
-        ship301.healthRegen = new StatRange(5, 10);
+        ship301.health = new IntStatRange(222, 160);
+        ship301.healthRegen = new IntStatRange(5, 10);
         ship301.energy = new StatRange(260, 300);
         ship301.energyRegen = new StatRange(100, 180);
         ship301.speed = new StatRange(20, 32);

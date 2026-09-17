@@ -39,7 +39,7 @@ public class PlayerShoot : MonoBehaviour
             Cannon cannon = ship.cannons[i];
             float fireRate = cannon.fireRate.GetValue();
             float timeBetweenShots = 1f / fireRate;
-            float energyCost = cannon.damage.GetValue();
+            int energyCost = cannon.damage.GetValue();
             //cannon not ready
             if (cannonTimers[i] < timeBetweenShots)
                 continue;
@@ -70,7 +70,7 @@ public class PlayerShoot : MonoBehaviour
         GameObject newBullet = Instantiate(bullet, cannonTransform.position, cannonTransform.rotation);
         BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
         bulletScript.owner = transform.root.gameObject;
-        float damage = cannonStats.damage.GetValue();
+        int damage = cannonStats.damage.GetValue();
         float bulletSpeed = cannonStats.bulletSpeed.GetValue();
         //set the bullet size based on damage
         float t = Mathf.InverseLerp(1f, 255f, damage);

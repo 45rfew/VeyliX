@@ -6,8 +6,9 @@ public class EnemyHealth : Health
     public GameObject hitEffect;
     protected float explosionScale = 0.15f;
     protected float size;
-    public float healthRegen;
-    public float crystalDrop;
+    public int healthRegen;
+    public int crystalDrop;
+    private float regenAccumulator;
     protected override void Start()
     {
         base.Start();
@@ -18,13 +19,19 @@ public class EnemyHealth : Health
     {
         if (currentHealth < maxHealth)
         {
-            Heal(healthRegen * Time.deltaTime);
+            regenAccumulator += healthRegen * Time.deltaTime;
+            int healing = Mathf.FloorToInt(regenAccumulator);
+            if (healing > 0)
+            {
+                regenAccumulator -= healing;
+                Heal(healing);
+            }
         }
     }
-    protected virtual void HandleDamage(float damage, float maxHealth)
+    protected virtual void HandleDamage(int damage, int maxHealth)
     {
     }
-    public void Heal(float amount)
+    public void Heal(int amount)
     {
         currentHealth = Math.Min(currentHealth + amount, maxHealth);
     }

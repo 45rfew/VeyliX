@@ -10,8 +10,8 @@ public class ShipStats
     public StatRange acceleration;
     public StatRange rotationSpeed;
     public int mass;
-    public StatRange health;
-    public StatRange healthRegen;
+    public IntStatRange health;
+    public IntStatRange healthRegen;
     public StatRange energy;
     public StatRange energyRegen;
     public List<Cannon> cannons = new List<Cannon>();
