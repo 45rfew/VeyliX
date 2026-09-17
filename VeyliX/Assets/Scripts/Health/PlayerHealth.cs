@@ -8,10 +8,12 @@ public class PlayerHealth : Health
     public Action<int> OnScoreChanged;
     private int score;
     private PlayerStats playerStats;
+    private PlayerCrystals playerCrystals;
     private float regen;
     protected override void Start()
     {
         playerStats = FindAnyObjectByType<PlayerStats>();
+        playerCrystals = FindAnyObjectByType<PlayerCrystals>();
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
         maxHealth = playerStats.GetCurrentShip().health.GetValue();
@@ -24,8 +26,48 @@ public class PlayerHealth : Health
         if (currentHealth < maxHealth)
         {
             Heal(regen * Time.deltaTime);
-        } 
+        }
     }
+public override void TakeDamage(float amount)
+{
+    if (amount <= currentHealth)
+    {
+        currentHealth -= amount;
+    }
+    else
+    {
+        float overflow = amount - currentHealth;
+
+        currentHealth = 0;
+
+        int crystals = playerCrystals.GetCrystalCount();
+
+        if (crystals >= overflow)
+        {
+            int crystalDamage = Mathf.CeilToInt(overflow);
+
+            playerCrystals.RemoveCrystals(crystalDamage);
+
+            CrystalSpawner.Instance.DropCrystals(
+                crystalDamage,
+                transform.position
+            );
+        }
+        else
+        {
+            playerCrystals.RemoveCrystals(crystals);
+
+            CrystalSpawner.Instance.DropCrystals(
+                crystals,
+                transform.position
+            );
+
+            Die();
+        }
+    }
+
+    OnDamage?.Invoke(currentHealth, maxHealth);
+}
     void HandleDamage(float currentHealth, float maxHealth)
     {
         float damage = maxHealth - currentHealth;

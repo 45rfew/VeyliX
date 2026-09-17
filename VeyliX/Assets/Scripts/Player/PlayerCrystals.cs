@@ -15,15 +15,15 @@ public class PlayerCrystals : MonoBehaviour
     public void AddCrystals(float value)
     {
         float maxCrystals = playerStats.GetMaxCrystals();
-        if (crystalCount + Mathf.FloorToInt(value) > maxCrystals)
-        {
-            crystalCount = Mathf.FloorToInt(maxCrystals);
-        } else
-        {
-            crystalCount += Mathf.FloorToInt(value);
-        }
+        crystalCount = Math.Min(Mathf.FloorToInt(maxCrystals), crystalCount + Mathf.FloorToInt(value));
+        // if (crystalCount + Mathf.FloorToInt(value) > maxCrystals)
+        // {
+        //     crystalCount = Mathf.FloorToInt(maxCrystals);
+        // } else
+        // {
+        //     crystalCount += Mathf.FloorToInt(value);
+        // }
         OnplayerCrystalChange?.Invoke(crystalCount);
-
         Debug.Log("Player Crystals: " + crystalCount);
     }
 
