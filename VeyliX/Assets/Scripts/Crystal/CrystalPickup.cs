@@ -16,7 +16,7 @@ public class CrystalPickup : MonoBehaviour
     {
         timer += Time.deltaTime;
     }
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (timer < pickupDelay) return; 
         if (collision.CompareTag("Player"))
@@ -26,7 +26,7 @@ public class CrystalPickup : MonoBehaviour
             {
                 playerCrystals.AddCrystals(value);
                 Debug.Log("Crystal value: " + value);
-                Destroy(gameObject, 0.1f);
+                Destroy(gameObject, 0.01f);
             }
         }
     }

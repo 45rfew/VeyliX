@@ -31259,10 +31259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d29623fd23849149ab4b2ab5e7f3771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 200
-  currentHealth: 200
+  maxHealth: 100
+  currentHealth: 100
   hitEffect: {fileID: 0}
-  healthRegen: 22
+  healthRegen: 3
   crystalDrop: 10
 --- !u!114 &1720182351
 MonoBehaviour:
