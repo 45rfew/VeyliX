@@ -28,7 +28,7 @@ public class AsteroidHealth : Health
     {
         rb = GetComponent<Rigidbody>();
         size = rb.transform.parent.localScale.x;
-        maxHealth = healthValues[Mathf.FloorToInt(size - 1)]/10;
+        maxHealth = healthValues[Mathf.FloorToInt(size - 1)];
         currentHealth = maxHealth;
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
@@ -47,10 +47,7 @@ public class AsteroidHealth : Health
     void HandleDeath()
     {
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        CrystalSpawner.Instance.DropCrystals(
-            Mathf.RoundToInt(size * UnityEngine.Random.Range(2.0f, 2.5f)),
-            pos
-        );
+        CrystalSpawner.Instance.DropCrystals(Mathf.RoundToInt(size * UnityEngine.Random.Range(2.0f, 2.5f)), pos);
         Destroy(gameObject, 0.01f);
     }
 }   

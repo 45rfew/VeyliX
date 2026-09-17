@@ -16,7 +16,7 @@ public class Cannon
         float fireRateMin,
         float fireRateMax,
         float recoilValue
-        )
+    )
     {
         this.name = name;
         this.priority = priority;

@@ -56,10 +56,8 @@ public class UpgradeButtons : MonoBehaviour
     }
     public void Upgrade(string upgradeName)
     {
-        if (!EnoughCrystals())
-            return;
-        if (upgradeCounts[upgradeName] >= shipTier)
-            return;
+        if (!EnoughCrystals()) return;
+        if (upgradeCounts[upgradeName] >= shipTier) return;
         playerCrystals.RemoveCrystals(shipTier * 10);
         upgradeActions[upgradeName](shipTier);
         upgradeCounts[upgradeName]++;

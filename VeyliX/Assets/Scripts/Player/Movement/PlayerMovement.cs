@@ -65,8 +65,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
             }
         }
-        
-        
         //brake once recoil has fully finished
         if (!thrusting && zeroLockCheck.IsLocked())
         {

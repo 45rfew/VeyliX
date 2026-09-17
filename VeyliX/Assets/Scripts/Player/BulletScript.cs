@@ -15,31 +15,27 @@ public class BulletScript : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = false;
     }
-
     void Start()
     {
         Destroy(gameObject, timeToLive);
     }
-
     void OnTriggerEnter(Collider collision)
     {
         if (owner != null)
         {
-            if (collision.transform.root == owner.transform.root)
-                return;
+            if (collision.transform.root == owner.transform.root) return;
         }
         Debug.Log("Bullet hit: " + collision.gameObject.name);
         Health health = collision.GetComponentInParent<Health>();
-        if (health != null)
+        if (health != null){
             health.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
-
     public void SetBulletSpeed(float newSpeed)
     {
         force = newSpeed;
     }
-
     public void SetDamage(int newDamage)
     {
         damage = newDamage;

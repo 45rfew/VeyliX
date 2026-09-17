@@ -21,10 +21,10 @@ public class PlayerShoot : MonoBehaviour
     }
     void FixedUpdate()
     {
-        for (int i = 0; i < cannonTimers.Length; i++)
+        for (int i = 0; i < cannonTimers.Length; i++){
             cannonTimers[i] += Time.fixedDeltaTime;
-        if (!Input.GetMouseButton(0))
-            return;
+        }
+        if (!Input.GetMouseButton(0)) return;
         TryShoot();        
     }
     void TryShoot()
@@ -41,14 +41,11 @@ public class PlayerShoot : MonoBehaviour
             float timeBetweenShots = 1f / fireRate;
             int energyCost = cannon.damage.GetValue();
             //cannon not ready
-            if (cannonTimers[i] < timeBetweenShots)
-                continue;
+            if (cannonTimers[i] < timeBetweenShots) continue;
             //cant afford
-            if (playerEnergy.GetEnergy() < energyCost)
-                continue;
+            if (playerEnergy.GetEnergy() < energyCost) continue;
             //no fire point
-            if (i >= bulletTransform.Length)
-                continue;
+            if (i >= bulletTransform.Length) continue;
             //priority is more important than rotation
             if (cannon.priority > highestPriority)
             {
@@ -56,8 +53,7 @@ public class PlayerShoot : MonoBehaviour
                 selectedCannon = i;
             }
         }
-        if (selectedCannon == -1)
-            return;
+        if (selectedCannon == -1) return;
         Cannon selected = ship.cannons[selectedCannon];
         ShootBullet(bulletTransform[selectedCannon],selected);
         cannonTimers[selectedCannon] = 0f;

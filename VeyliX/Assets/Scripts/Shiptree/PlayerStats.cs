@@ -73,13 +73,15 @@ public class PlayerStats : MonoBehaviour
     }
     public void UpgradeDamage(int amount)
     {
-        for (int i = 0; i < currentShip.cannons.Count; i++)
+        for (int i = 0; i < currentShip.cannons.Count; i++){
             currentShip.cannons[i].damage.Upgrade(amount); 
+        }
     }
     public void UpgradeBulletSpeed(int amount)
     {
-        for (int i = 0; i < currentShip.cannons.Count; i++)
+        for (int i = 0; i < currentShip.cannons.Count; i++){
             currentShip.cannons[i].bulletSpeed.Upgrade(amount);
+        }
     }
     public void UpgradeSpeed(int amount)
     {
@@ -108,14 +110,14 @@ public class PlayerStats : MonoBehaviour
         Ship ship1 = new Ship();
         ship1.code = 101;
         ship1.name = "poo";
-        ship1.health = new IntStatRange(80, 120);
+        ship1.health = new IntStatRange(2000, 120);
         ship1.healthRegen = new IntStatRange(4, 8);
         ship1.energy = new StatRange(100, 180);
         ship1.energyRegen = new StatRange(10, 1005);
-        ship1.speed = new StatRange(90/5, 215/5);
+        ship1.speed = new StatRange(45/5, 215/5);
         ship1.acceleration = new StatRange(90, 140);
         ship1.rotationSpeed = new StatRange(80*5, 100*5);
-        ship1.mass = 100;
+        ship1.mass = 800;
         ship1.cannons = new List<Cannon>();
         ship1.cannons.Add(
             new Cannon(

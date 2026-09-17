@@ -35,7 +35,6 @@ public class Wanderer : MonoBehaviour
         if (player == null) return;
         shootTimer += Time.fixedDeltaTime;
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
         if (distanceToPlayer < distanceToShoot)
         //spotted player, shoot and move towards them 
         {

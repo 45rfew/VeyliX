@@ -179,7 +179,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3772022810932795037}
   serializedVersion: 5
-  m_Mass: 1000
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -196,7 +196,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &881818821931253130
 MonoBehaviour:
@@ -210,5 +210,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ca04932f7a39a43bea007adad342d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  maxHealth: 100
   currentHealth: 0
-  crysatalPrefab: {fileID: 4005926295966989593, guid: 1d17b32025cf8644b9a1ade3e41eef21, type: 3}

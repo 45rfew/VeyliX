@@ -44,33 +44,20 @@ public class PlayerHealth : Health
         else
         {
             int overflow = amount - currentHealth;
-
             currentHealth = 0;
-
             int crystals = playerCrystals.GetCrystalCount();
-
             if (crystals >= overflow)
             {
                 playerCrystals.RemoveCrystals(overflow);
-
-                CrystalSpawner.Instance.DropCrystals(
-                    overflow,
-                    transform.position
-                );
+                CrystalSpawner.Instance.DropCrystals(overflow,transform.position);
             }
             else
             {
                 playerCrystals.RemoveCrystals(crystals);
-
-                CrystalSpawner.Instance.DropCrystals(
-                    crystals,
-                    transform.position
-                );
-
+                CrystalSpawner.Instance.DropCrystals(crystals,transform.position);
                 Die();
             }
         }
-
         OnDamage?.Invoke(currentHealth, maxHealth);
     }
     void HandleDamage(int currentHealth, int maxHealth)

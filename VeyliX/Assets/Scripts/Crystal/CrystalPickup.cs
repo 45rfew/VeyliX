@@ -34,7 +34,6 @@ public class CrystalPickup : MonoBehaviour
     {
         this.value = value;
     }
-
     public int GetValue()
     {
         return value;

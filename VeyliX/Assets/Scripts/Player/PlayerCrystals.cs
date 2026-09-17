@@ -11,7 +11,6 @@ public class PlayerCrystals : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
     }
     public int GetCrystalCount() => crystalCount;
-
     public void AddCrystals(int value)
     {
         int maxCrystals = playerStats.GetMaxCrystals();
@@ -19,7 +18,6 @@ public class PlayerCrystals : MonoBehaviour
         OnplayerCrystalChange?.Invoke(crystalCount);
         Debug.Log("Player Crystals: " + crystalCount);
     }
-
     public void RemoveCrystals(int value)
     {
         crystalCount -= value;

@@ -24,13 +24,10 @@ public class CrystalSpawner : MonoBehaviour
         }
         if (chunks == 3)
         {
-        int firstAmount = Random.Range(2, amount);
-
-        int remaining = amount - firstAmount;
-
-        int secondAmount = Random.Range(2, remaining);
-
-        int thirdAmount = remaining - secondAmount;
+            int firstAmount = Random.Range(2, amount);
+            int remaining = amount - firstAmount;
+            int secondAmount = Random.Range(2, remaining);
+            int thirdAmount = remaining - secondAmount;
             SpawnCrystals(firstAmount, pos);
             SpawnCrystals(secondAmount, pos);
             SpawnCrystals(thirdAmount, pos);
