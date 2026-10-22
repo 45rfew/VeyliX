@@ -1,3 +1,4 @@
+using Unity.AppUI.UI;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -6,11 +7,12 @@ public class CameraFollow : MonoBehaviour
     private Vector3 offset = new Vector3(0,5f,0);
     private float smoothSpeed = 50f;
     private Camera cam;
+    public float zoom;
 
     void Awake()
     {
         cam = GetComponent<Camera>();
-        updateZoom(8+Mathf.Round(player.localScale.x/100));
+        updateZoom(zoom+Mathf.Round(Mathf.Floor(player.localScale.x)));
     }
     void updateZoom(float zoom)
     {
