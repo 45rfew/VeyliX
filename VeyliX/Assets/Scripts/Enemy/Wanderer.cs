@@ -32,24 +32,23 @@ public class Wanderer : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player == null) return;
-        shootTimer += Time.fixedDeltaTime;
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer < distanceToShoot)
-        //spotted player, shoot and move towards them 
+        if (player == null)
         {
-            WanderAround();
-            if (shootTimer >= shootInterval)
-            {
-                Shoot();
-            }
-            if ( distanceToPlayer > maxDistance) //stop moving once too close 
-                MoveToPlayer();
-        } else
-        {
-            WanderAround();
+            return;
         }
-
+        shootTimer += Time.fixedDeltaTime;
+        float distanceToPlayer = Vector3.Distance(transform.position,player.position);
+        // Shoot only inside the configured range
+        if (distanceToPlayer <= distanceToShoot && shootTimer >= shootInterval)
+        {
+            Shoot();
+        }
+        WanderAround();
+        if (distanceToPlayer > maxDistance &&
+            distanceToPlayer <= distanceToShoot)
+        {
+            MoveToPlayer();
+        }
     }
 
     void WanderAround()

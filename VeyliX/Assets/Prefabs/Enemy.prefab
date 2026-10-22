@@ -154,8 +154,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 30
   bulletDamage: 10
-  maxDistance: 10
-  distanceToShoot: 15
+  maxDistance: 50
+  distanceToShoot: 10
 --- !u!114 &7860152352716113205
 MonoBehaviour:
   m_ObjectHideFlags: 0
