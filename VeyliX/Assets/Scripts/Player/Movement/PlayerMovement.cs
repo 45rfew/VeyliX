@@ -6,13 +6,22 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats playerStats;
     private ZeroLockCheck zeroLockCheck;
 
-    private float moveSpeed;
+    private float moveSpeed;      // ship top speed = max SUSTAINED speed
     private float acceleration;
-    private float recoilDuration = 0.5f;
-    private float recoilMaxSpeed; //hard cap while recoil is active
-    private Vector3 recoilDirection;
-    private float recoilForce;
-    private float recoilTimer;
+
+    [Header("Recoil")]
+    [Tooltip("OFF: the direction passed to AddRecoil is already the direction the ship should be pushed. ON: it is the direction you SHOT, so the ship is pushed the opposite way.")]
+    public bool pushOppositeOfShot = false;
+    [Tooltip("Converts a cannon's recoil stat into an instant speed kick. Kick = cannon recoil * this.")]
+    public float recoilStrength = 0.05f;
+
+    [Header("Overspeed (speed above the ship's top speed)")]
+    [Tooltip("The most speed recoil can stack up to, as a multiple of the ship's top speed. 2 = recoil can double your top speed for a moment.")]
+    public float maxOverspeedMultiplier = 2f;
+    [Tooltip("How fast extra speed bleeds off, as a fraction of the ship's acceleration. Higher = boost ends quickly. Lower = longer boost.")]
+    [Range(0.01f, 1f)] public float overspeedRecovery = 0.1f;
+
+    [Header("Debug")]
     public float speed;
 
     void Start()
@@ -20,68 +29,69 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = GetComponent<PlayerStats>();
         zeroLockCheck = GetComponent<ZeroLockCheck>();
-        Ship ship = playerStats.GetCurrentShip();
-        recoilMaxSpeed = ship.speed.GetValue() * 1f;
-        moveSpeed = ship.speed.GetValue();
-        acceleration = ship.acceleration.GetValue();
+        UpdateMovementStats();
     }
+
     public void UpdateMovementStats()
     {
         Ship ship = playerStats.GetCurrentShip();
-        recoilMaxSpeed = ship.speed.GetValue() * 1f;
         moveSpeed = ship.speed.GetValue();
         acceleration = ship.acceleration.GetValue();
     }
+
     void FixedUpdate()
     {
         if (playerStats == null) return;
-        speed = rb.linearVelocity.magnitude;
+
+        float dt = Time.fixedDeltaTime;
         bool thrusting = Input.GetMouseButton(1);
-        bool recoiling = recoilTimer > 0f;
+        bool zeroLocked = zeroLockCheck != null && zeroLockCheck.IsLocked();
+
+        Vector3 v = rb.linearVelocity;
+
+        // 1. Engine
         if (thrusting)
         {
-            float forwardSpeed = Vector3.Dot(rb.linearVelocity,transform.forward);
-            float speedDifference = moveSpeed - forwardSpeed;
-            if (speedDifference > 0f)
-            {
-                float accelerationAmount = Mathf.Min(acceleration,speedDifference / Time.fixedDeltaTime);
-                rb.AddForce(transform.forward * accelerationAmount,ForceMode.Acceleration);
-            }
+            // Steer velocity toward the nose. If we are currently above top speed
+            // (from recoil), keep that extra speed while steering. Recovery below removes it.
+            float targetSpeed = Mathf.Max(moveSpeed, v.magnitude);
+            Vector3 target = transform.forward * targetSpeed;
+            v = Vector3.MoveTowards(v, target, acceleration * dt);
         }
-        if (recoiling)
+        else if (zeroLocked)
         {
-            recoilTimer -= Time.fixedDeltaTime;
-            float progress = 1f - Mathf.Clamp01(recoilTimer / recoilDuration);
-            float curve = Mathf.Sin(progress * Mathf.PI); // smooth arch: 0 -> 1 -> 0
-            float speedAlongRecoil = Vector3.Dot(rb.linearVelocity, recoilDirection);
-            if (speedAlongRecoil < recoilMaxSpeed)
-            {
-                rb.AddForce(recoilDirection * recoilForce * curve, ForceMode.Acceleration);
-            }
-            if (rb.linearVelocity.magnitude > moveSpeed*1.2f)
-            {
-                float currentSpeed = rb.linearVelocity.magnitude;
-                float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
-                rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
-            }
+            // Zero lock ON: no free drift, brake to a stop (this also eats recoil boosts quickly)
+            v = Vector3.MoveTowards(v, Vector3.zero, acceleration * dt);
         }
-        //brake once recoil has fully finished
-        if (!thrusting && zeroLockCheck.IsLocked())
+        // Zero lock OFF and not thrusting: keep momentum
+
+        // 2. Overspeed recovery: anything above top speed slowly bleeds back down.
+        // Better acceleration = faster recovery.
+        float mag = v.magnitude;
+        if (mag > moveSpeed)
         {
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity,Vector3.zero,acceleration * Time.fixedDeltaTime);
+            float newMag = Mathf.MoveTowards(mag, moveSpeed, acceleration * overspeedRecovery * dt);
+            v = v.normalized * newMag;
         }
-        else if (rb.linearVelocity.magnitude > moveSpeed)
-        {
-            float currentSpeed = rb.linearVelocity.magnitude;
-            float newSpeed = Mathf.MoveTowards(currentSpeed, moveSpeed, acceleration * Time.fixedDeltaTime);
-            rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
-        }
+
+        rb.linearVelocity = v;
+        speed = v.magnitude;
     }
 
+    // force = the firing cannon's recoil stat
     public void AddRecoil(Vector3 direction, float force)
     {
-        recoilDirection = direction.normalized;
-        recoilForce = force;
-        recoilTimer = recoilDuration;
+        Vector3 pushDir = direction.normalized;
+        if (pushOppositeOfShot) pushDir = -pushDir;
+
+        float kick = force * recoilStrength;
+
+        Vector3 v = rb.linearVelocity;
+        float cap = moveSpeed * maxOverspeedMultiplier;
+
+        // Can't gain speed past the cap, but if already above it we don't snap down,
+        // and you can still change direction.
+        float limit = Mathf.Max(cap, v.magnitude);
+        rb.linearVelocity = Vector3.ClampMagnitude(v + pushDir * kick, limit);
     }
 }

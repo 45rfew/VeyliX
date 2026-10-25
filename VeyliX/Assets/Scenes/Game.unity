@@ -25587,6 +25587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1557fab2089534e9164d629766640a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  pushOppositeOfShot: 1
+  recoilStrength: 0.32
+  maxOverspeedMultiplier: 2
+  overspeedRecovery: 0.1
   speed: 0
 --- !u!114 &1293918798
 MonoBehaviour:
@@ -33734,6 +33738,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1557fab2089534e9164d629766640a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  pushOppositeOfShot: 0
+  recoilStrength: 0.15
+  maxOverspeedMultiplier: 2
+  overspeedRecovery: 0.13
   speed: 0
 --- !u!114 &1785497660
 MonoBehaviour:

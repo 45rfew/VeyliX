@@ -126,7 +126,7 @@ public class PlayerStats : MonoBehaviour
                 20, 50,
                 30, 40,
                 2, 2,
-                50
+                20
             )
         );
         ship1.cannons.Add(
