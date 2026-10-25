@@ -220,13 +220,160 @@ public class PlayerStats : MonoBehaviour
                 200
             )
         );
+
+        Ship ship401 = new Ship();
+        ship401.code = 401;
+        ship401.name = "pooa";
+        ship401.health = new IntStatRange(2000, 120);
+        ship401.healthRegen = new IntStatRange(4, 8);
+        ship401.energy = new StatRange(100, 180);
+        ship401.energyRegen = new StatRange(10, 1005);
+        ship401.speed = new StatRange(45/5, 215/5);
+        ship401.acceleration = new StatRange(90, 140);
+        ship401.rotationSpeed = new StatRange(80*5, 100*5);
+        ship401.mass = 800;
+        ship401.cannons = new List<Cannon>();
+        ship401.cannons.Add(
+            new Cannon(
+                "Middle Cannon",
+                10,
+                20, 50,
+                30, 40,
+                2, 2,
+                50
+            )
+        );
+        ship401.cannons.Add(
+            new Cannon(
+                "Left Cannon",
+                1,
+                10, 20,
+                30, 40,
+                4, 4,
+                0
+            )
+        );
+        ship401.cannons.Add(
+            new Cannon(
+                "Right Cannon",
+                1,
+                10, 20,
+                30, 40,
+                4, 4,
+                0
+            )
+        );
+
+        Ship ship501 = new Ship();
+        ship501.code = 501;
+        ship501.name = "paoo";
+        ship501.health = new IntStatRange(2000, 120);
+        ship501.healthRegen = new IntStatRange(4, 8);
+        ship501.energy = new StatRange(100, 180);
+        ship501.energyRegen = new StatRange(10, 1005);
+        ship501.speed = new StatRange(45/5, 215/5);
+        ship501.acceleration = new StatRange(90, 140);
+        ship501.rotationSpeed = new StatRange(80*5, 100*5);
+        ship501.mass = 800;
+        ship501.cannons = new List<Cannon>();
+        ship501.cannons.Add(
+            new Cannon(
+                "Middle Cannon",
+                10,
+                20, 50,
+                30, 40,
+                2, 2,
+                50
+            )
+        );
+        ship501.cannons.Add(
+            new Cannon(
+                "Left Cannon",
+                1,
+                10, 20,
+                30, 40,
+                4, 4,
+                0
+            )
+        );
+        ship501.cannons.Add(
+            new Cannon(
+                "Right Cannon",
+                1,
+                10, 20,
+                30, 40,
+                4, 4,
+                0
+            )
+        );
+
+        Ship ship601 = new Ship();
+        ship601.code = 601;
+        ship601.name = "apaoo";
+        ship601.health = new IntStatRange(2000, 120);
+        ship601.healthRegen = new IntStatRange(4, 8);
+        ship601.energy = new StatRange(100, 180);
+        ship601.energyRegen = new StatRange(10, 1005);
+        ship601.speed = new StatRange(45/5, 215/5);
+        ship601.acceleration = new StatRange(90, 140);
+        ship601.rotationSpeed = new StatRange(80*5, 100*5);
+        ship601.mass = 800;
+        ship601.cannons = new List<Cannon>();
+        ship601.cannons.Add(
+            new Cannon(
+                "Middle Cannon",
+                10,
+                20, 50,
+                30, 40,
+                2, 2,
+                50
+            )
+        );
+        ship601.cannons.Add(
+            new Cannon(
+                "Left Cannon",
+                1,
+                10, 20,
+                30, 40,
+                4, 4,
+                0
+            )
+        );
+        ship601.cannons.Add(
+            new Cannon(
+                "Right Cannon",
+                1,
+                10, 20,
+                30, 40,
+                4, 4,
+                0
+            )
+        );
+
         //tree path
         ship1.upgrades.Add(ship201);
         ship1.upgrades.Add(ship202);
+
         ship201.upgrades.Add(ship301);
-        ships.Add(ship1.code,ship1);
+        ship301.upgrades.Add(ship401);
+        ship401.upgrades.Add(ship501);
+        ship501.upgrades.Add(ship601);
+        
+
+
+        ships.Add(ship1.code, ship1);
+        
         ships.Add(ship201.code,ship201);
-        ships.Add(ship202.code,ship202);
-        ships.Add(ship301.code,ship301);
+        ships.Add(ship202.code, ship202);
+
+        ships.Add(ship301.code, ship301);
+
+        ships.Add(ship401.code, ship401);
+
+        ships.Add(ship501.code, ship501);
+
+        ships.Add(ship601.code, ship601);
+        
+
     }
 }

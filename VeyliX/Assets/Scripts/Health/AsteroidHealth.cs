@@ -6,6 +6,7 @@ using UnityEngine;
 public class AsteroidHealth : Health
 {
     private float size;
+    private float yield = 10;
     private int[] healthValues =
     {
         20,
@@ -47,7 +48,7 @@ public class AsteroidHealth : Health
     void HandleDeath()
     {
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        CrystalSpawner.Instance.DropCrystals(Mathf.RoundToInt(size * UnityEngine.Random.Range(2.0f, 2.5f)), pos);
+        CrystalSpawner.Instance.DropCrystals(Mathf.RoundToInt(size * UnityEngine.Random.Range(2.0f, 2.5f)*yield), pos);
         Destroy(gameObject, 0.01f);
     }
 }   
