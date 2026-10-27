@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5223959911807989559}
   - component: {fileID: 4186342701684817976}
   - component: {fileID: 7785743156405566904}
+  - component: {fileID: 5978606075014759809}
   m_Layer: 7
   m_Name: Bullet 1
   m_TagString: Bullet
@@ -74,6 +75,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   owner: {fileID: 0}
+  collisionEffectPrefab: {fileID: 2528947512719126265, guid: d2c2589e03d83f44ab2d99c24db44aa8, type: 3}
+  effectScaleMultiplier: 88
+--- !u!114 &5978606075014759809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042844400039630682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecb751262c258f49ae597b9e036b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletHitEffect
+  collisionEffectPrefab: {fileID: 2528947512719126265, guid: d2c2589e03d83f44ab2d99c24db44aa8, type: 3}
+  effectScaleMultiplier: 0.3
 --- !u!1001 &9192387004761118554
 PrefabInstance:
   m_ObjectHideFlags: 0
