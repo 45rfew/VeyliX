@@ -5946,7 +5946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 94759332749065569, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.4650445
+      value: -4.27
       objectReference: {fileID: 0}
     - target: {fileID: 94759332749065569, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60558,7 +60558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &833006207
 Transform:
   m_ObjectHideFlags: 0
@@ -174285,6 +174285,7 @@ GameObject:
   - component: {fileID: 1785497654}
   - component: {fileID: 1785497664}
   - component: {fileID: 1785497662}
+  - component: {fileID: 1785497666}
   - component: {fileID: 1785497665}
   m_Layer: 6
   m_Name: Player
@@ -174527,6 +174528,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5353da142274e2541899771d15b8ce0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionDamage
+--- !u!114 &1785497666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785497652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b759206d810c8043975b69b03bf8e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionEffect
+  collisionEffectPrefab: {fileID: 2528947512719126265, guid: d2c2589e03d83f44ab2d99c24db44aa8, type: 3}
+  collisionThreshold: 2
+  effectScaleMultiplier: 0.2
 --- !u!1 &1791144233
 GameObject:
   m_ObjectHideFlags: 0

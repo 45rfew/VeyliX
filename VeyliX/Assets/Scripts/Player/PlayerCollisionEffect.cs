@@ -22,5 +22,6 @@ public class PlayerCollisionEffect : MonoBehaviour
         float effectScale = velocity * effectScaleMultiplier;
         GameObject effect = Instantiate(collisionEffectPrefab,contact.point,rotation);
         effect.transform.localScale = Vector3.one * effectScale;
+        Destroy(effect, 1f);
     }
 }

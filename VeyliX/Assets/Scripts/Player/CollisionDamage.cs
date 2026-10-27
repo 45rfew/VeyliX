@@ -5,6 +5,7 @@ public class CollisionDamage : MonoBehaviour
     private float damageMultiplier = 0.05f;
     private float myDamageRemainder;
     private float otherDamageRemainder;
+    private bool isColliding = false;
     private void OnCollisionStay(Collision collision)
     {
         Rigidbody myRb = GetComponent<Rigidbody>();

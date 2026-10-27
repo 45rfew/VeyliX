@@ -5,7 +5,7 @@ public class BulletHitEffect : MonoBehaviour
 {
     public GameObject collisionEffectPrefab;
     [SerializeField] private float effectScaleMultiplier = 0.3f;
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collisionEffectPrefab == null)
         {
@@ -16,6 +16,8 @@ public class BulletHitEffect : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(contact.normal);
         float effectScale = size.magnitude * effectScaleMultiplier;
         GameObject effect = Instantiate(collisionEffectPrefab,contact.point,rotation);
-        effect.transform.localScale = Vector3.one * effectScale;
+        effect.transform.localScale = Vector3.one * 3f;
+        Debug.Log("Bullet dsdasdsadsahit: " + collision.gameObject.name);
+        Destroy(effect, 1f);
     }
 }
