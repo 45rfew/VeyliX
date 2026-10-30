@@ -20,7 +20,7 @@ public class Wanderer : MonoBehaviour
     private float seekTimer;
     private bool isWandering = true;
     private float stateTimer = 0f;
-    private float stateBuffer = 1f;
+    private float stateBuffer = 3f;
     enum EnemyState
     {
         Wandering,
@@ -71,7 +71,6 @@ public class Wanderer : MonoBehaviour
     void UpdateState(float distance)
     {
         EnemyState next = currentState;
-
         switch (currentState)
         {
             case EnemyState.Wandering:
@@ -89,7 +88,6 @@ public class Wanderer : MonoBehaviour
                 else if (distance > distanceToShoot + stateBuffer) next = EnemyState.Seeking;
                 break;
         }
-
         if (next != currentState)
         {
             currentState = next;
@@ -125,7 +123,6 @@ public class Wanderer : MonoBehaviour
         }
         */
         WanderAround();
-
     }
     void ApproachPlayer()
     {
@@ -146,7 +143,6 @@ public class Wanderer : MonoBehaviour
             MoveToPlayer();
         }
     }
-
     void WanderAround()
     {
         wanderTimer += Time.fixedDeltaTime;
@@ -159,8 +155,6 @@ public class Wanderer : MonoBehaviour
         }
         rb.MovePosition(rb.position + new Vector3(currentDirection.x, 0f, currentDirection.y) * speed * Time.fixedDeltaTime);
     }
-
-
     void MoveToPlayer()
     {
         if (!isWandering)
@@ -171,32 +165,6 @@ public class Wanderer : MonoBehaviour
             rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         }
     }
-
-    void MoveToPlayer3()
-    {
-        seekTimer += Time.fixedDeltaTime;
-        if (seekTimer >= 0.5f)
-        {
-
-            seekTimer = 0f;
-            Vector3 direction = player.position - transform.position;
-            direction.y = 0;
-            direction.Normalize();
-
-            // Add random movement
-            Vector3 randomDirection = new Vector3(
-                Random.Range(-1f, 1f),
-                0f,
-                Random.Range(-1f, 1f)
-            );
-
-            // Combine chasing and random movement
-            direction += randomDirection * 0.5f;
-
-            transform.position += direction.normalized * speed * Time.deltaTime;
-        }
-    }
-
     void Shoot()
     {
         rb.linearVelocity = Vector2.zero;

@@ -246,8 +246,8 @@ MonoBehaviour:
   speed: 5
   shootInterval: 1
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
-  bulletSpeed: 100
-  bulletDamage: 1
+  bulletSpeed: 40
+  bulletDamage: 10
   maxDistance: 100
   distanceToShoot: 12
 --- !u!114 &7860152352716113205
