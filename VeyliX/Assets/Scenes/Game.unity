@@ -49214,7 +49214,7 @@ MonoBehaviour:
   alienEntries:
   - alienPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
     ring: 1
-    weight: 1
+    weight: 0.2
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 2
     weight: 1
@@ -49233,6 +49233,9 @@ MonoBehaviour:
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 7
     weight: 1
+  - alienPrefab: {fileID: 3369000980738519, guid: 1fecf0397fa241a4ab4a30c094ddcd5c, type: 3}
+    ring: 1
+    weight: 0.8
   player: {fileID: 1785497661}
   mapCenter: {fileID: 1785497661}
   ringCount: 7
