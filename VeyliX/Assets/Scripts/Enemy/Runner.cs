@@ -34,14 +34,11 @@ public class Runner : MonoBehaviour
         }
         shootTimer += Time.fixedDeltaTime;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
         if (distanceToPlayer < maxDistance)
         {
             LookAtPlayer();
         }
-
         MoveForward();
-
         if (distanceToPlayer < distanceToShoot)
         {
             CombatBehaviour();
@@ -53,7 +50,6 @@ public class Runner : MonoBehaviour
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
         if (angleToPlayer <= 35f)
         {
-
             if (shootTimer >= shootInterval)
             {
                 shootTimer = 0f;
