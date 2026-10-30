@@ -243,13 +243,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c404d99987c0de74c92e4668fee206c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wander
-  speed: 3
+  speed: 5
   shootInterval: 1
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
-  bulletSpeed: 30
-  bulletDamage: 10
-  maxDistance: 50
-  distanceToShoot: 10
+  bulletSpeed: 100
+  bulletDamage: 1
+  maxDistance: 100
+  distanceToShoot: 12
 --- !u!114 &7860152352716113205
 MonoBehaviour:
   m_ObjectHideFlags: 0

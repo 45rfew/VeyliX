@@ -17,6 +17,19 @@ public class Wanderer : MonoBehaviour
     private float steeringSmoothness = 8f;
     private Vector2 currentDirection = Vector2.zero;
     private float wanderTimer;
+    private float seekTimer;
+    private bool isWandering = true;
+    private float stateTimer = 0f;
+    private float stateBuffer = 1f;
+    enum EnemyState
+    {
+        Wandering,
+        Seeking,
+        Shooting
+    }
+    EnemyState currentState = EnemyState.Wandering;
+    float combatMoveTimer = 0f;
+    bool isMovingInCombat = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,16 +49,99 @@ public class Wanderer : MonoBehaviour
         {
             return;
         }
+
         shootTimer += Time.fixedDeltaTime;
-        float distanceToPlayer = Vector3.Distance(transform.position,player.position);
-        // Shoot only inside the configured range
-        if (distanceToPlayer <= distanceToShoot && shootTimer >= shootInterval)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        UpdateState(distanceToPlayer);
+        switch (currentState)
         {
+            case EnemyState.Wandering:
+                WanderAround();
+                break;
+
+            case EnemyState.Seeking:
+                ApproachPlayer();
+                break;
+
+            case EnemyState.Shooting:
+                CombatBehaviour();
+                break;
+        }
+    }
+    void UpdateState(float distance)
+    {
+        EnemyState next = currentState;
+
+        switch (currentState)
+        {
+            case EnemyState.Wandering:
+                if (distance < distanceToShoot) next = EnemyState.Shooting;
+                else if (distance < maxDistance) next = EnemyState.Seeking;
+                break;
+
+            case EnemyState.Seeking:
+                if (distance < distanceToShoot) next = EnemyState.Shooting;
+                else if (distance > maxDistance + stateBuffer) next = EnemyState.Wandering;
+                break;
+
+            case EnemyState.Shooting:
+                if (distance > maxDistance + stateBuffer) next = EnemyState.Wandering;
+                else if (distance > distanceToShoot + stateBuffer) next = EnemyState.Seeking;
+                break;
+        }
+
+        if (next != currentState)
+        {
+            currentState = next;
+            OnStateChanged(next);
+        }
+    }
+
+    void OnStateChanged(EnemyState newState)
+    {
+        stateTimer = 0f;
+        wanderTimer = 0f;
+        combatMoveTimer = 0f;
+        isMovingInCombat = false;
+        isWandering = (newState != EnemyState.Seeking);
+    }
+    
+    void CombatBehaviour()
+    {
+        if (shootTimer >= shootInterval)
+        {
+            shootTimer = 0f;
             Shoot();
         }
+        /*
+        if (combatMoveTimer >= 1f)
+        {
+            combatMoveTimer = 0f;
+            isMovingInCombat = !isMovingInCombat;
+        }
+        if (isMovingInCombat)
+        {
+            WanderAround();
+        }
+        */
         WanderAround();
-        if (distanceToPlayer > maxDistance &&
-            distanceToPlayer <= distanceToShoot)
+
+    }
+    void ApproachPlayer()
+    {
+        stateTimer += Time.fixedDeltaTime;
+
+        if (stateTimer >= 1f)
+        {
+            stateTimer = 0f;
+            isWandering = !isWandering;
+        }
+
+        if (isWandering)
+        {
+            WanderAround();
+        }
+        else
         {
             MoveToPlayer();
         }
@@ -54,20 +150,53 @@ public class Wanderer : MonoBehaviour
     void WanderAround()
     {
         wanderTimer += Time.fixedDeltaTime;
-        if (wanderTimer >= 1.5f)
+        if (wanderTimer >= 1f)
         {
             wanderTimer = 0f;
+            isWandering = true;
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
             currentDirection = Vector2.Lerp(currentDirection, randomDirection, Time.fixedDeltaTime * 20);
         }
         rb.MovePosition(rb.position + new Vector3(currentDirection.x, 0f, currentDirection.y) * speed * Time.fixedDeltaTime);
     }
+
+
     void MoveToPlayer()
     {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
-        transform.position += direction.normalized * speed * Time.deltaTime;
+        if (!isWandering)
+        {
+            Vector3 direction = player.position - transform.position;
+            direction.y = 0;
+            direction.Normalize();
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        }
     }
+
+    void MoveToPlayer3()
+    {
+        seekTimer += Time.fixedDeltaTime;
+        if (seekTimer >= 0.5f)
+        {
+
+            seekTimer = 0f;
+            Vector3 direction = player.position - transform.position;
+            direction.y = 0;
+            direction.Normalize();
+
+            // Add random movement
+            Vector3 randomDirection = new Vector3(
+                Random.Range(-1f, 1f),
+                0f,
+                Random.Range(-1f, 1f)
+            );
+
+            // Combine chasing and random movement
+            direction += randomDirection * 0.5f;
+
+            transform.position += direction.normalized * speed * Time.deltaTime;
+        }
+    }
+
     void Shoot()
     {
         rb.linearVelocity = Vector2.zero;

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -48,7 +49,11 @@ public class PlayerMovement : MonoBehaviour
         bool zeroLocked = zeroLockCheck != null && zeroLockCheck.IsLocked();
 
         Vector3 v = rb.linearVelocity;
-
+        if (rb == null) return;
+        if (rb.transform.localPosition.y != 0f)
+        {
+            rb.transform.localPosition = new Vector3(rb.transform.localPosition.x, 0f, rb.transform.localPosition.z);
+        }
         // 1. Engine
         if (thrusting)
         {
