@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public Action<int, int> OnDamage;
     public Action<int, int> OnHeal;
     public Action OnDeath;
+    public GameObject deathEffectPrefab;
     protected virtual void Start()
     {
         //currentHealth = maxHealth;
@@ -24,5 +25,18 @@ public class Health : MonoBehaviour
     protected virtual void Die()
     {
         OnDeath?.Invoke();
+        Renderer renderer = GetComponentInChildren<Renderer>();
+        float scale = 1f;
+        if (renderer != null)
+        {
+            scale = renderer.bounds.size.x;
+        }
+        if (deathEffectPrefab != null)
+        {
+            GameObject effect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+            effect.transform.localScale = Vector3.one * scale * 0.8f;
+            Destroy(effect, 1.5f);
+        }
+
     }
 }
