@@ -2,11 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems; 
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 
 public class UpgradeButtons : MonoBehaviour
 {
     public PlayerStats playerStats;
     public PlayerCrystals playerCrystals;
+    public GameObject healthButton;
     private int shipTier;
     private Dictionary<string, int> upgradeCounts = new Dictionary<string, int>()
     {
@@ -38,12 +41,22 @@ public class UpgradeButtons : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            Upgrade("Health");
+        {
+            Upgrade("Health", healthButton);
+        }
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             Upgrade("HealthRegen");
+            UpdateUpgradeUI(healthButton, upgradeCounts["HealthRegen"], shipTier);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
             Upgrade("Energy");
+            UpdateUpgradeUI(healthButton, upgradeCounts["Energy"], shipTier);
+        }   
         if (Input.GetKeyDown(KeyCode.Alpha4))
+    
             Upgrade("EnergyRegen");
         if (Input.GetKeyDown(KeyCode.Alpha5))
             Upgrade("Damage");
@@ -52,20 +65,76 @@ public class UpgradeButtons : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha7))
             Upgrade("Speed");
         if (Input.GetKeyDown(KeyCode.Alpha8))
-            Upgrade("Acceleration");
+            Upgrade("Acceleration");*/
     }
-    public void Upgrade(string upgradeName)
+    public void UpdateUpgradeUI(GameObject button, int upgradeCount, int shipTier)
     {
-        if (!EnoughCrystals()) return;
-        if (upgradeCounts[upgradeName] >= shipTier) return;
+        Debug.Log("UpdateUpgradeUI called!");
+
+        if (button == null)
+        {
+            Debug.LogError("Button is null!");
+            return;
+        }
+
+        string upgradeName = button.name;
+
+        Slider slider = button.GetComponentInChildren<Slider>();
+
+        if (slider == null)
+        {
+            Debug.LogError("No Slider found on " + button.name);
+            return;
+        }
+
+        Button upgradeButton = button.GetComponentInChildren<Button>();
+
+        if (upgradeButton == null)
+        {
+            Debug.LogError("No Button component found on " + button.name);
+            return;
+        }
+
+        if (shipTier <= 0)
+        {
+            Debug.LogError("Ship Tier is zero or less!");
+            return;
+        }
+
+        slider.value = (float)upgradeCount / shipTier;
+
+        if (upgradeCount >= shipTier)
+        {
+            upgradeButton.interactable = false;
+        } else
+        {
+            upgradeButton.interactable = true;
+        }
+
+        Debug.Log($"Upgrade: {upgradeName}, Count: {upgradeCount}, Ship Tier: {shipTier}, Slider Value: {slider.value}");
+    }
+    public void Upgrade(string upgradeName, GameObject button)
+    {
+        if (!EnoughCrystals())
+        {
+            return;
+        } 
+
+        if (upgradeCounts[upgradeName] >= shipTier){
+            return;
+        }   
+        
         playerCrystals.RemoveCrystals(shipTier * 10);
         upgradeActions[upgradeName](shipTier);
         upgradeCounts[upgradeName]++;
+
+        UpdateUpgradeUI(button, upgradeCounts[upgradeName], shipTier);
     }
     public void GetUpgradeType()
     {
         string btn = EventSystem.current.currentSelectedGameObject.name;
-        Upgrade(btn);
+        GameObject parentButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+        Upgrade(btn,parentButton);
     }
     public void ResetUpgradeCounts()
     {
