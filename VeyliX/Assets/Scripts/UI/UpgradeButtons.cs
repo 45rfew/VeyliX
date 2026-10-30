@@ -67,50 +67,54 @@ public class UpgradeButtons : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha8))
             Upgrade("Acceleration");*/
     }
-    public void UpdateUpgradeUI(GameObject button, int upgradeCount, int shipTier)
+    public void ResetUpgradeUI(GameObject button)
     {
-        Debug.Log("UpdateUpgradeUI called!");
 
+    }
+    public void UpdateUpgradeUI(GameObject button, string upgradeName, int upgradeCount, int shipTier)
+    {
         if (button == null)
         {
             Debug.LogError("Button is null!");
             return;
         }
-
-        string upgradeName = button.name;
-
         Slider slider = button.GetComponentInChildren<Slider>();
-
         if (slider == null)
         {
             Debug.LogError("No Slider found on " + button.name);
             return;
         }
-
-        Button upgradeButton = button.GetComponentInChildren<Button>();
+        Button upgradeButton = null;
+        foreach (Button childButton in button.GetComponentsInChildren<Button>(true))
+        {
+            if (childButton.gameObject.name == upgradeName)
+            {
+                upgradeButton = childButton;
+                break;
+            }
+        }
 
         if (upgradeButton == null)
         {
-            Debug.LogError("No Button component found on " + button.name);
+            Debug.LogError($"No Button named {upgradeName} found under {button.name}");
             return;
         }
-
         if (shipTier <= 0)
         {
             Debug.LogError("Ship Tier is zero or less!");
             return;
         }
-
         slider.value = (float)upgradeCount / shipTier;
 
         if (upgradeCount >= shipTier)
         {
+            Debug.Log($"Upgrade {upgradeName} has reached max level for ship tier {shipTier}. Disabling button.");
             upgradeButton.interactable = false;
-        } else
+        }
+        else
         {
             upgradeButton.interactable = true;
         }
-
         Debug.Log($"Upgrade: {upgradeName}, Count: {upgradeCount}, Ship Tier: {shipTier}, Slider Value: {slider.value}");
     }
     public void Upgrade(string upgradeName, GameObject button)
@@ -123,12 +127,10 @@ public class UpgradeButtons : MonoBehaviour
         if (upgradeCounts[upgradeName] >= shipTier){
             return;
         }   
-        
         playerCrystals.RemoveCrystals(shipTier * 10);
         upgradeActions[upgradeName](shipTier);
         upgradeCounts[upgradeName]++;
-
-        UpdateUpgradeUI(button, upgradeCounts[upgradeName], shipTier);
+        UpdateUpgradeUI(button, upgradeName, upgradeCounts[upgradeName], shipTier);
     }
     public void GetUpgradeType()
     {
