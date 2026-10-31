@@ -79,7 +79,6 @@ public class GUIManager : MonoBehaviour
         
         for (int i=0; i<shipTierUpgrade.transform.childCount; i++)
         {
-            Debug.Log("ADsdadsad + " + i);
             GameObject button = shipTierUpgrade.transform.GetChild(i).gameObject;
             TMP_Text name = button.transform.Find("Name").GetComponent<TMP_Text>() ?? null;
             TMP_Text level = button.transform.Find("Level").GetComponent<TMP_Text>() ?? null;

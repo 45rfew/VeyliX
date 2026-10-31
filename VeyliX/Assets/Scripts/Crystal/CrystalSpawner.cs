@@ -1,4 +1,7 @@
+using Unity.AppUI.Core;
+using Unity.AppUI.UI;
 using UnityEngine;
+
 public class CrystalSpawner : MonoBehaviour
 {
     public static CrystalSpawner Instance;
@@ -38,7 +41,13 @@ public class CrystalSpawner : MonoBehaviour
         if (amount < 1) return;
         GameObject crystal = Instantiate(crystalPrefab, pos, Quaternion.identity);
         crystal.GetComponentInChildren<CrystalPickup>().SetValue(amount);
-        crystal.transform.localScale = Vector3.one * amount / 10;
+        //float gemScale = Mathf.Lerp(1f, 20f, (amount - 1f) / 249f);
+        float gemScale = amount <= 1 ? 1f :
+        amount <= 5 ? Mathf.Lerp(1f, 2f, (amount - 1f) / 4f) :
+        amount <= 10 ? Mathf.Lerp(2f, 2.5f, (amount - 5f) / 5f) :
+        amount <= 100 ? Mathf.Lerp(2.5f, 12f, (amount - 10f) / 90f) :
+        Mathf.Lerp(12f, 20f, (amount - 100f) / 150f);
+        crystal.transform.localScale = Vector3.one * gemScale;
         Rigidbody rb = crystal.GetComponent<Rigidbody>();
         float randomX = Random.Range(-1f, 1f);
         float randomZ = Random.Range(-1f, 1f);

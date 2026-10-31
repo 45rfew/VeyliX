@@ -1,4 +1,3 @@
-using System;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -8,13 +7,17 @@ public class CrystalPickup : MonoBehaviour
     private float timer;
     private float pickupDelay = 0.5f;
     private Rigidbody rb;
+    private float dir;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        dir = Random.value < 0.5f ? -1f : 1f;
     }
     void Update()
     {
         timer += Time.deltaTime;
+        rb.transform.Rotate(0f, 45f * dir * Time.deltaTime, 0f);
     }
     private void OnTriggerStay(Collider collision)
     {
@@ -25,7 +28,6 @@ public class CrystalPickup : MonoBehaviour
             if (playerCrystals != null)
             {
                 playerCrystals.AddCrystals(value);
-                Debug.Log("Crystal value: " + value);
                 Destroy(gameObject, 0.01f);
             }
         }

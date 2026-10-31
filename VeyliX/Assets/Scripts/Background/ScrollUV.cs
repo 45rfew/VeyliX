@@ -4,7 +4,7 @@ using UnityEngine;
 public class ScrollUV : MonoBehaviour
 {
     public Transform player; //used to follow the player, while the background scrolls 
-    public float scrollSpeed; 
+    public float scrollSpeed;
     public float sortingOrderZ; //sort it behind the player and other sprites 
     private Material mat;
     void Start()
@@ -17,6 +17,27 @@ public class ScrollUV : MonoBehaviour
         Vector3 pos = player.position;
         transform.position = new Vector3(pos.x, sortingOrderZ, pos.z); //scrolls the UV of the sprite
         Vector2 offset = new Vector3(pos.x, pos.z) * scrollSpeed;
-        mat.mainTextureOffset = offset; 
+        mat.mainTextureOffset = offset;
     }
 }
+
+
+
+/*
+crystals 
+ship stun when hit 
+map bigger view 
+zoom update 
+boss alien 
+zones kill boss before progressing 
+lives 
+respawn 
+splitting enemies 
+more enemies 
+asteroid model 
+stats ui 
+hide minimap 
+
+
+menu 
+*/
