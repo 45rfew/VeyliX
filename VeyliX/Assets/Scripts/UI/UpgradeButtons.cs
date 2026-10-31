@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems; 
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 
 public class UpgradeButtons : MonoBehaviour
@@ -68,10 +69,6 @@ public class UpgradeButtons : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha8))
             Upgrade("Acceleration", upgradeButtons);
     }
-    public void ResetUpgradeUI(GameObject button)
-    {
-
-    }
     public void UpdateUpgradeUI(GameObject button, string upgradeName, int upgradeCount, int shipTier)
     {
         if (button == null)
@@ -85,6 +82,8 @@ public class UpgradeButtons : MonoBehaviour
             Debug.LogError("No Slider found on " + button.name);
             return;
         }
+        Button upgradeButton = button.GetComponentInChildren<Button>();
+        /*
         Button upgradeButton = null;
         foreach (Button childButton in button.GetComponentsInChildren<Button>(true))
         {
@@ -94,7 +93,7 @@ public class UpgradeButtons : MonoBehaviour
                 break;
             }
         }
-
+        */
         if (upgradeButton == null)
         {
             Debug.LogError($"No Button named {upgradeName} found under {button.name}");
@@ -141,21 +140,21 @@ public class UpgradeButtons : MonoBehaviour
         }
     }
 
-
-    public void Upgrade2(string upgradeName, GameObject button)
+    public void ResetUpgradeUI()
     {
-        if (!EnoughCrystals())
+        GameObject upgrades = upgradeButtons ?? null;
+        for (int i = 0; i < upgrades.transform.childCount; i++)
         {
-            return;
+            GameObject upgrade = upgrades.transform.GetChild(i).gameObject;
+            Slider slider = upgrade.GetComponentInChildren<Slider>();
+            Button upgradeButton = upgrade.GetComponentInChildren<Button>();
+            if (slider == null || upgradeButton == null)
+            {
+                return;
+            }
+            slider.value = 0;
+            upgradeButton.interactable = true;
         }
-        if (upgradeCounts[upgradeName] >= shipTier)
-        {
-            return;
-        }
-        playerCrystals.RemoveCrystals(shipTier * 10);
-        upgradeActions[upgradeName](shipTier);
-        upgradeCounts[upgradeName]++;
-        UpdateUpgradeUI(button, upgradeName, upgradeCounts[upgradeName], shipTier);
     }
 
     public void GetUpgradeType()

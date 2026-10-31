@@ -12,7 +12,6 @@ public class PlayerStats : MonoBehaviour
     private PlayerShoot playerShoot;
     private PlayerLook playerLook;
     private PlayerMovement playerMovement;
-
     void Awake()
     {
         BuildShipTree();
@@ -22,6 +21,7 @@ public class PlayerStats : MonoBehaviour
         playerShoot = GetComponentInChildren<PlayerShoot>();
         playerLook = GetComponent<PlayerLook>();
         playerMovement = GetComponent<PlayerMovement>();
+        upgradeButtons.ResetUpgradeUI();
     }
     public Ship GetCurrentShip()
     {
@@ -34,6 +34,7 @@ public class PlayerStats : MonoBehaviour
         //playerShoot.ResetCannons();
         UpdateAllStats();
         upgradeButtons.ResetUpgradeCounts();
+        upgradeButtons.ResetUpgradeUI();
     }
     public int GetCurrentShipCode()
     {
