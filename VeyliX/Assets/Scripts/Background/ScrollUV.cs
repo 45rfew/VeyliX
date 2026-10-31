@@ -24,6 +24,7 @@ public class ScrollUV : MonoBehaviour
 
 
 /* 
+finish shiptree
 ship stun when hit 
 boss alien 
 zones kill boss before progressing 
@@ -31,7 +32,6 @@ lives
 respawn 
 splitting enemies 
 more enemies 
-asteroid model 
 stats ui 
 hide minimap 
 

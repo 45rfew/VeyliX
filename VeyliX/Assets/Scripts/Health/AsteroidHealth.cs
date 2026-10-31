@@ -1,6 +1,3 @@
-using System;
-using Unity.InferenceEngine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AsteroidHealth : Health
@@ -25,6 +22,7 @@ public class AsteroidHealth : Health
         1,2,3,4,5,6,7,8,9
     };
     private Rigidbody rb;
+    private float dir;
     protected override void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,7 +32,12 @@ public class AsteroidHealth : Health
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
         OnDamage?.Invoke(maxHealth, maxHealth);
+        dir = Random.value > 0.5f ? -1f : 1f;
         base.Start();
+    }
+    void Update()
+    {
+        rb.transform.Rotate(0f, 15f * dir * Time.deltaTime, 0f);
     }
 
     void HandleDamage(int currentHealth, int maxHealth)
@@ -48,7 +51,7 @@ public class AsteroidHealth : Health
     void HandleDeath()
     {
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        CrystalSpawner.Instance.DropCrystals(Mathf.RoundToInt(size * UnityEngine.Random.Range(2.0f, 2.5f)*yield), pos);
+        CrystalSpawner.Instance.DropCrystals(Mathf.RoundToInt(size * Random.Range(2.0f, 2.5f)*yield), pos);
         Destroy(gameObject, 0.01f);
     }
 }   
