@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,14 +13,49 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI lvlText;
     public PlayerEnergy playerEnergy;
-    //public Slider healthBar;
     public PlayerCrystals crystalPickup;
     public PlayerStats playerStats;
     public GameObject shipTierUpgrade;
     public GameObject shipUpgrades;
     public UpgradeButtons upgradeButtons;
     private int playerScore;
+    private RectTransform shipTierUpgradeRect;
+    private Vector2 shipTierUpgradePosition;
+    private Coroutine shipTierUpgradeAnimation;
+    private bool shipTierUpgradeVisible;
+    private RectTransform shipUpgradesRect;
+    private Vector2 shipUpgradesPosition;
+    private Coroutine shipUpgradesAnimation;
+    private bool shipUpgradesVisible;
     
+    void Awake()
+    {
+        if (shipTierUpgrade == null)
+        {
+            return;
+        }
+        shipTierUpgradeRect = shipTierUpgrade.GetComponent<RectTransform>();
+        if (shipTierUpgradeRect == null)
+        {
+            return;
+        }
+        shipTierUpgradePosition = shipTierUpgradeRect.anchoredPosition;
+        shipTierUpgradeVisible = false;
+        shipTierUpgrade.SetActive(false);
+        if (shipUpgrades == null)
+        {
+            return;
+        }
+        shipUpgradesRect = shipUpgrades.GetComponent<RectTransform>();
+        if (shipUpgradesRect == null)
+        {
+            return;
+        }
+        shipUpgradesPosition = shipUpgradesRect.anchoredPosition;
+        shipUpgradesVisible = false;
+        shipUpgrades.SetActive(false);
+    }
+
     void Start()
     {
         health.OnDamage += UpdateHealth;
@@ -28,6 +64,7 @@ public class GUIManager : MonoBehaviour
         crystalPickup.OnplayerCrystalChange += UpdateGem;
         playerEnergy.OnEnergyRegen += UpdateEnergy;
         UpdateEnergy(playerEnergy.GetEnergy(),playerEnergy.GetEnergy());
+        UpdateGem(crystalPickup.GetCrystalCount());
     }
 
     void UpdateHealth(int currentHealth, int maxHealth)
@@ -42,25 +79,124 @@ public class GUIManager : MonoBehaviour
     }
     void UpdateGem(int currentGem)
     { 
-        if (currentGem >= playerStats.UpgradeCrystalCost())
-        {
-            if (!upgradeButtons.CheckUpgradesMaxed())
-            {
-                shipUpgrades.SetActive(true);
-            }
-        } else
-        {
-            shipUpgrades.SetActive(false);           
-        }
+        bool canBuyUpgrade = currentGem >= playerStats.UpgradeCrystalCost() && !upgradeButtons.CheckUpgradesMaxed();
+        SetShipUpgradesVisible(canBuyUpgrade);
         int maxGem = playerStats.GetMaxCrystals();
-        if (currentGem >= maxGem)
+        bool canUpgradeShipTier = currentGem >= maxGem && playerStats.GetShipTier() < playerStats.GetMaxShipTier();
+        SetShipTierUpgradeVisible(canUpgradeShipTier);
+        gemText.text = $"Gems: {currentGem}/{maxGem}";
+    }
+
+    void SetShipTierUpgradeVisible(bool visible)
+    {
+        if (shipTierUpgradeRect == null || shipTierUpgradeVisible == visible)
+        {
+            return;
+        }
+        shipTierUpgradeVisible = visible;
+        if (shipTierUpgradeAnimation != null)
+        {
+            StopCoroutine(shipTierUpgradeAnimation);
+        }
+        if (visible)
         {
             shipTierUpgrade.SetActive(true);
-        } else
+            if (shipTierUpgradeRect.anchoredPosition == shipTierUpgradePosition)
+            {
+                shipTierUpgradeRect.anchoredPosition = GetHiddenShipTierUpgradePosition();
+            }
+            shipTierUpgradeAnimation = StartCoroutine(AnimateShipTierUpgrade(shipTierUpgradePosition, false));
+        }
+        else
+        {
+            shipTierUpgradeAnimation = StartCoroutine(AnimateShipTierUpgrade(GetHiddenShipTierUpgradePosition(), true));
+        }
+    }
+
+    Vector2 GetHiddenShipTierUpgradePosition()
+    {
+        RectTransform parentRect = shipTierUpgradeRect.parent as RectTransform;
+        if (parentRect == null)
+        {
+            return shipTierUpgradePosition + Vector2.up * shipTierUpgradeRect.rect.height;
+        }
+
+        return shipTierUpgradePosition + Vector2.up * (parentRect.rect.height + shipTierUpgradeRect.rect.height);
+    }
+
+    IEnumerator AnimateShipTierUpgrade(Vector2 destination, bool hideWhenFinished)
+    {
+        Vector2 startPosition = shipTierUpgradeRect.anchoredPosition;
+        const float duration = 0.3f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            shipTierUpgradeRect.anchoredPosition = Vector2.Lerp(startPosition, destination, t);
+            yield return null;
+        }
+        shipTierUpgradeRect.anchoredPosition = destination;
+        shipTierUpgradeAnimation = null;
+        if (hideWhenFinished)
         {
             shipTierUpgrade.SetActive(false);
         }
-        gemText.text = $"Gems: {currentGem}/{maxGem}";    
+    }
+
+    void SetShipUpgradesVisible(bool visible)
+    {
+        if (shipUpgradesRect == null || shipUpgradesVisible == visible)
+        {
+            return;
+        }
+        shipUpgradesVisible = visible;
+        if (shipUpgradesAnimation != null)
+        {
+            StopCoroutine(shipUpgradesAnimation);
+        }
+        if (visible)
+        {
+            shipUpgrades.SetActive(true);
+            if (shipUpgradesRect.anchoredPosition == shipUpgradesPosition)
+            {
+                shipUpgradesRect.anchoredPosition = GetHiddenShipUpgradesPosition();
+            }
+            shipUpgradesAnimation = StartCoroutine(AnimateShipUpgrades(shipUpgradesPosition, false));
+        }
+        else
+        {
+            shipUpgradesAnimation = StartCoroutine(AnimateShipUpgrades(GetHiddenShipUpgradesPosition(), true));
+        }
+    }
+
+    Vector2 GetHiddenShipUpgradesPosition()
+    {
+        RectTransform parentRect = shipUpgradesRect.parent as RectTransform;
+        if (parentRect == null)
+        {
+            return shipUpgradesPosition + Vector2.left * shipUpgradesRect.rect.width;
+        }
+        return shipUpgradesPosition + Vector2.left * (parentRect.rect.width + shipUpgradesRect.rect.width);
+    }
+    IEnumerator AnimateShipUpgrades(Vector2 destination, bool hideWhenFinished)
+    {
+        Vector2 startPosition = shipUpgradesRect.anchoredPosition;
+        const float duration = 0.3f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            shipUpgradesRect.anchoredPosition = Vector2.Lerp(startPosition, destination, t);
+            yield return null;
+        }
+        shipUpgradesRect.anchoredPosition = destination;
+        shipUpgradesAnimation = null;
+        if (hideWhenFinished)
+        {
+            shipUpgrades.SetActive(false);
+        }
     }
     
     void UpdateScore(int score)

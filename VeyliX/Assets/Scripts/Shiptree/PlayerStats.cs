@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     private PlayerShoot playerShoot;
     private PlayerLook playerLook;
     private PlayerMovement playerMovement;
+    private int maxShipTier = 6;
     void Awake()
     {
         BuildShipTree();
@@ -51,6 +52,10 @@ public class PlayerStats : MonoBehaviour
     public int GetShipTier()
     {
         return Mathf.FloorToInt(currentShipCode / 100);
+    }
+    public int GetMaxShipTier()
+    {
+        return maxShipTier;
     }
     public int GetMaxCrystals()
     {

@@ -11,7 +11,6 @@ public class UpgradeButtons : MonoBehaviour
 {
     public PlayerStats playerStats;
     public PlayerCrystals playerCrystals;
-    public GameObject healthButton;
     public GameObject upgradeButtons;
     private int shipTier;
     private Dictionary<string, int> upgradeCounts = new Dictionary<string, int>()
