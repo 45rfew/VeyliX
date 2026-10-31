@@ -15,6 +15,9 @@ public class GUIManager : MonoBehaviour
     //public Slider healthBar;
     public PlayerCrystals crystalPickup;
     public PlayerStats playerStats;
+    public GameObject shipTierUpgrade;
+    public GameObject shipUpgrades;
+    public UpgradeButtons upgradeButtons;
     private int playerScore;
     
     void Start()
@@ -38,8 +41,25 @@ public class GUIManager : MonoBehaviour
         energyText.text = $"Energy: {Mathf.Floor(currentEnergy)}/{Mathf.Floor(maxEnergy)}";    
     }
     void UpdateGem(int currentGem)
-    {
+    { 
+        if (currentGem >= playerStats.UpgradeCrystalCost())
+        {
+            if (!upgradeButtons.CheckUpgradesMaxed())
+            {
+                shipUpgrades.SetActive(true);
+            }
+        } else
+        {
+            shipUpgrades.SetActive(false);           
+        }
         int maxGem = playerStats.GetMaxCrystals();
+        if (currentGem >= maxGem)
+        {
+            shipTierUpgrade.SetActive(true);
+        } else
+        {
+            shipTierUpgrade.SetActive(false);
+        }
         gemText.text = $"Gems: {currentGem}/{maxGem}";    
     }
     

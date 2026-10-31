@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 public class UpgradeButtons : MonoBehaviour
@@ -27,7 +28,6 @@ public class UpgradeButtons : MonoBehaviour
     private Dictionary<string, Action<int>> upgradeActions = new Dictionary<string, Action<int>>();
     void Start()
     {
-        
         upgradeActions = new Dictionary<string, Action<int>>()
         {
             {"Health", playerStats.UpgradeHealth},
@@ -44,21 +44,12 @@ public class UpgradeButtons : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
             Upgrade("Health", upgradeButtons);
-        }
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Upgrade("HealthRegen",upgradeButtons);
-        }
-        
+            Upgrade("HealthRegen", upgradeButtons);
         if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
             Upgrade("Energy", upgradeButtons);
-        }   
         if (Input.GetKeyDown(KeyCode.Alpha4))
-    
             Upgrade("EnergyRegen", upgradeButtons);
         if (Input.GetKeyDown(KeyCode.Alpha5))
             Upgrade("Damage", upgradeButtons);
@@ -69,53 +60,47 @@ public class UpgradeButtons : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha8))
             Upgrade("Acceleration", upgradeButtons);
     }
+    public bool CheckUpgradesMaxed()
+    {
+        foreach (var upgrade in upgradeCounts)
+        {
+            int upgradeCount = upgrade.Value;
+            if (upgradeCount < playerStats.GetShipTier())
+            {
+                return false;
+            }
+        }
+        return true;       
+    }
     public void UpdateUpgradeUI(GameObject button, string upgradeName, int upgradeCount, int shipTier)
     {
         if (button == null)
         {
-            Debug.LogError("Button is null!");
             return;
         }
         Slider slider = button.GetComponentInChildren<Slider>();
         if (slider == null)
         {
-            Debug.LogError("No Slider found on " + button.name);
             return;
         }
         Button upgradeButton = button.GetComponentInChildren<Button>();
-        /*
-        Button upgradeButton = null;
-        foreach (Button childButton in button.GetComponentsInChildren<Button>(true))
-        {
-            if (childButton.gameObject.name == upgradeName)
-            {
-                upgradeButton = childButton;
-                break;
-            }
-        }
-        */
         if (upgradeButton == null)
         {
-            Debug.LogError($"No Button named {upgradeName} found under {button.name}");
             return;
         }
         if (shipTier <= 0)
         {
-            Debug.LogError("Ship Tier is zero or less!");
             return;
         }
         slider.value = (float)upgradeCount / shipTier;
-
         if (upgradeCount >= shipTier)
         {
-            Debug.Log($"Upgrade {upgradeName} has reached max level for ship tier {shipTier}. Disabling button.");
             upgradeButton.interactable = false;
         }
         else
         {
             upgradeButton.interactable = true;
         }
-        Debug.Log($"Upgrade: {upgradeName}, Count: {upgradeCount}, Ship Tier: {shipTier}, Slider Value: {slider.value}");
     }
     public void Upgrade(string upgradeName, GameObject upgrades)
     {
@@ -161,7 +146,7 @@ public class UpgradeButtons : MonoBehaviour
     {
         string btn = EventSystem.current.currentSelectedGameObject.name;
         GameObject parentButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
-        Upgrade(btn,parentButton);
+        Upgrade(btn,upgradeButtons);
     }
     public void ResetUpgradeCounts()
     {
@@ -180,6 +165,6 @@ public class UpgradeButtons : MonoBehaviour
     public bool EnoughCrystals()
     {
         shipTier = playerStats.GetShipTier();
-        return playerCrystals.GetCrystalCount() >= shipTier * 10;
+        return playerCrystals.GetCrystalCount() >= playerStats.UpgradeCrystalCost();
     }
 }

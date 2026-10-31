@@ -6,7 +6,7 @@ public class CrystalPickup : MonoBehaviour
 {
     private int value;
     private float timer;
-    private float pickupDelay = 0.2f;
+    private float pickupDelay = 0.5f;
     private Rigidbody rb;
     void Start()
     {
@@ -16,7 +16,7 @@ public class CrystalPickup : MonoBehaviour
     {
         timer += Time.deltaTime;
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (timer < pickupDelay) return; 
         if (collision.CompareTag("Player"))

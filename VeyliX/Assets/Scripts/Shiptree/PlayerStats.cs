@@ -36,6 +36,10 @@ public class PlayerStats : MonoBehaviour
         upgradeButtons.ResetUpgradeCounts();
         upgradeButtons.ResetUpgradeUI();
     }
+    public int UpgradeCrystalCost()
+    {
+        return GetShipTier() * 10;
+    }
     public int GetCurrentShipCode()
     {
         return currentShipCode;
@@ -50,7 +54,7 @@ public class PlayerStats : MonoBehaviour
     }
     public int GetMaxCrystals()
     {
-        return GetShipTier() * GetShipTier() * 20;
+        return GetShipTier() * GetShipTier() * 25;
     }
     public void UpgradeHealth(int amount)
     {

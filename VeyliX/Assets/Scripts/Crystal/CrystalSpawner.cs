@@ -43,7 +43,7 @@ public class CrystalSpawner : MonoBehaviour
         float randomX = Random.Range(-1f, 1f);
         float randomZ = Random.Range(-1f, 1f);
         Vector3 randomDir = new Vector3(randomX, 0, randomZ).normalized;
-        rb.AddForce(randomDir * 3, ForceMode.Impulse);
+        rb.AddForce(randomDir * 5, ForceMode.Impulse);
         Destroy(crystal, 10f);       
     }
 }
