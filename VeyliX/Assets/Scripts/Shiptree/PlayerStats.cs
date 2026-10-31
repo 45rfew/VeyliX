@@ -365,6 +365,10 @@ public class PlayerStats : MonoBehaviour
         ship1.upgrades.Add(ship202);
 
         ship201.upgrades.Add(ship301);
+        ship201.upgrades.Add(ship301);
+
+
+
         ship301.upgrades.Add(ship401);
         ship401.upgrades.Add(ship501);
         ship501.upgrades.Add(ship601);

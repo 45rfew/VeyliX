@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Reflection.Emit;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,8 +67,31 @@ public class GUIManager : MonoBehaviour
         playerEnergy.OnEnergyRegen += UpdateEnergy;
         UpdateEnergy(playerEnergy.GetEnergy(),playerEnergy.GetEnergy());
         UpdateGem(crystalPickup.GetCrystalCount());
+        UpdateShipTierUpgradeText();
     }
 
+    void UpdateShipTierUpgradeText(){
+        if (shipTierUpgrade == null)
+        {
+            return;
+        }
+        Ship ship = playerStats.GetCurrentShip();
+        
+        for (int i=0; i<shipTierUpgrade.transform.childCount; i++)
+        {
+            Debug.Log("ADsdadsad + " + i);
+            GameObject button = shipTierUpgrade.transform.GetChild(i).gameObject;
+            TMP_Text name = button.transform.Find("Name").GetComponent<TMP_Text>() ?? null;
+            TMP_Text level = button.transform.Find("Level").GetComponent<TMP_Text>() ?? null;
+            if (name == null || level == null)
+            {
+                return;
+            }
+            name.text = $"{ship.upgrades[i].name} [9]";
+            level.text = $"Lvl {ship.upgrades[i].code / 100}";
+        }
+
+    }
     void UpdateHealth(int currentHealth, int maxHealth)
     {
         healthText.text = $"Shield: {currentHealth}/{maxHealth}";
@@ -106,6 +131,7 @@ public class GUIManager : MonoBehaviour
                 shipTierUpgradeRect.anchoredPosition = GetHiddenShipTierUpgradePosition();
             }
             shipTierUpgradeAnimation = StartCoroutine(AnimateShipTierUpgrade(shipTierUpgradePosition, false));
+            UpdateShipTierUpgradeText();
         }
         else
         {
