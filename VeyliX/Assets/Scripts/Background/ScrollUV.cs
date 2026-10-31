@@ -23,8 +23,7 @@ public class ScrollUV : MonoBehaviour
 
 
 
-/*
-crystals 
+/* 
 ship stun when hit 
 map bigger view 
 zoom update 
