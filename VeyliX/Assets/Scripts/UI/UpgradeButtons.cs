@@ -10,6 +10,7 @@ public class UpgradeButtons : MonoBehaviour
     public PlayerStats playerStats;
     public PlayerCrystals playerCrystals;
     public GameObject healthButton;
+    public GameObject upgradeButtons;
     private int shipTier;
     private Dictionary<string, int> upgradeCounts = new Dictionary<string, int>()
     {
@@ -25,6 +26,7 @@ public class UpgradeButtons : MonoBehaviour
     private Dictionary<string, Action<int>> upgradeActions = new Dictionary<string, Action<int>>();
     void Start()
     {
+        
         upgradeActions = new Dictionary<string, Action<int>>()
         {
             {"Health", playerStats.UpgradeHealth},
@@ -42,30 +44,29 @@ public class UpgradeButtons : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Upgrade("Health", healthButton);
+            Upgrade("Health", upgradeButtons);
         }
-        /*
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Upgrade("HealthRegen");
-            UpdateUpgradeUI(healthButton, upgradeCounts["HealthRegen"], shipTier);
+            Upgrade("HealthRegen",upgradeButtons);
         }
+        
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Upgrade("Energy");
-            UpdateUpgradeUI(healthButton, upgradeCounts["Energy"], shipTier);
+            Upgrade("Energy", upgradeButtons);
         }   
         if (Input.GetKeyDown(KeyCode.Alpha4))
     
-            Upgrade("EnergyRegen");
+            Upgrade("EnergyRegen", upgradeButtons);
         if (Input.GetKeyDown(KeyCode.Alpha5))
-            Upgrade("Damage");
+            Upgrade("Damage", upgradeButtons);
         if (Input.GetKeyDown(KeyCode.Alpha6))
-            Upgrade("BulletSpeed");
+            Upgrade("BulletSpeed", upgradeButtons);
         if (Input.GetKeyDown(KeyCode.Alpha7))
-            Upgrade("Speed");
+            Upgrade("Speed", upgradeButtons);
         if (Input.GetKeyDown(KeyCode.Alpha8))
-            Upgrade("Acceleration");*/
+            Upgrade("Acceleration", upgradeButtons);
     }
     public void ResetUpgradeUI(GameObject button)
     {
@@ -117,21 +118,46 @@ public class UpgradeButtons : MonoBehaviour
         }
         Debug.Log($"Upgrade: {upgradeName}, Count: {upgradeCount}, Ship Tier: {shipTier}, Slider Value: {slider.value}");
     }
-    public void Upgrade(string upgradeName, GameObject button)
+    public void Upgrade(string upgradeName, GameObject upgrades)
     {
         if (!EnoughCrystals())
         {
             return;
         } 
-
         if (upgradeCounts[upgradeName] >= shipTier){
             return;
         }   
         playerCrystals.RemoveCrystals(shipTier * 10);
         upgradeActions[upgradeName](shipTier);
         upgradeCounts[upgradeName]++;
+        for (int i = 0; i < upgrades.transform.childCount; i++)
+        {
+            GameObject button = upgrades.transform.GetChild(i).gameObject;
+            if (button.name == upgradeName)
+            {
+                UpdateUpgradeUI(button, upgradeName, upgradeCounts[upgradeName], shipTier);
+                break;
+            }
+        }
+    }
+
+
+    public void Upgrade2(string upgradeName, GameObject button)
+    {
+        if (!EnoughCrystals())
+        {
+            return;
+        }
+        if (upgradeCounts[upgradeName] >= shipTier)
+        {
+            return;
+        }
+        playerCrystals.RemoveCrystals(shipTier * 10);
+        upgradeActions[upgradeName](shipTier);
+        upgradeCounts[upgradeName]++;
         UpdateUpgradeUI(button, upgradeName, upgradeCounts[upgradeName], shipTier);
     }
+
     public void GetUpgradeType()
     {
         string btn = EventSystem.current.currentSelectedGameObject.name;
