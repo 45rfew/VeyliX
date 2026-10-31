@@ -10,6 +10,7 @@ public class PlayerShipTierUpgrade : MonoBehaviour
     private PlayerStats playerStats;
     private PlayerCrystals playerCrystals;
     public ShipModels shipModels;
+    public CameraFollow cameraFollow;
     void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
@@ -33,6 +34,7 @@ public class PlayerShipTierUpgrade : MonoBehaviour
             Ship ship = playerStats.GetCurrentShip();
             playerStats.UpgradeTo(ship.upgrades[i].code);
             shipModels.SetShip(ship.upgrades[i].code);
+            cameraFollow.updateZoom(playerStats.GetCurrentZoom());
             playerCrystals.RemoveCrystals(playerStats.GetMaxCrystals());
             playerCrystals.OnplayerCrystalChange?.Invoke(playerCrystals.GetCrystalCount());
         }

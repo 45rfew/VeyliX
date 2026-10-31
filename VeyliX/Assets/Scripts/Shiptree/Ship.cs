@@ -5,7 +5,7 @@ public class Ship
 {
     public int code;
     public string name;
-
+    public float zoom;
     public GameObject modelPrefab;
 
     public IntStatRange health;

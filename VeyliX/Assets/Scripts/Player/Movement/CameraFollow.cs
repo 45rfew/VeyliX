@@ -7,16 +7,17 @@ public class CameraFollow : MonoBehaviour
     private Vector3 offset = new Vector3(0,5f,0);
     private float smoothSpeed = 50f;
     private Camera cam;
-    public float zoom;
+    private float zoom; 
 
     void Awake()
     {
         cam = GetComponent<Camera>();
-        updateZoom(zoom+Mathf.Round(Mathf.Floor(player.localScale.x)));
+        zoom = cam.orthographicSize;
+        //updateZoom(zoom+Mathf.Round(Mathf.Floor(player.localScale.x)));
     }
-    void updateZoom(float zoom)
+    public void updateZoom(float value)
     {
-        cam.orthographicSize = zoom;
+        cam.orthographicSize = zoom * value;
     }
     void FixedUpdate()
     {

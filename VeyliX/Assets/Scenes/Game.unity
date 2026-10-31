@@ -12287,7 +12287,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12375,7 +12375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 1785497661}
-  zoom: 8
 --- !u!1 &333657454
 GameObject:
   m_ObjectHideFlags: 0
@@ -101656,6 +101655,7 @@ MonoBehaviour:
   upgrade1: {fileID: 1927204181}
   upgrade2: {fileID: 0}
   shipModels: {fileID: 1293918789}
+  cameraFollow: {fileID: 0}
 --- !u!114 &1293918791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142500,7 +142500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 1785497661}
-  zoom: 30
 --- !u!114 &1667378448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163048,6 +163047,7 @@ MonoBehaviour:
   upgrade1: {fileID: 1927204181}
   upgrade2: {fileID: 860966551}
   shipModels: {fileID: 1785497662}
+  cameraFollow: {fileID: 330585548}
 --- !u!114 &1785497665
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,6 +45,10 @@ public class PlayerStats : MonoBehaviour
     {
         return currentShipCode;
     }
+    public float GetCurrentZoom()
+    {
+        return GetCurrentShip().zoom;
+    }
     public void SetCurrentShipCode(int code)
     {
         currentShipCode = code;
@@ -120,6 +124,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship1 = new Ship();
         ship1.code = 101;
         ship1.name = "poo";
+        ship1.zoom = 1;
         ship1.health = new IntStatRange(2000, 120);
         ship1.healthRegen = new IntStatRange(4, 8);
         ship1.energy = new StatRange(100, 180);
@@ -163,6 +168,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship201 = new Ship();
         ship201.code = 201;
         ship201.name = "Fighter";
+        ship201.zoom = 1.1f;
         ship201.health = new IntStatRange(100, 160);
         ship201.healthRegen = new IntStatRange(5, 10);
         ship201.energy = new StatRange(60, 100);
@@ -186,6 +192,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship202 = new Ship();
         ship202.code = 202;
         ship202.name = "Tank";
+        ship202.zoom = 1.1f;
         ship202.health = new IntStatRange(150, 250);
         ship202.healthRegen = new IntStatRange(3, 6);
         ship202.energy = new StatRange(80, 120);
@@ -194,7 +201,6 @@ public class PlayerStats : MonoBehaviour
         ship202.acceleration = new StatRange(70, 100);
         ship202.rotationSpeed = new StatRange(200, 300);
         ship202.mass = 200;
-
         ship202.cannons = new List<Cannon>();
 
         // ship202.cannons.Add(
@@ -211,6 +217,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship301 = new Ship();
         ship301.code = 301;
         ship301.name = "Fighter";
+        ship301.zoom = 1.2f;
         ship301.health = new IntStatRange(222, 160);
         ship301.healthRegen = new IntStatRange(5, 10);
         ship301.energy = new StatRange(260, 300);
@@ -234,6 +241,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship401 = new Ship();
         ship401.code = 401;
         ship401.name = "pooa";
+        ship401.zoom = 1.4f;
         ship401.health = new IntStatRange(2000, 120);
         ship401.healthRegen = new IntStatRange(4, 8);
         ship401.energy = new StatRange(100, 180);
@@ -277,6 +285,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship501 = new Ship();
         ship501.code = 501;
         ship501.name = "paoo";
+        ship501.zoom = 1.7f;
         ship501.health = new IntStatRange(2000, 120);
         ship501.healthRegen = new IntStatRange(4, 8);
         ship501.energy = new StatRange(100, 180);
@@ -320,6 +329,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship601 = new Ship();
         ship601.code = 601;
         ship601.name = "apaoo";
+        ship601.zoom = 2f;
         ship601.health = new IntStatRange(2000, 120);
         ship601.healthRegen = new IntStatRange(4, 8);
         ship601.energy = new StatRange(100, 180);
