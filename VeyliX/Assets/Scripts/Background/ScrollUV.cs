@@ -25,7 +25,6 @@ public class ScrollUV : MonoBehaviour
 
 /* 
 ship stun when hit 
-zoom update 
 boss alien 
 zones kill boss before progressing 
 lives 
