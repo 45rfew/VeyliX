@@ -71,10 +71,12 @@ public class PlayerShoot : MonoBehaviour
         //set the bullet size based on damage
         float t = Mathf.InverseLerp(1f, 255f, damage);
         float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
+        float error = cannonStats.error;
         bulletScript.SetDamage(damage);
         newBullet.transform.localScale = Vector3.one * scale;
+        newBullet.transform.Rotate( Random.Range(-error, error), 0f, 0f );
         Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
-        Vector3 bulletVelocity = cannonTransform.forward * bulletSpeed + rb.linearVelocity;
+        Vector3 bulletVelocity = cannonTransform.forward + newBullet.transform.forward * bulletSpeed + rb.linearVelocity;
         //don't allow the player's velocity to make the bullet exceed its maximum speed
         bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
         bulletRb.linearVelocity = bulletVelocity;

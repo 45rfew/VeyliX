@@ -6,6 +6,7 @@ public class Cannon
     public StatRange fireRate;
     public StatRange bulletSpeed;
     public StatRange recoil;
+    public float error;
     public Cannon(
         string name,
         int priority,
@@ -15,7 +16,8 @@ public class Cannon
         float bulletSpeedMax,
         float fireRateMin,
         float fireRateMax,
-        float recoilValue
+        float recoilValue,
+        float error
     )
     {
         this.name = name;
@@ -24,5 +26,6 @@ public class Cannon
         bulletSpeed = new StatRange(bulletSpeedMin, bulletSpeedMax);
         fireRate = new StatRange(fireRateMin, fireRateMax);
         recoil = new StatRange(recoilValue, recoilValue);
+        this.error = error;
     }
 }

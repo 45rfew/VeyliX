@@ -16,6 +16,7 @@ public class AsteroidHealth : Health
         300,
         500
     };
+    private int healthDropMult = 10;
     
     private int[] scoreValues =
     {
@@ -27,7 +28,7 @@ public class AsteroidHealth : Health
     {
         rb = GetComponent<Rigidbody>();
         size = rb.transform.parent.localScale.x;
-        maxHealth = healthValues[Mathf.FloorToInt(size - 1)];
+        maxHealth = healthValues[Mathf.FloorToInt(size - 1)] / healthDropMult;
         currentHealth = maxHealth;
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;

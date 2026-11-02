@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         BuildShipTree();
-        currentShip = ships[101];
+        currentShip = ships[601];
         playerEnergy = GetComponent<PlayerEnergy>();
         playerHealth = GetComponent<PlayerHealth>();
         playerShoot = GetComponentInChildren<PlayerShoot>();
@@ -126,31 +126,31 @@ public class PlayerStats : MonoBehaviour
                 code: 101,
                 name: "VeyliX",
                 zoom: 1f,
-                healthMin: 80,
-                healthMax: 100,
+                healthMin: 1000,
+                healthMax: 120,
                 healthRegenMin: 4,
-                healthRegenMax: 6,
-                energyMin: 50,
-                energyMax: 70,
-                energyRegenMin: 10,
+                healthRegenMax: 5,
+                energyMin: 600,
+                energyMax: 80,
+                energyRegenMin: 1000,
                 energyRegenMax: 15,
-                speedMin: 45f,
-                speedMax: 60f,
-                accelerationMin: 60f,
-                accelerationMax: 80f,
+                speedMin: 16f,
+                speedMax: 20f,
+                accelerationMin: 90f,
+                accelerationMax: 110f,
                 rotationMin: 400f,
                 rotationMax: 600f,
-                mass: 100,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 20, damageMax: 35, bulletSpeedMin: 30, bulletSpeedMax: 40, fireRateMin: 2f, fireRateMax: 2.4f, recoilValue: 20));
+                mass: 1000,
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 500, damageMax: 20, bulletSpeedMin: 45, bulletSpeedMax: 52, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 10, error: 0));
 
         Ship ship201 = CreateShip(
             code: 201,
             name: "Excelsior",
-            zoom: 1.1f,
+            zoom: 1.05f,
             healthMin: 130,
             healthMax: 160,
-            healthRegenMin: 26,
-            healthRegenMax: 40,
+            healthRegenMin: 4,
+            healthRegenMax: 6,
             energyMin: 60,
             energyMax: 90,
             energyRegenMin: 2,
@@ -161,8 +161,8 @@ public class PlayerStats : MonoBehaviour
             accelerationMax: 125f,
             rotationMin: 100f,
             rotationMax: 120f,
-            mass: 85,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 35, damageMax: 45, bulletSpeedMin: 40, bulletSpeedMax: 50, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 15));
+            mass: 120,
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 35, damageMax: 45, bulletSpeedMin: 40, bulletSpeedMax: 50, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 15, error: 0));
         Ship ship202 = CreateShip(
             code: 202,
             name: "Avalon",
@@ -182,7 +182,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 70f,
             rotationMax: 85f,
             mass: 95,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 40, damageMax: 55, bulletSpeedMin: 35, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1.2f, recoilValue: 20));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 40, damageMax: 55, bulletSpeedMin: 35, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1.2f, recoilValue: 20, error: 0));
 
         Ship ship301 = CreateShip(
             code: 301,
@@ -203,7 +203,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 50f,
             rotationMax: 70f,
             mass: 90,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 45, damageMax: 60, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.6f, fireRateMax: 1.9f, recoilValue: 15));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 45, damageMax: 60, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.6f, fireRateMax: 1.9f, recoilValue: 15, error: 0));
         Ship ship302 = CreateShip(
             code: 302,
             name: "Messiah",
@@ -223,7 +223,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 60f,
             rotationMax: 80f,
             mass: 110,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 50, damageMax: 65, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 1.4f, fireRateMax: 1.7f, recoilValue: 20));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 50, damageMax: 65, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 1.4f, fireRateMax: 1.7f, recoilValue: 20, error: 0));
         Ship ship303 = CreateShip(
             code: 303,
             name: "Daedalus",
@@ -243,7 +243,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 60f,
             rotationMax: 75f,
             mass: 140,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 55, damageMax: 70, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 30));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 55, damageMax: 70, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 30, error: 0));
         Ship ship304 = CreateShip(
             code: 304,
             name: "Ransu",
@@ -263,7 +263,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 40f,
             rotationMax: 70f,
             mass: 220,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 1f, fireRateMax: 1.3f, recoilValue: 30));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 1f, fireRateMax: 1.3f, recoilValue: 30, error: 0));
 
         Ship ship401 = CreateShip(
             code: 401,
@@ -284,7 +284,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 90f,
             rotationMax: 110f,
             mass: 200,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 20));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 20, error: 0));
         Ship ship402 = CreateShip(
             code: 402,
             name: "Sunder",
@@ -304,7 +304,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 40f,
             rotationMax: 55f,
             mass: 250,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 70, damageMax: 85, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1f, fireRateMax: 1.2f, recoilValue: 35));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 70, damageMax: 85, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1f, fireRateMax: 1.2f, recoilValue: 35, error: 0));
         Ship ship403 = CreateShip(
             code: 403,
             name: "Icarus",
@@ -324,7 +324,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 80f,
             rotationMax: 100f,
             mass: 210,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 62, damageMax: 78, bulletSpeedMin: 50, bulletSpeedMax: 65, fireRateMin: 1.4f, fireRateMax: 1.8f, recoilValue: 15));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 62, damageMax: 78, bulletSpeedMin: 50, bulletSpeedMax: 65, fireRateMin: 1.4f, fireRateMax: 1.8f, recoilValue: 15, error: 0));
         Ship ship404 = CreateShip(
             code: 404,
             name: "Calamity",
@@ -344,7 +344,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 60f,
             rotationMax: 90f,
             mass: 200,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 65, damageMax: 85, bulletSpeedMin: 42, bulletSpeedMax: 58, fireRateMin: 1.1f, fireRateMax: 1.4f, recoilValue: 25));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 65, damageMax: 85, bulletSpeedMin: 42, bulletSpeedMax: 58, fireRateMin: 1.1f, fireRateMax: 1.4f, recoilValue: 25, error: 0));
         Ship ship405 = CreateShip(
             code: 405,
             name: "Trishula",
@@ -364,7 +364,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 60f,
             rotationMax: 80f,
             mass: 250,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 75, damageMax: 90, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 35));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 75, damageMax: 90, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 35, error: 0));
 
         Ship ship501 = CreateShip(
             code: 501,
@@ -385,9 +385,9 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 50f,
             rotationMax: 70f,
             mass: 200,
-            new Cannon(name: "Middle Cannon", priority: 10, damageMin: 65, damageMax: 80, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.4f, fireRateMax: 1.7f, recoilValue: 25),
-            new Cannon(name: "Left Cannon", priority: 1, damageMin: 45, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.8f, fireRateMax: 2.2f, recoilValue: 0),
-            new Cannon(name: "Right Cannon", priority: 1, damageMin: 45, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.8f, fireRateMax: 2.2f, recoilValue: 0));
+            new Cannon(name: "Middle Cannon", priority: 10, damageMin: 65, damageMax: 80, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.4f, fireRateMax: 1.7f, recoilValue: 25, error: 0),
+            new Cannon(name: "Left Cannon", priority: 1, damageMin: 45, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.8f, fireRateMax: 2.2f, recoilValue: 0, error: 0),
+            new Cannon(name: "Right Cannon", priority: 1, damageMin: 45, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.8f, fireRateMax: 2.2f, recoilValue: 0, error: 0));
         Ship ship502 = CreateShip(
             code: 502,
             name: "Fergus",
@@ -407,7 +407,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 90f,
             rotationMax: 100f,
             mass: 200,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 100, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1f, fireRateMax: 1.3f, recoilValue: 25));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 100, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1f, fireRateMax: 1.3f, recoilValue: 25, error: 0));
         Ship ship503 = CreateShip(
             code: 503,
             name: "Seyfork",
@@ -427,7 +427,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 50f,
             rotationMax: 70f,
             mass: 225,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 70, damageMax: 90, bulletSpeedMin: 48, bulletSpeedMax: 65, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 20));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 70, damageMax: 90, bulletSpeedMin: 48, bulletSpeedMax: 65, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 20, error: 0));
         Ship ship504 = CreateShip(
             code: 504,
             name: "Cyborg",
@@ -447,7 +447,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 70f,
             rotationMax: 85f,
             mass: 210,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 75, damageMax: 95, bulletSpeedMin: 48, bulletSpeedMax: 65, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 20));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 75, damageMax: 95, bulletSpeedMin: 48, bulletSpeedMax: 65, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 20, error: 0));
         Ship ship505 = CreateShip(
             code: 505,
             name: "Armityle",
@@ -467,7 +467,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 70f,
             rotationMax: 90f,
             mass: 175,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 50, bulletSpeedMax: 68, fireRateMin: 1.5f, fireRateMax: 1.9f, recoilValue: 15));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 50, bulletSpeedMax: 68, fireRateMin: 1.5f, fireRateMax: 1.9f, recoilValue: 15, error: 0));
         Ship ship506 = CreateShip(
             code: 506,
             name: "Goliath",
@@ -487,28 +487,31 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 45f,
             rotationMax: 70f,
             mass: 320,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 65, damageMax: 80, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 40));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 65, damageMax: 80, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 40, error: 0));
 
         Ship ship601 = CreateShip(
             code: 601,
             name: "Epiloguer",
-            zoom: 2f,
-            healthMin: 450,
-            healthMax: 500,
-            healthRegenMin: 41,
-            healthRegenMax: 45,
+            zoom: 1.8f,
+            healthMin: 500,
+            healthMax: 620,
+            healthRegenMin: 12,
+            healthRegenMax: 20,
             energyMin: 300,
             energyMax: 330,
-            energyRegenMin: 3,
-            energyRegenMax: 4,
-            speedMin: 7.5f,
-            speedMax: 7.6f,
+            energyRegenMin: 250,
+            energyRegenMax: 320,
+            speedMin: 20f,
+            speedMax: 23f,
             accelerationMin: 130f,
-            accelerationMax: 140f,
-            rotationMin: 25f,
-            rotationMax: 30f,
+            accelerationMax: 150f,
+            rotationMin: 350f,
+            rotationMax: 400f,
             mass: 400,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 130, damageMax: 160, bulletSpeedMin: 55, bulletSpeedMax: 70, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 25));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 250, damageMax: 300, bulletSpeedMin: 50, bulletSpeedMax: 65, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 250, error: 0),
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 25, damageMax: 30, bulletSpeedMin: 40, bulletSpeedMax: 45, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 0),
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 25, damageMax: 30, bulletSpeedMin: 40, bulletSpeedMax: 45, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 0));
+            
         Ship ship602 = CreateShip(
             code: 602,
             name: "Vuaniha",
@@ -528,7 +531,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 50f,
             rotationMax: 55f,
             mass: 420,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 140, damageMax: 175, bulletSpeedMin: 50, bulletSpeedMax: 65, fireRateMin: 0.8f, fireRateMax: 1f, recoilValue: 30));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 140, damageMax: 175, bulletSpeedMin: 50, bulletSpeedMax: 65, fireRateMin: 0.8f, fireRateMax: 1f, recoilValue: 30, error: 0));
         Ship ship603 = CreateShip(
             code: 603,
             name: "Raigeki",
@@ -548,7 +551,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 40f,
             rotationMax: 45f,
             mass: 500,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 200, damageMax: 250, bulletSpeedMin: 60, bulletSpeedMax: 80, fireRateMin: 0.7f, fireRateMax: 0.9f, recoilValue: 50));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 200, damageMax: 250, bulletSpeedMin: 60, bulletSpeedMax: 80, fireRateMin: 0.7f, fireRateMax: 0.9f, recoilValue: 50, error: 0));
         Ship ship604 = CreateShip(
             code: 604,
             name: "Tiaramisu",
@@ -568,7 +571,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 20f,
             rotationMax: 25f,
             mass: 400,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 150, damageMax: 190, bulletSpeedMin: 50, bulletSpeedMax: 68, fireRateMin: 0.8f, fireRateMax: 1f, recoilValue: 25));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 150, damageMax: 190, bulletSpeedMin: 50, bulletSpeedMax: 68, fireRateMin: 0.8f, fireRateMax: 1f, recoilValue: 25, error: 0));
         Ship ship605 = CreateShip(
             code: 605,
             name: "Tsimtsum",
@@ -588,7 +591,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 40f,
             rotationMax: 45f,
             mass: 340,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 140, damageMax: 180, bulletSpeedMin: 55, bulletSpeedMax: 72, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 20));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 140, damageMax: 180, bulletSpeedMin: 55, bulletSpeedMax: 72, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 20, error: 0));
         Ship ship606 = CreateShip(
             code: 606,
             name: "Pusat",
@@ -608,7 +611,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 85f,
             rotationMax: 90f,
             mass: 260,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 90, damageMax: 120, bulletSpeedMin: 70, bulletSpeedMax: 90, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 15));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 90, damageMax: 120, bulletSpeedMin: 70, bulletSpeedMax: 90, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 15, error: 0));
 
         ship101.upgrades.Add(ship201);
         ship101.upgrades.Add(ship202);

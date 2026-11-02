@@ -67,8 +67,8 @@ public class GUIManager : MonoBehaviour
         playerEnergy.OnEnergyRegen += UpdateEnergy;
         UpdateEnergy(playerEnergy.GetEnergy(),playerEnergy.GetEnergy());
         UpdateGem(crystalPickup.GetCrystalCount());
-        UpdateShipTierUpgradeText();
-    }
+        SetShipTierUpgradeVisible(false);
+   }
 
     void UpdateShipTierUpgradeText(){
         if (shipTierUpgrade == null)
@@ -76,7 +76,7 @@ public class GUIManager : MonoBehaviour
             return;
         }
         Ship ship = playerStats.GetCurrentShip();
-        
+        int shipTier = playerStats.GetShipTier();
         for (int i=0; i<shipTierUpgrade.transform.childCount; i++)
         {
             GameObject button = shipTierUpgrade.transform.GetChild(i).gameObject;
@@ -86,8 +86,8 @@ public class GUIManager : MonoBehaviour
             {
                 return;
             }
-            name.text = ship.upgrades[i].name;
-            level.text = $"Lvl {ship.upgrades[i].code / 100}";
+            name.text = $"{ship.upgrades[i].name} [{9-i*9}]";
+            level.text = $"lvl {shipTier}";
         }
 
     }

@@ -37,9 +37,7 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Vector3 incoming = rb.linearVelocity.sqrMagnitude > 0.0001f
-            ? rb.linearVelocity.normalized
-            : transform.forward;
+        Vector3 incoming = rb.linearVelocity.sqrMagnitude > 0.0001f ? rb.linearVelocity.normalized : transform.forward;
         Vector3 horizontalDirection = Vector3.ProjectOnPlane(incoming, Vector3.up);
         if (horizontalDirection.sqrMagnitude < 0.0001f)
         {
