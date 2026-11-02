@@ -16,11 +16,11 @@ public class PlayerShoot : MonoBehaviour
         playerMovement = GetComponentInParent<PlayerMovement>();
         playerEnergy = GetComponentInParent<PlayerEnergy>();
         rb = GetComponentInParent<Rigidbody>();
-        Ship ship = playerStats.GetCurrentShip();
-        cannonTimers = new float[ship.cannons.Count];
+        EnsureCannonTimers();
     }
     void FixedUpdate()
     {
+        EnsureCannonTimers();
         for (int i = 0; i < cannonTimers.Length; i++){
             cannonTimers[i] += Time.fixedDeltaTime;
         }
@@ -83,8 +83,21 @@ public class PlayerShoot : MonoBehaviour
         playerMovement.AddRecoil(-cannonTransform.forward, cannonStats.recoil.GetValue());
     }
     public void ResetCannons(){
+        EnsureCannonTimers();
+    }
+
+    private void EnsureCannonTimers()
+    {
+        if (playerStats == null)
+        {
+            playerStats = GetComponentInParent<PlayerStats>();
+        }
+
         Ship ship = playerStats.GetCurrentShip();
-        cannonTimers = new float[ship.cannons.Count];
-        nextCannon = 0;
+        if (cannonTimers == null || cannonTimers.Length != ship.cannons.Count)
+        {
+            cannonTimers = new float[ship.cannons.Count];
+            nextCannon = 0;
+        }
     }
 }

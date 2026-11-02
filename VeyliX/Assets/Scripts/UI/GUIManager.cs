@@ -65,10 +65,19 @@ public class GUIManager : MonoBehaviour
         health.OnScoreChanged += UpdateScore;
         crystalPickup.OnplayerCrystalChange += UpdateGem;
         playerEnergy.OnEnergyRegen += UpdateEnergy;
+        playerStats.ShipChanged += UpdateShipTierUpgradeText;
         UpdateEnergy(playerEnergy.GetEnergy(),playerEnergy.GetEnergy());
         UpdateGem(crystalPickup.GetCrystalCount());
         SetShipTierUpgradeVisible(false);
    }
+
+    void OnDestroy()
+    {
+        if (playerStats != null)
+        {
+            playerStats.ShipChanged -= UpdateShipTierUpgradeText;
+        }
+    }
 
     void UpdateShipTierUpgradeText(){
         if (shipTierUpgrade == null)
@@ -77,17 +86,29 @@ public class GUIManager : MonoBehaviour
         }
         Ship ship = playerStats.GetCurrentShip();
         int shipTier = playerStats.GetShipTier();
+        if (ship.upgrades.Count == 0)
+        {
+            SetShipTierUpgradeVisible(false);
+        }
+
         for (int i=0; i<shipTierUpgrade.transform.childCount; i++)
         {
             GameObject button = shipTierUpgrade.transform.GetChild(i).gameObject;
+            if (i >= ship.upgrades.Count)
+            {
+                button.SetActive(false);
+                continue;
+            }
+
+            button.SetActive(true);
             TMP_Text name = button.transform.Find("Name").GetComponent<TMP_Text>() ?? null;
             TMP_Text level = button.transform.Find("Level").GetComponent<TMP_Text>() ?? null;
             if (name == null || level == null)
             {
                 return;
             }
-            name.text = $"{ship.upgrades[i].name} [{9-i*9}]";
-            level.text = $"lvl {shipTier}";
+            name.text = $"{ship.upgrades[i].name ?? null} [{9-i*9}]";
+            level.text = $"lvl {shipTier+1}";
         }
 
     }

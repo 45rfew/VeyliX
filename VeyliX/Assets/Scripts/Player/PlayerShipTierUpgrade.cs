@@ -29,9 +29,14 @@ public class PlayerShipTierUpgrade : MonoBehaviour
     }
     private void Upgrade(int i)
     {
+        Ship ship = playerStats.GetCurrentShip();
+        if (i < 0 || i >= ship.upgrades.Count)
+        {
+            return;
+        }
+
         if (playerCrystals.GetCrystalCount() >= playerStats.GetMaxCrystals())
         {
-            Ship ship = playerStats.GetCurrentShip();
             playerStats.UpgradeTo(ship.upgrades[i].code);
             shipModels.SetShip(ship.upgrades[i].code);
             cameraFollow.updateZoom(playerStats.GetCurrentZoom());
