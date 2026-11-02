@@ -6,7 +6,16 @@ public class EnemyCollisionDamage : MonoBehaviour
     private float myDamageRemainder;
     private float otherDamageRemainder;
     private bool isColliding = false;
+
     private void OnCollisionStay(Collision collision)
+    {       
+        CollsionDamage(collision);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        CollsionDamage(collision);
+    }
+    private void CollsionDamage(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -16,21 +25,23 @@ public class EnemyCollisionDamage : MonoBehaviour
             Health myHealth = GetComponent<Health>();
             Health otherHealth = collision.gameObject.GetComponentInParent<Health>();
             if (myHealth == null || otherHealth == null) return;
-            float impactSpeed = Mathf.Abs(Vector3.Dot(collision.relativeVelocity,collision.GetContact(0).normal));
+            float impactSpeed = Mathf.Abs(Vector3.Dot(collision.relativeVelocity, collision.GetContact(0).normal));
             float damageToOther = impactSpeed / 4f * myRb.mass * damageMultiplier;
-            float damageToMe = impactSpeed / 4f *otherRb.mass * damageMultiplier;
+            float damageToMe = impactSpeed / 4f * otherRb.mass * damageMultiplier;
             otherDamageRemainder += damageToOther;
             myDamageRemainder += damageToMe;
             int otherDamage = Mathf.FloorToInt(otherDamageRemainder);
             int myDamage = Mathf.FloorToInt(myDamageRemainder);
             otherDamageRemainder -= otherDamage;
             myDamageRemainder -= myDamage;
-            if (otherDamage > 0){
+            if (otherDamage > 0)
+            {
                 otherHealth.TakeDamage(otherDamage);
             }
-            if (myDamage > 0){
+            if (myDamage > 0)
+            {
                 myHealth.TakeDamage(myDamage);
             }
-        }
+        } 
     }
 }

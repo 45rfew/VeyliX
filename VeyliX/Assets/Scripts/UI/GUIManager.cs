@@ -86,7 +86,7 @@ public class GUIManager : MonoBehaviour
             {
                 return;
             }
-            name.text = $"{ship.upgrades[i].name} [9]";
+            name.text = ship.upgrades[i].name;
             level.text = $"Lvl {ship.upgrades[i].code / 100}";
         }
 
