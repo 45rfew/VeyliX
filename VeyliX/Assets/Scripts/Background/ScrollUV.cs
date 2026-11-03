@@ -24,7 +24,6 @@ public class ScrollUV : MonoBehaviour
 
 
 /* 
-finish shiptree
 ship stun when hit 
 boss alien 
 zones kill boss before progressing 

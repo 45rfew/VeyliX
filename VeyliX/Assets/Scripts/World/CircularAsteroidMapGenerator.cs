@@ -15,6 +15,10 @@ public class CircularAsteroidMapGenerator : MonoBehaviour
     [SerializeField, Range(1, 9)] private int maxAsteroidSize = 9;
     [SerializeField] private int seed;
     private Transform generatedAsteroids;
+    private CircularAlienRingSpawner ringSpawner;
+    private System.Random random;
+    private Vector3 mapCenter;
+
     private void Start()
     {
         GenerateMap();
@@ -35,29 +39,73 @@ public class CircularAsteroidMapGenerator : MonoBehaviour
                 player = playerObject.transform;
             }
         }
+
+        if (ringSpawner != null)
+        {
+            ringSpawner.OnRingUnlocked -= GenerateUnlockedRing;
+        }
+        if (ringSpawner == null || !ringSpawner.isActiveAndEnabled)
+        {
+            ringSpawner = null;
+            CircularAlienRingSpawner[] spawners = FindObjectsByType<CircularAlienRingSpawner>();
+            foreach (CircularAlienRingSpawner spawner in spawners)
+            {
+                if (spawner.isActiveAndEnabled)
+                {
+                    ringSpawner = spawner;
+                    break;
+                }
+            }
+        }
+
         ClearGeneratedAsteroids();
         generatedAsteroids = new GameObject("Generated Asteroids").transform;
         generatedAsteroids.SetParent(transform, false);
-        Vector3 mapCenter = player != null ? player.position : transform.position;
-        var random = seed == 0 ? new System.Random() : new System.Random(seed);
-        for (int ring = 0; ring < ringCount; ring++)
+        mapCenter = player != null ? player.position : transform.position;
+        random = seed == 0 ? new System.Random() : new System.Random(seed);
+        if (ringSpawner != null)
         {
-            float innerRadius = firstRingInnerRadius + ringWidth * ring;
-            float outerRadius = innerRadius + ringWidth;
-            int count = NextInt(random, minAsteroidsPerRing, maxAsteroidsPerRing);
-            GetRingSizeRange(ring, out int minSize, out int maxSize);
-            for (int i = 0; i < count; i++)
+            ringSpawner.OnRingUnlocked += GenerateUnlockedRing;
+            GenerateRing(1);
+        }
+        else
+        {
+            for (int ring = 1; ring <= ringCount; ring++)
             {
-                double angle = random.NextDouble() * Math.PI * 2.0;
-                double radius = Math.Sqrt(random.NextDouble() * (outerRadius * outerRadius - innerRadius * innerRadius) + innerRadius * innerRadius);
-                Vector3 position = mapCenter + new Vector3((float)(Math.Cos(angle) * radius),0f,(float)(Math.Sin(angle) * radius));
-                Quaternion rotation = Quaternion.Euler(0f, (float)(random.NextDouble() * 360.0), 0f);
-                int size = NextInt(random, minSize, maxSize);
-                GameObject asteroid = Instantiate(asteroidPrefab, position, rotation, generatedAsteroids);
-                asteroid.transform.localScale = Vector3.one * size;
+                GenerateRing(ring);
             }
         }
     }
+
+    private void GenerateUnlockedRing(int ring)
+    {
+        GenerateRing(ring);
+    }
+
+    private void GenerateRing(int ring)
+    {
+        if (generatedAsteroids == null || random == null || ring < 1 || ring > ringCount)
+        {
+            return;
+        }
+
+        int ringIndex = ring - 1;
+        float innerRadius = firstRingInnerRadius + ringWidth * ringIndex;
+        float outerRadius = innerRadius + ringWidth;
+        int count = NextInt(random, minAsteroidsPerRing, maxAsteroidsPerRing);
+        GetRingSizeRange(ringIndex, out int minSize, out int maxSize);
+        for (int i = 0; i < count; i++)
+        {
+            double angle = random.NextDouble() * Math.PI * 2.0;
+            double radius = Math.Sqrt(random.NextDouble() * (outerRadius * outerRadius - innerRadius * innerRadius) + innerRadius * innerRadius);
+            Vector3 position = mapCenter + new Vector3((float)(Math.Cos(angle) * radius),0f,(float)(Math.Sin(angle) * radius));
+            Quaternion rotation = Quaternion.Euler(0f, (float)(random.NextDouble() * 360.0), 0f);
+            int size = NextInt(random, minSize, maxSize);
+            GameObject asteroid = Instantiate(asteroidPrefab, position, rotation, generatedAsteroids);
+            asteroid.transform.localScale = Vector3.one * size;
+        }
+    }
+
     private void GetRingSizeRange(int ring, out int minSize, out int maxSize)
     {
         int sizeRange = maxAsteroidSize - minAsteroidSize + 1;
@@ -74,6 +122,14 @@ public class CircularAsteroidMapGenerator : MonoBehaviour
         if (generatedAsteroids != null)
         {
             Destroy(generatedAsteroids.gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (ringSpawner != null)
+        {
+            ringSpawner.OnRingUnlocked -= GenerateUnlockedRing;
         }
     }
     private void OnValidate()

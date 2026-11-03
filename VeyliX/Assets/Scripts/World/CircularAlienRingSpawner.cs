@@ -6,6 +6,14 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class CircularAlienRingSpawner : MonoBehaviour
 {
+    public event Action<int> OnRingUnlocked;
+
+    private enum RingClearCondition
+    {
+        AllEnemiesDefeated,
+        BossDefeated
+    }
+
     [Serializable]
     private class AlienSpawnEntry
     {
@@ -16,7 +24,20 @@ public class CircularAlienRingSpawner : MonoBehaviour
         [Tooltip("Relative spawn chance within this ring. Positive weights for each ring should total 1.")]
         [Range(0f, 1f)] public float weight = 1f;
     }
+
+    [Serializable]
+    private class RingProgressionSettings
+    {
+        [Tooltip("Entry 0 configures ring 1, entry 1 configures ring 2, and so on. Missing entries default to clearing all enemies.")]
+        public RingClearCondition clearCondition = RingClearCondition.AllEnemiesDefeated;
+        [Tooltip("Required when the clear condition is Boss Defeated. The boss spawns once in this ring.")]
+        public GameObject bossPrefab;
+    }
+
+    private const int GateSegmentCount = 64;
+
     [SerializeField] private List<AlienSpawnEntry> alienEntries = new List<AlienSpawnEntry>();
+    [SerializeField] private List<RingProgressionSettings> ringProgression = new List<RingProgressionSettings>();
     [SerializeField] private Transform player;
     [SerializeField] private Transform mapCenter;
     [SerializeField, Min(1)] private int ringCount = 5;
@@ -26,6 +47,8 @@ public class CircularAlienRingSpawner : MonoBehaviour
     [SerializeField, Min(1)] private int maxAliensInFirstRing = 4;
     [SerializeField, Min(0)] private int additionalAliensPerRing = 1;
     [SerializeField, Min(0f)] private float activationDistance = 15f;
+    [SerializeField, Min(0.1f)] private float gateThickness = 1f;
+    [SerializeField, Min(1f)] private float gateHeight = 100f;
     [SerializeField] private bool respawnAfterDefeat;
     [SerializeField, Min(0f)] private float respawnDelay = 10f;
     [SerializeField] private int seed;
@@ -42,7 +65,11 @@ public class CircularAlienRingSpawner : MonoBehaviour
         public bool activated;
         public bool waitingToRespawn;
         public float respawnAt;
+        public bool cleared;
+        public GameObject boss;
+        public bool reportedMissingBoss;
         public Transform waveRoot;
+        public Transform gateRoot;
         public readonly List<GameObject> aliens = new List<GameObject>();
     }
     private void Start()
@@ -73,6 +100,10 @@ public class CircularAlienRingSpawner : MonoBehaviour
                 outerRadius = innerRadius + ringWidth
             });
             eligibleEntriesByRing.Add(new List<AlienSpawnEntry>());
+        }
+        for (int i = 1; i < ringCount; i++)
+        {
+            rings[i].gateRoot = CreateGate(rings[i].innerRadius, i + 1);
         }
         for (int i = 0; i < alienEntries.Count; i++)
         {
@@ -112,8 +143,19 @@ public class CircularAlienRingSpawner : MonoBehaviour
         float playerRadius = HorizontalDistance(player.position, centerPosition);
         foreach (AlienRing ring in rings)
         {
+            bool isUnlocked = ring.ringIndex == 1 || rings[ring.ringIndex - 2].cleared;
+            if (ring.gateRoot != null && ring.gateRoot.gameObject.activeSelf == isUnlocked)
+            {
+                ring.gateRoot.gameObject.SetActive(!isUnlocked);
+            }
+
             if (!ring.activated)
             {
+                if (!isUnlocked)
+                {
+                    continue;
+                }
+
                 if (playerRadius >= ring.innerRadius - activationDistance
                     && playerRadius <= ring.outerRadius + activationDistance)
                 {
@@ -122,6 +164,16 @@ public class CircularAlienRingSpawner : MonoBehaviour
 
                 continue;
             }
+
+            if (!ring.cleared && IsRingCleared(ring))
+            {
+                ring.cleared = true;
+                if (ring.ringIndex < ringCount)
+                {
+                    OnRingUnlocked?.Invoke(ring.ringIndex + 1);
+                }
+            }
+
             if (respawnAfterDefeat && !ring.waitingToRespawn && AllAliensDefeated(ring))
             {
                 ring.waitingToRespawn = true;
@@ -142,7 +194,18 @@ public class CircularAlienRingSpawner : MonoBehaviour
     {
         List<AlienSpawnEntry> entries = eligibleEntriesByRing[ring.ringIndex - 1];
         float weightTotal = GetWeightTotal(entries);
-        if (weightTotal <= 0f)
+        RingProgressionSettings progression = GetProgressionSettings(ring.ringIndex);
+        bool requiresBoss = progression != null && progression.clearCondition == RingClearCondition.BossDefeated;
+        if (requiresBoss && progression.bossPrefab == null)
+        {
+            if (!ring.reportedMissingBoss)
+            {
+                Debug.LogError($"Ring {ring.ringIndex} dont have boss", this);
+                ring.reportedMissingBoss = true;
+            }
+            return false;
+        }
+        if (weightTotal <= 0f && !requiresBoss)
         {
             return false;
         }
@@ -159,24 +222,73 @@ public class CircularAlienRingSpawner : MonoBehaviour
         int ringOffset = (ring.ringIndex - 1) * additionalAliensPerRing;
         int minimumAmount = minAliensInFirstRing + ringOffset;
         int maximumAmount = maxAliensInFirstRing + ringOffset;
-        int amount = random.Next(minimumAmount, maximumAmount + 1);
+        int amount = weightTotal > 0f ? random.Next(minimumAmount, maximumAmount + 1) : 0;
         for (int i = 0; i < amount; i++)
         {
-            double angle = random.NextDouble() * Math.PI * 2.0;
-            double radius = Math.Sqrt(
-                random.NextDouble() * (ring.outerRadius * ring.outerRadius - ring.innerRadius * ring.innerRadius)
-                + ring.innerRadius * ring.innerRadius);
-            Vector3 position = centerPosition + new Vector3(
-                (float)(Math.Cos(angle) * radius),
-                0f,
-                (float)(Math.Sin(angle) * radius));
+            Vector3 position = GetRandomPosition(ring);
             Quaternion rotation = Quaternion.Euler(0f, (float)(random.NextDouble() * 360.0), 0f);
 
             GameObject alien = Instantiate(ChooseAlienPrefab(entries, weightTotal), position, rotation, ring.waveRoot);
             ring.aliens.Add(alien);
         }
+        if (requiresBoss)
+        {
+            ring.boss = Instantiate(
+                progression.bossPrefab,
+                GetRandomPosition(ring),
+                Quaternion.Euler(0f, (float)(random.NextDouble() * 360.0), 0f),
+                ring.waveRoot);
+            ring.aliens.Add(ring.boss);
+        }
         wave.SetActive(true);
         return true;
+    }
+
+    private RingProgressionSettings GetProgressionSettings(int ringIndex)
+    {
+        int settingsIndex = ringIndex - 1;
+        return settingsIndex < ringProgression.Count ? ringProgression[settingsIndex] : null;
+    }
+
+    private bool IsRingCleared(AlienRing ring)
+    {
+        RingProgressionSettings progression = GetProgressionSettings(ring.ringIndex);
+        if (progression != null && progression.clearCondition == RingClearCondition.BossDefeated)
+        {
+            return ring.boss == null;
+        }
+        return AllAliensDefeated(ring);
+    }
+
+    private Vector3 GetRandomPosition(AlienRing ring)
+    {
+        double angle = random.NextDouble() * Math.PI * 2.0;
+        double radius = Math.Sqrt(
+            random.NextDouble() * (ring.outerRadius * ring.outerRadius - ring.innerRadius * ring.innerRadius)
+            + ring.innerRadius * ring.innerRadius);
+        return centerPosition + new Vector3(
+            (float)(Math.Cos(angle) * radius),
+            0f,
+            (float)(Math.Sin(angle) * radius));
+    }
+
+    private Transform CreateGate(float radius, int ringIndex)
+    {
+        Transform gateRoot = new GameObject($"Ring {ringIndex} Gate").transform;
+        gateRoot.SetParent(generatedAliens, false);
+        float segmentLength = 2f * Mathf.PI * radius / GateSegmentCount;
+        for (int i = 0; i < GateSegmentCount; i++)
+        {
+            float angle = 2f * Mathf.PI * i / GateSegmentCount;
+            Vector3 radialDirection = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            GameObject segment = new GameObject("Gate Segment");
+            segment.transform.SetParent(gateRoot, false);
+            segment.transform.position = centerPosition + radialDirection * radius;
+            segment.transform.rotation = Quaternion.LookRotation(radialDirection);
+            BoxCollider collider = segment.AddComponent<BoxCollider>();
+            collider.size = new Vector3(segmentLength * 1.1f, gateHeight, gateThickness);
+        }
+        return gateRoot;
     }
 
     private GameObject ChooseAlienPrefab(List<AlienSpawnEntry> entries, float weightTotal)
@@ -228,6 +340,8 @@ public class CircularAlienRingSpawner : MonoBehaviour
         maxAliensInFirstRing = Mathf.Max(minAliensInFirstRing, maxAliensInFirstRing);
         additionalAliensPerRing = Mathf.Max(0, additionalAliensPerRing);
         activationDistance = Mathf.Max(0f, activationDistance);
+        gateThickness = Mathf.Max(0.1f, gateThickness);
+        gateHeight = Mathf.Max(1f, gateHeight);
         respawnDelay = Mathf.Max(0f, respawnDelay);
         foreach (AlienSpawnEntry entry in alienEntries)
         {
