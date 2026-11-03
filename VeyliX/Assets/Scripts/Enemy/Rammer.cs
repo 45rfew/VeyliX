@@ -3,59 +3,76 @@ using UnityEngine;
 public class Rammer : MonoBehaviour
 {
     public float speed; //follow speed, can be set in inspector
-    public float shootInterval;
-    public GameObject bulletPrefab;
-    public float bulletSpeed;
-    public int bulletDamage;
     public float maxDistance;
-    public float distanceToShoot;
+    public float distanceToDash;
+    public float dashForce;
+    public float dashDuration;
+    public float dashCooldown;
     private Transform player;
     private Rigidbody rb;
-    private float shootTimer;
+    private float dashTimeRemaining;
+    private float dashCooldownRemaining;
     private float steeringSmoothness = 8f;
-
+    private bool isDashing = false;
+    private float directionChangeCooldown = 2f;
+    private float directionChangeTimer = 0f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        try
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform ?? null;
-        }
-        catch
-        {
-            return;
+            player = playerObject.transform;
         }
     }
     void FixedUpdate()
     {
-        if (player == null)
+        if (player == null || rb == null)
         {
             return;
         }
-        shootTimer += Time.fixedDeltaTime;
+        directionChangeTimer += Time.fixedDeltaTime;
+        dashCooldownRemaining = Mathf.Max(0f, dashCooldownRemaining - Time.fixedDeltaTime);
+        if (isDashing)
+        {
+            dashTimeRemaining -= Time.fixedDeltaTime;
+            if (dashTimeRemaining > 0f)
+            {
+                return;
+            }
+
+            isDashing = false;
+        }
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer < maxDistance)
         {
             LookAtPlayer();
         }
-        MoveForward();
-        if (distanceToPlayer < distanceToShoot)
+
+        if (distanceToPlayer < distanceToDash && dashCooldownRemaining <= 0f)
         {
             CombatBehaviour();
+            if (isDashing)
+            {
+                return;
+            }
         }
+        MoveForward();
     }
     void CombatBehaviour()
     {
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angleToPlayer <= 35f)
+        Vector3 directionToPlayer = player.position - transform.position;
+        directionToPlayer.y = 0f;
+        if (directionToPlayer.sqrMagnitude < 0.0001f)
         {
-            if (shootTimer >= shootInterval)
-            {
-                shootTimer = 0f;
-                Shoot();
-            }
+            return;
         }
+        directionToPlayer.Normalize();
+        dashTimeRemaining = Mathf.Max(0f, dashDuration);
+        dashCooldownRemaining = Mathf.Max(0f, dashCooldown);
+        isDashing = dashTimeRemaining > 0f;
+        Dash(directionToPlayer);
     }
     void MoveForward()
     {
@@ -63,49 +80,54 @@ public class Rammer : MonoBehaviour
         forward.y = 0f;
         forward.Normalize();
         rb.MovePosition(rb.position + forward * speed * Time.fixedDeltaTime);
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer > maxDistance * 10f)
+        if (directionChangeTimer >= directionChangeCooldown)
         {
-            Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            directionToPlayer.y = 0f;
-            directionToPlayer.Normalize();
-            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
+            LookRandomDirection();
+            directionChangeTimer = 0f;
         }
+    }
+    void LookRandomDirection()
+    {
+        if (directionChangeTimer < directionChangeCooldown)
+        {
+            return;
+        }
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        Vector3 direction = new Vector3(randomDirection.x, 0f, randomDirection.y);
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
     }
     void LookAtPlayer()
     {
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        Vector3 directionToPlayer = player.position - transform.position;
         directionToPlayer.y = 0f;
+        if (directionToPlayer.sqrMagnitude < 0.0001f)
+        {
+            return;
+        }
         directionToPlayer.Normalize();
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angleToPlayer <= 35f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
-        }
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
     }
-    void Shoot()
+    void Dash(Vector3 dashDirection)
     {
-        rb.linearVelocity = Vector2.zero;
-        BulletScript bullet = Instantiate(bulletPrefab, transform.position, transform.rotation).GetComponent<BulletScript>();
-        if (bullet != null)
-        {
-            bullet.owner = transform.root.gameObject;
-            int damage = bulletDamage;
-            float bulletSpeed = this.bulletSpeed;
-            //set the bullet size based on damage
-            float t = Mathf.InverseLerp(1f, 255f, damage);
-            float scale = 1f + 69f * Mathf.Pow(t, 0.638f);
-            bullet.SetDamage(damage);
-            bullet.transform.localScale = Vector3.one * scale;
-            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-            Vector3 direction = player.position - transform.position;
-            Vector3 bulletVelocity = direction.normalized * bulletSpeed;
-            bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
-            bulletRb.rotation = Quaternion.LookRotation(direction);
-            bulletRb.linearVelocity = bulletVelocity;
-        }
-        shootTimer = 0;        
+        rb.AddForce(dashDirection * dashForce, ForceMode.Impulse);
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("Runner collided with: " + collision.gameObject.name);
+        Vector3 collisionDirection = collision.contacts[0].point - transform.position;
+        if (Vector3.Dot(collisionDirection.normalized, transform.forward) < 0f)
+        {
+            //collision is from the front
+        }
+        if (collision.gameObject.name == "Gate Segment")
+        {
+            Quaternion oppositeDirection = Quaternion.LookRotation((transform.position - collision.contacts[0].point).normalized);
+            //rb.MoveRotation(Quaternion.Slerp(rb.rotation, oppositeDirection, Time.fixedDeltaTime * steeringSmoothness));
+            //rb.transform.Rotate(0f, 180f, 0f); 
+        }
+    }
+
 }

@@ -43927,7 +43927,7 @@ MonoBehaviour:
   alienEntries:
   - alienPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
     ring: 1
-    weight: 0.492
+    weight: 0
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 2
     weight: 1
@@ -43943,12 +43943,12 @@ MonoBehaviour:
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 6
     weight: 1
-  - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
-    ring: 7
-    weight: 1
+  - alienPrefab: {fileID: 3369000980738519, guid: ab2261ecebf369643b3803ea7e656612, type: 3}
+    ring: 1
+    weight: 0.314
   - alienPrefab: {fileID: 3369000980738519, guid: 1fecf0397fa241a4ab4a30c094ddcd5c, type: 3}
     ring: 1
-    weight: 0.356
+    weight: 0
   ringProgression:
   - clearCondition: 0
     bossPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
