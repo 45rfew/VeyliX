@@ -6,17 +6,25 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : Health
 {
     public Action<int> OnScoreChanged;
+    public Action<bool> OnShipDestroyed;
     private int score;
     private PlayerStats playerStats;
     private PlayerCrystals playerCrystals;
+    private GUIManager guiManager;
     private int regen;
     private float regenAccumulator;
+    private int maxlives = 3;
+    private int lives;
+    private bool isDead = false;
     protected override void Start()
     {
+        lives = maxlives;
         playerStats = FindAnyObjectByType<PlayerStats>();
         playerCrystals = FindAnyObjectByType<PlayerCrystals>();
+        guiManager = FindAnyObjectByType<GUIManager>();
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
+        guiManager.OnRespawnTriggered += HandleRespawn;
         maxHealth = playerStats.GetCurrentShip().health.GetValue();
         currentHealth = maxHealth;
         OnDamage?.Invoke(maxHealth, maxHealth);
@@ -35,6 +43,14 @@ public class PlayerHealth : Health
             }
         }
     }
+    void HandleRespawn(bool respawn)
+    {
+        if (respawn)
+        {
+            isDead = false;
+            NewShip();
+        }
+    }
     public override void TakeDamage(int amount)
     {
         if (amount <= currentHealth)
@@ -49,16 +65,28 @@ public class PlayerHealth : Health
             if (crystals >= overflow)
             {
                 playerCrystals.RemoveCrystals(overflow);
-                CrystalSpawner.Instance.DropCrystals(overflow,transform.position);
+                CrystalSpawner.Instance.DropCrystals(overflow, transform.position);
             }
             else
             {
                 playerCrystals.RemoveCrystals(crystals);
-                CrystalSpawner.Instance.DropCrystals(crystals,transform.position);
-                Die();
+                CrystalSpawner.Instance.DropCrystals(crystals, transform.position);
+                if (!isDead)
+                {
+                    isDead = true;
+                    Die();
+                }
             }
         }
         OnDamage?.Invoke(currentHealth, maxHealth);
+    }
+    public void SetLives(int newLives)
+    {
+        lives = newLives;
+    }
+    public void ResetLives()
+    {
+        lives = maxlives;
     }
     void HandleDamage(int currentHealth, int maxHealth)
     {
@@ -83,11 +111,13 @@ public class PlayerHealth : Health
     }
     public void NewShip()
     {
+        gameObject.SetActive(true);
         playerStats = FindAnyObjectByType<PlayerStats>();
         maxHealth = playerStats.GetCurrentShip().health.GetValue();
         currentHealth = maxHealth;
         regen = playerStats.GetCurrentShip().healthRegen.GetValue();
         OnDamage?.Invoke(maxHealth, maxHealth);
+        //lives = maxlives;
     }
     public void Upgrade()
     {
@@ -103,6 +133,18 @@ public class PlayerHealth : Health
         int amount = gemValues[playerStats.GetShipTier() - 1];
         Vector3 pos = transform.position;
         CrystalSpawner.Instance.DropCrystals(amount, pos);
-        Destroy(gameObject, 0.1f);
+        if (lives > 0)
+        {
+            lives--;
+            OnShipDestroyed?.Invoke(true);
+            Debug.Log("Respawn player, lives left: " + lives);
+        } 
+        else
+        {
+            OnShipDestroyed?.Invoke(false);
+            SceneManager.LoadScene("GameOver");
+        }
+        gameObject.SetActive(false);
+        //Destroy(gameObject, 0.1f);
     }
 }

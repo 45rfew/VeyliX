@@ -9,10 +9,12 @@ public class PlayerShipTierUpgrade : MonoBehaviour
 
     private PlayerStats playerStats;
     private PlayerCrystals playerCrystals;
+    private PlayerHealth playerHealth;
     public ShipModels shipModels;
     public CameraFollow cameraFollow;
     void Awake()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         playerStats = GetComponent<PlayerStats>();
         playerCrystals = GetComponent<PlayerCrystals>();
         upgrade1.onClick.AddListener(() => Upgrade(0));
@@ -42,6 +44,7 @@ public class PlayerShipTierUpgrade : MonoBehaviour
             cameraFollow.updateZoom(playerStats.GetCurrentZoom());
             playerCrystals.RemoveCrystals(playerStats.GetMaxCrystals());
             playerCrystals.OnplayerCrystalChange?.Invoke(playerCrystals.GetCrystalCount());
+            playerHealth.ResetLives();
         }
     }
 }

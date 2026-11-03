@@ -26,10 +26,8 @@ public class ScrollUV : MonoBehaviour
 /* 
 ship stun when hit 
 boss alien 
-zones kill boss before progressing 
 lives 
 respawn 
-splitting enemies 
 more enemies 
 stats ui 
 hide minimap 

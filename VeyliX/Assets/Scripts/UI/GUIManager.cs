@@ -5,6 +5,7 @@ using TMPro;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GUIManager : MonoBehaviour
     public GameObject shipTierUpgrade;
     public GameObject shipUpgrades;
     public UpgradeButtons upgradeButtons;
+    public GameObject respawnUI;
+    public Action<bool> OnRespawnTriggered; 
     private int playerScore;
     private RectTransform shipTierUpgradeRect;
     private Vector2 shipTierUpgradePosition;
@@ -63,6 +66,7 @@ public class GUIManager : MonoBehaviour
         health.OnDamage += UpdateHealth;
         health.OnHeal += UpdateHealth;
         health.OnScoreChanged += UpdateScore;
+        health.OnShipDestroyed += ShowRespawnUI;
         crystalPickup.OnplayerCrystalChange += UpdateGem;
         playerEnergy.OnEnergyRegen += UpdateEnergy;
         playerStats.ShipChanged += UpdateShipTierUpgradeText;
@@ -79,6 +83,27 @@ public class GUIManager : MonoBehaviour
         }
     }
 
+    void ShowRespawnUI(bool visible)
+    {
+        if (respawnUI != null)
+        {
+            respawnUI.SetActive(visible);
+        }
+    }
+    public void TriggerRespawn()
+    {
+        if (respawnUI != null)
+        {
+            respawnUI.SetActive(false);
+            OnRespawnTriggered?.Invoke(true);
+        }
+    }
+
+    public void QuitToMainMenu()
+    {
+        OnRespawnTriggered?.Invoke(false);
+        SceneManager.LoadScene("MainMenu");
+    }
     void UpdateShipTierUpgradeText(){
         if (shipTierUpgrade == null)
         {
