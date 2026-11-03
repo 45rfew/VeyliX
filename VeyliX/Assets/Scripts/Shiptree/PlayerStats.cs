@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentShip = ships[ship];
         SetCurrentShipCode(ship);
-        playerShoot.ResetCannons();
+        //playerShoot.ResetCannons();
         UpdateAllStats();
         upgradeButtons.ResetUpgradeCounts();
         upgradeButtons.ResetUpgradeUI();
@@ -393,148 +393,156 @@ public class PlayerStats : MonoBehaviour
         Ship ship501 = CreateShip(
             code: 501,
             name: "Excelion",
-            zoom: 1.7f,
-            healthMin: 220,
-            healthMax: 300,
-            healthRegenMin: 37,
-            healthRegenMax: 75,
-            energyMin: 100,
-            energyMax: 170,
-            energyRegenMin: 2,
-            energyRegenMax: 4,
-            speedMin: 7f,
-            speedMax: 9.5f,
-            accelerationMin: 80f,
+            zoom: 1.3f,
+            healthMin: 280,
+            healthMax: 400,
+            healthRegenMin: 10,
+            healthRegenMax: 14,
+            energyMin: 120,
+            energyMax: 160,
+            energyRegenMin: 35,
+            energyRegenMax: 50,
+            speedMin: 10f,
+            speedMax: 15f,
+            accelerationMin: 85f,
             accelerationMax: 110f,
-            rotationMin: 50f,
-            rotationMax: 70f,
-            mass: 200,
-            new Cannon(name: "Middle Cannon", priority: 10, damageMin: 65, damageMax: 80, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1.4f, fireRateMax: 1.7f, recoilValue: 25, error: 0),
-            new Cannon(name: "Left Cannon", priority: 1, damageMin: 45, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.8f, fireRateMax: 2.2f, recoilValue: 0, error: 0),
-            new Cannon(name: "Right Cannon", priority: 1, damageMin: 45, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 1.8f, fireRateMax: 2.2f, recoilValue: 0, error: 0));
+            rotationMin: 220f,
+            rotationMax: 330f,
+            mass: 300,
+            new Cannon(name: "Middle Cannon", priority: 10, damageMin: 100, damageMax: 120, bulletSpeedMin: 35, bulletSpeedMax: 50, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 25, error: 0),
+            new Cannon(name: "Left Cannon", priority: 1, damageMin: 4, damageMax: 6, bulletSpeedMin: 25, bulletSpeedMax: 32, fireRateMin: 1.5f, fireRateMax: 1.5f, recoilValue: 0, error: 5),
+            new Cannon(name: "Right Cannon", priority: 1, damageMin: 4, damageMax: 6, bulletSpeedMin: 25, bulletSpeedMax: 32, fireRateMin: 1.5f, fireRateMax: 1.5f, recoilValue: 0, error: 5));
         Ship ship502 = CreateShip(
             code: 502,
             name: "Fergus",
-            zoom: 1.7f,
+            zoom: 1.3f,
             healthMin: 250,
-            healthMax: 320,
-            healthRegenMin: 36,
-            healthRegenMax: 80,
-            energyMin: 175,
-            energyMax: 250,
-            energyRegenMin: 2,
-            energyRegenMax: 4,
-            speedMin: 7f,
-            speedMax: 8.5f,
-            accelerationMin: 100f,
+            healthMax: 420,
+            healthRegenMin: 10,
+            healthRegenMax: 14,
+            energyMin: 130,
+            energyMax: 200,
+            energyRegenMin: 35,
+            energyRegenMax: 45,
+            speedMin: 10f,
+            speedMax: 14f,
+            accelerationMin: 90f,
             accelerationMax: 130f,
-            rotationMin: 90f,
-            rotationMax: 100f,
-            mass: 200,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 100, bulletSpeedMin: 45, bulletSpeedMax: 60, fireRateMin: 1f, fireRateMax: 1.3f, recoilValue: 25, error: 0));
+            rotationMin: 200f,
+            rotationMax: 300f,
+            mass: 350,
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 50, damageMax: 70, bulletSpeedMin: 35, bulletSpeedMax: 55, fireRateMin: 1.5f, fireRateMax: 1.5f, recoilValue: 0, error: 0),
+            new Cannon(name: "Side Cannon", priority: 1, damageMin: 6, damageMax: 7, bulletSpeedMin: 33, bulletSpeedMax: 40, fireRateMin: 2.5f, fireRateMax: 2.5f, recoilValue: 0, error: 1),
+            new Cannon(name: "Side Cannon", priority: 1, damageMin: 6, damageMax: 7, bulletSpeedMin: 33, bulletSpeedMax: 40, fireRateMin: 2.5f, fireRateMax: 2.5f, recoilValue: 0, error: 1));
         Ship ship503 = CreateShip(
             code: 503,
             name: "Seyfork",
-            zoom: 1.7f,
+            zoom: 1.3f,
             healthMin: 220,
-            healthMax: 300,
-            healthRegenMin: 31,
-            healthRegenMax: 75,
-            energyMin: 100,
-            energyMax: 210,
-            energyRegenMin: 1,
-            energyRegenMax: 4,
-            speedMin: 7f,
-            speedMax: 9f,
-            accelerationMin: 70f,
-            accelerationMax: 100f,
-            rotationMin: 50f,
-            rotationMax: 70f,
-            mass: 225,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 70, damageMax: 90, bulletSpeedMin: 48, bulletSpeedMax: 65, fireRateMin: 1.2f, fireRateMax: 1.5f, recoilValue: 20, error: 0));
+            healthMax: 400,
+            healthRegenMin: 10,
+            healthRegenMax: 14,
+            energyMin: 130,
+            energyMax: 180,
+            energyRegenMin: 25,
+            energyRegenMax: 45,
+            speedMin: 10f,
+            speedMax: 14f,
+            accelerationMin: 100f,
+            accelerationMax: 120f,
+            rotationMin: 200f,
+            rotationMax: 320f,
+            mass: 300,
+            new Cannon(name: "Left Cannon", priority: 10, damageMin: 20, damageMax: 25, bulletSpeedMin: 35, bulletSpeedMax: 48, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 0, error: 3),
+            new Cannon(name: "Left Cannon 2", priority: 1, damageMin: 10, damageMax: 12, bulletSpeedMin: 30, bulletSpeedMax: 52, fireRateMin: 4f, fireRateMax: 4f, recoilValue: 0, error: 3),
+            new Cannon(name: "Right Cannon", priority: 10, damageMin: 20, damageMax: 25, bulletSpeedMin: 35, bulletSpeedMax: 48, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 0, error: 3),
+            new Cannon(name: "Right Cannon 2", priority: 1, damageMin: 10, damageMax: 12, bulletSpeedMin: 30, bulletSpeedMax: 52, fireRateMin: 4f, fireRateMax: 4f, recoilValue: 0, error: 3));
         Ship ship504 = CreateShip(
             code: 504,
             name: "Cyborg",
-            zoom: 1.7f,
+            zoom: 1.3f,
             healthMin: 240,
-            healthMax: 320,
-            healthRegenMin: 34,
-            healthRegenMax: 64,
-            energyMin: 100,
-            energyMax: 150,
-            energyRegenMin: 2,
-            energyRegenMax: 4,
-            speedMin: 8f,
-            speedMax: 10f,
-            accelerationMin: 100f,
-            accelerationMax: 130f,
-            rotationMin: 70f,
-            rotationMax: 85f,
-            mass: 210,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 75, damageMax: 95, bulletSpeedMin: 48, bulletSpeedMax: 65, fireRateMin: 1.3f, fireRateMax: 1.6f, recoilValue: 20, error: 0));
+            healthMax: 400,
+            healthRegenMin: 10,
+            healthRegenMax: 16,
+            energyMin: 130,
+            energyMax: 200,
+            energyRegenMin: 30,
+            energyRegenMax: 55,
+            speedMin: 10f,
+            speedMax: 11f,
+            accelerationMin: 80f,
+            accelerationMax: 100f,
+            rotationMin: 160f,
+            rotationMax: 200f,
+            mass: 400,
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 100, damageMax: 150, bulletSpeedMin: 30, bulletSpeedMax: 55, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 20, error: 0),
+            new Cannon(name: "Main Cannon 2", priority: 1, damageMin: 10, damageMax: 15, bulletSpeedMin: 20, bulletSpeedMax: 45, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 4));
         Ship ship505 = CreateShip(
             code: 505,
             name: "Armityle",
-            zoom: 1.7f,
-            healthMin: 220,
-            healthMax: 300,
-            healthRegenMin: 31,
-            healthRegenMax: 60,
-            energyMin: 80,
-            energyMax: 120,
-            energyRegenMin: 2,
-            energyRegenMax: 3,
-            speedMin: 8f,
-            speedMax: 11f,
+            zoom: 1.3f,
+            healthMin: 350,
+            healthMax: 500,
+            healthRegenMin: 10,
+            healthRegenMax: 16,
+            energyMin: 100,
+            energyMax: 160,
+            energyRegenMin: 30,
+            energyRegenMax: 40,
+            speedMin: 10f,
+            speedMax: 13f,
             accelerationMin: 100f,
             accelerationMax: 140f,
-            rotationMin: 70f,
-            rotationMax: 90f,
-            mass: 175,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 60, damageMax: 75, bulletSpeedMin: 50, bulletSpeedMax: 68, fireRateMin: 1.5f, fireRateMax: 1.9f, recoilValue: 15, error: 0));
+            rotationMin: 200f,
+            rotationMax: 280f,
+            mass: 500,
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 5, damageMax: 7, bulletSpeedMin: 42, bulletSpeedMax: 55, fireRateMin: 8f, fireRateMax: 8f, recoilValue: 0, error: 2),
+            new Cannon(name: "Main Cannon 2", priority: 1, damageMin: 5, damageMax: 7, bulletSpeedMin: 42, bulletSpeedMax: 55, fireRateMin: 8f, fireRateMax: 8f, recoilValue: 0, error: 2));
         Ship ship506 = CreateShip(
             code: 506,
             name: "Goliath",
-            zoom: 1.7f,
+            zoom: 1.4f,
             healthMin: 300,
-            healthMax: 380,
-            healthRegenMin: 30,
-            healthRegenMax: 63,
-            energyMin: 80,
-            energyMax: 120,
-            energyRegenMin: 1,
-            energyRegenMax: 3,
-            speedMin: 6f,
-            speedMax: 7.5f,
+            healthMax: 350,
+            healthRegenMin: 10,
+            healthRegenMax: 14,
+            energyMin: 100,
+            energyMax: 150,
+            energyRegenMin: 40,
+            energyRegenMax: 65,
+            speedMin: 8f,
+            speedMax: 12f,
             accelerationMin: 70f,
-            accelerationMax: 90f,
-            rotationMin: 45f,
-            rotationMax: 70f,
-            mass: 320,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 65, damageMax: 80, bulletSpeedMin: 38, bulletSpeedMax: 52, fireRateMin: 0.9f, fireRateMax: 1.1f, recoilValue: 40, error: 0));
+            accelerationMax: 120f,
+            rotationMin: 200f,
+            rotationMax: 300f,
+            mass: 350,
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 40, damageMax: 60, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 50, error: 0),
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 40, damageMax: 60, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 50, error: 0));
 
         Ship ship601 = CreateShip(
             code: 601,
             name: "Epiloguer",
-            zoom: 1.8f,
-            healthMin: 500,
-            healthMax: 620,
-            healthRegenMin: 14,
-            healthRegenMax: 22,
+            zoom: 1.7f,
+            healthMin: 300,
+            healthMax: 400,
+            healthRegenMin: 4,
+            healthRegenMax: 20,
             energyMin: 300,
             energyMax: 330,
-            energyRegenMin: 250,
-            energyRegenMax: 320,
-            speedMin: 20f,
-            speedMax: 23f,
-            accelerationMin: 130f,
-            accelerationMax: 150f,
+            energyRegenMin: 150,
+            energyRegenMax: 200,
+            speedMin: 17f,
+            speedMax: 22f,
+            accelerationMin: 60f,
+            accelerationMax: 80f,
             rotationMin: 350f,
             rotationMax: 400f,
             mass: 400,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 250, damageMax: 300, bulletSpeedMin: 50, bulletSpeedMax: 65, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 250, error: 0),
-            new Cannon(name: "Main Cannon", priority: 1, damageMin: 25, damageMax: 30, bulletSpeedMin: 40, bulletSpeedMax: 45, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 0),
-            new Cannon(name: "Main Cannon", priority: 1, damageMin: 25, damageMax: 30, bulletSpeedMin: 40, bulletSpeedMax: 45, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 0));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 250, damageMax: 300, bulletSpeedMin: 50, bulletSpeedMax: 60, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 250, error: 0),
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 25, damageMax: 30, bulletSpeedMin: 30, bulletSpeedMax: 35, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 0),
+            new Cannon(name: "Main Cannon", priority: 1, damageMin: 25, damageMax: 30, bulletSpeedMin: 30, bulletSpeedMax: 35, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 0));
 
         Ship ship602 = CreateShip(
             code: 602,
@@ -546,8 +554,8 @@ public class PlayerStats : MonoBehaviour
             healthRegenMax: 36,
             energyMin: 1400,
             energyMax: 2000,
-            energyRegenMin: 450,
-            energyRegenMax: 520,
+            energyRegenMin: 800,
+            energyRegenMax: 1000,
             speedMin: 12f,
             speedMax: 14f,
             accelerationMin: 80f,
@@ -555,26 +563,26 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 160f,
             rotationMax: 200f,
             mass: 420,
-            new Cannon(name: "Left Cannon", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 2", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 3", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 4", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 5", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 6", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 7", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 8", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 9", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Left Cannon 10", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 2", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 3", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 4", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 5", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 6", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 7", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 8", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 9", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0),
-            new Cannon(name: "Right Cannon 10", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 1, bulletSpeedMax: 1, fireRateMin: 0.5f, fireRateMax: 0.5f, recoilValue: 10, error: 0));
+            new Cannon(name: "Left Cannon", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 2", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 3", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 4", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 5", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 6", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 7", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 8", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 9", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Left Cannon 10", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 2", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 3", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 4", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 5", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 6", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 7", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 8", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 9", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0),
+            new Cannon(name: "Right Cannon 10", priority: 10, damageMin: 70, damageMax: 100, bulletSpeedMin: 10, bulletSpeedMax: 10, fireRateMin: 0.3f, fireRateMax: 0.3f, recoilValue: 10, error: 0));
 
         Ship ship603 = CreateShip(
             code: 603,
@@ -587,47 +595,47 @@ public class PlayerStats : MonoBehaviour
             energyMin: 400,
             energyMax: 620,
             energyRegenMin: 180,
-            energyRegenMax: 270,
+            energyRegenMax: 250,
             speedMin: 12.5f,
             speedMax: 15f,
             accelerationMin: 60f,
             accelerationMax: 80f,
-            rotationMin: 210f,
-            rotationMax: 350f,
+            rotationMin: 160f,
+            rotationMax: 200f,
             mass: 500,
-            new Cannon(name: "Left Cannon", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Left Cannon 2", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Left Cannon 3", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Left Cannon 4", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Left Cannon 5", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Left Cannon 6", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Left Cannon 7", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon 2", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon 3", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon 4", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon 5", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon 6", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1),
-            new Cannon(name: "Right Cannon 7", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 1));
+            new Cannon(name: "Left Cannon", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Left Cannon 2", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Left Cannon 3", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Left Cannon 4", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Left Cannon 5", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Left Cannon 6", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Left Cannon 7", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon 2", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon 3", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon 4", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon 5", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon 6", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3),
+            new Cannon(name: "Right Cannon 7", priority: 10, damageMin: 20, damageMax: 30, bulletSpeedMin: 36, bulletSpeedMax: 45, fireRateMin: 1f, fireRateMax: 1f, recoilValue: 8, error: 3));
 
         Ship ship604 = CreateShip(
             code: 604,
             name: "Tiaramisu",
-            zoom: 1.6f,
+            zoom: 1.5f,
             healthMin: 800,
             healthMax: 900,
             healthRegenMin: 25,
-            healthRegenMax: 32,
+            healthRegenMax: 30,
             energyMin: 500,
             energyMax: 700,
             energyRegenMin: 240,
             energyRegenMax: 280,
-            speedMin: 14f,
-            speedMax: 16f,
+            speedMin: 11f,
+            speedMax: 14f,
             accelerationMin: 70f,
             accelerationMax: 90f,
-            rotationMin: 200f,
-            rotationMax: 300f,
+            rotationMin: 120f,
+            rotationMax: 200f,
             mass: 700,
             new Cannon(name: "Main Cannon", priority: 10, damageMin: 100, damageMax: 140, bulletSpeedMin: 50, bulletSpeedMax: 60, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 25, error: 0),
             new Cannon(name: "Top Cannon", priority: 5, damageMin: 40, damageMax: 50, bulletSpeedMin: 35, bulletSpeedMax: 42, fireRateMin: 4.5f, fireRateMax: 4.5f, recoilValue: 0, error: 3),
@@ -659,11 +667,11 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 180f,
             rotationMax: 240f,
             mass: 700,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 100, bulletSpeedMin: 55, bulletSpeedMax: 72, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 50, error: 0));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 100, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 50, error: 0));
         Ship ship606 = CreateShip(
             code: 606,
             name: "Pusat",
-            zoom: 1.6f,
+            zoom: 1.5f,
             healthMin: 800,
             healthMax: 940,
             healthRegenMin: 20,
@@ -672,13 +680,13 @@ public class PlayerStats : MonoBehaviour
             energyMax: 800,
             energyRegenMin: 160,
             energyRegenMax: 220,
-            speedMin: 12f,
-            speedMax: 14f,
+            speedMin: 10f,
+            speedMax: 12f,
             accelerationMin: 60f,
             accelerationMax: 80f,
-            rotationMin: 180f,
-            rotationMax: 220f,
-            mass: 560,
+            rotationMin: 120f,
+            rotationMax: 180f,
+            mass: 720,
             new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 120, bulletSpeedMin: 15, bulletSpeedMax: 20, fireRateMin: 1.2f, fireRateMax: 1.2f, recoilValue: 15, error: 0),
             new Cannon(name: "Main Cannon 2", priority: 10, damageMin: 80, damageMax: 120, bulletSpeedMin: 15, bulletSpeedMax: 20, fireRateMin: 1.2f, fireRateMax: 1.2f, recoilValue: 15, error: 0),
             new Cannon(name: "Side Cannon", priority: 2, damageMin: 20, damageMax: 24, bulletSpeedMin: 25, bulletSpeedMax: 30, fireRateMin: 1.6f, fireRateMax: 1.6f, recoilValue: 0, error: 1),
@@ -691,6 +699,8 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Back Cannon 6", priority: 1, damageMin: 16, damageMax: 20, bulletSpeedMin: 30, bulletSpeedMax: 38, fireRateMin: 1.2f, fireRateMax: 1.2f, recoilValue: 0, error: 1),
             new Cannon(name: "Back Cannon 7", priority: 1, damageMin: 16, damageMax: 20, bulletSpeedMin: 30, bulletSpeedMax: 38, fireRateMin: 1.2f, fireRateMax: 1.2f, recoilValue: 0, error: 1),
             new Cannon(name: "Back Cannon 8", priority: 1, damageMin: 16, damageMax: 20, bulletSpeedMin: 30, bulletSpeedMax: 38, fireRateMin: 1.2f, fireRateMax: 1.2f, recoilValue: 0, error: 1));
+        
+        
         ship101.upgrades.Add(ship201);
         ship101.upgrades.Add(ship202);
 
@@ -703,10 +713,10 @@ public class PlayerStats : MonoBehaviour
         ship301.upgrades.Add(ship402);
         ship302.upgrades.Add(ship402);
         ship302.upgrades.Add(ship403);
+        ship303.upgrades.Add(ship403);
         ship303.upgrades.Add(ship404);
-        ship303.upgrades.Add(ship405);
+        ship304.upgrades.Add(ship404);
         ship304.upgrades.Add(ship405);
-        ship304.upgrades.Add(ship401);
 
         ship401.upgrades.Add(ship501);
         ship401.upgrades.Add(ship502);
@@ -714,23 +724,23 @@ public class PlayerStats : MonoBehaviour
         ship402.upgrades.Add(ship503);
         ship403.upgrades.Add(ship503);
         ship403.upgrades.Add(ship504);
+        ship404.upgrades.Add(ship504);
         ship404.upgrades.Add(ship505);
-        ship404.upgrades.Add(ship506);
+        ship405.upgrades.Add(ship505);
         ship405.upgrades.Add(ship506);
-        ship405.upgrades.Add(ship501);
 
         ship501.upgrades.Add(ship601);
-        ship501.upgrades.Add(ship602);
+        ship501.upgrades.Add(ship603);
         ship502.upgrades.Add(ship602);
         ship502.upgrades.Add(ship603);
         ship503.upgrades.Add(ship603);
-        ship503.upgrades.Add(ship604);
+        ship503.upgrades.Add(ship602);
+        ship504.upgrades.Add(ship603);
         ship504.upgrades.Add(ship604);
-        ship504.upgrades.Add(ship605);
+        ship505.upgrades.Add(ship604);
         ship505.upgrades.Add(ship605);
-        ship505.upgrades.Add(ship606);
+        ship506.upgrades.Add(ship605);
         ship506.upgrades.Add(ship606);
-        ship506.upgrades.Add(ship601);
     }
 
     private Ship CreateShip(
