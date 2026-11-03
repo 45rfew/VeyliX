@@ -96372,6 +96372,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+--- !u!4 &1225434647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6278033247747874324, guid: 6b3aa48517c24ed4b840018219e9a5ea, type: 3}
+  m_PrefabInstance: {fileID: 4442456250327796365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1236523866
 GameObject:
   m_ObjectHideFlags: 0
@@ -202450,6 +202455,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4850334920869580442, guid: 6b3aa48517c24ed4b840018219e9a5ea, type: 3}
+      propertyPath: 'bulletTransform.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1225434647}
+    - target: {fileID: 4850334920869580442, guid: 6b3aa48517c24ed4b840018219e9a5ea, type: 3}
       propertyPath: 'bulletTransform.Array.data[1]'
       value: 
       objectReference: {fileID: 1704841120}
@@ -203684,6 +203693,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1785497661}
     m_Modifications:
+    - target: {fileID: 1409869905613555746, guid: 0ed18cc5440630b429521444e1e9205a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1807908014157110805, guid: 0ed18cc5440630b429521444e1e9205a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
