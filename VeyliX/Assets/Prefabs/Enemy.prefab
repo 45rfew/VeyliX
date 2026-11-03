@@ -271,6 +271,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   healthRegen: 3
   crystalDrop: 10
+  enemySpawns: []
 --- !u!64 &1441132155171437638
 MeshCollider:
   m_ObjectHideFlags: 0

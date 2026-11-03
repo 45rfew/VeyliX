@@ -43904,7 +43904,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 664431754}
-  - component: {fileID: 664431753}
   - component: {fileID: 664431752}
   m_Layer: 0
   m_Name: Alien Generator
@@ -43912,7 +43911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &664431752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43928,7 +43927,7 @@ MonoBehaviour:
   alienEntries:
   - alienPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
     ring: 1
-    weight: 0.8
+    weight: 0.492
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 2
     weight: 1
@@ -43949,40 +43948,23 @@ MonoBehaviour:
     weight: 1
   - alienPrefab: {fileID: 3369000980738519, guid: 1fecf0397fa241a4ab4a30c094ddcd5c, type: 3}
     ring: 1
-    weight: 0.2
+    weight: 0.356
+  ringProgression:
+  - clearCondition: 0
+    bossPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
   player: {fileID: 1785497661}
   mapCenter: {fileID: 1785497661}
   ringCount: 7
   firstRingInnerRadius: 25
-  ringWidth: 200
+  ringWidth: 100
   minAliensInFirstRing: 120
   maxAliensInFirstRing: 120
   additionalAliensPerRing: 100
   activationDistance: 15
+  gateThickness: 1
+  gateHeight: 100
   respawnAfterDefeat: 0
   respawnDelay: 10
-  seed: 0
---- !u!114 &664431753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664431751}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b93b6cb209144f7902ea8c0ca26d20a, type: 3}
-  m_Name: Circular Asteroid Map Generator
-  m_EditorClassIdentifier: Assembly-CSharp::CircularAsteroidMapGenerator
-  asteroidPrefab: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
-  player: {fileID: 1785497661}
-  ringCount: 7
-  firstRingInnerRadius: 20
-  ringWidth: 200
-  minAsteroidsPerRing: 300
-  maxAsteroidsPerRing: 400
-  minAsteroidSize: 2
-  maxAsteroidSize: 9
   seed: 0
 --- !u!4 &664431754
 Transform:
@@ -201372,7 +201354,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3141592653}
   - component: {fileID: 3141592652}
-  - component: {fileID: 3141592654}
   m_Layer: 0
   m_Name: Map Generator
   m_TagString: Untagged
@@ -201396,7 +201377,7 @@ MonoBehaviour:
   player: {fileID: 1785497661}
   ringCount: 7
   firstRingInnerRadius: 20
-  ringWidth: 200
+  ringWidth: 100
   minAsteroidsPerRing: 300
   maxAsteroidsPerRing: 400
   minAsteroidSize: 2
@@ -201417,37 +201398,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3141592654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3141592651}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cc32a5a48b94f8d972c1dd0a51c20de, type: 3}
-  m_Name: Circular Alien Ring Spawner
-  m_EditorClassIdentifier: Assembly-CSharp::CircularAlienRingSpawner
-  alienEntries:
-  - alienPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
-    ring: 1
-    weight: 1
-  - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
-    ring: 2
-    weight: 1
-  player: {fileID: 1785497661}
-  mapCenter: {fileID: 1785497661}
-  ringCount: 7
-  firstRingInnerRadius: 25
-  ringWidth: 200
-  minAliensInFirstRing: 80
-  maxAliensInFirstRing: 80
-  additionalAliensPerRing: 40
-  activationDistance: 15
-  respawnAfterDefeat: 0
-  respawnDelay: 10
-  seed: 0
 --- !u!1001 &1127102107986667951
 PrefabInstance:
   m_ObjectHideFlags: 0
