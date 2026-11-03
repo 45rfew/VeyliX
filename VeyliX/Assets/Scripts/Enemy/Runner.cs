@@ -106,6 +106,20 @@ public class Runner : MonoBehaviour
             bulletRb.rotation = Quaternion.LookRotation(direction);
             bulletRb.linearVelocity = bulletVelocity;
         }
-        shootTimer = 0;        
+        shootTimer = 0;
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("Runner collided with: " + collision.gameObject.name);
+        Vector3 collisionDirection = collision.contacts[0].point - transform.position;
+        if (Vector3.Dot(collisionDirection.normalized, transform.forward) < 0f)
+        {
+            //collision is from the front
+        }
+        if (collision.gameObject.name == "Gate Segment")
+        {
+            rb.transform.Rotate(0f, 180f, 0f); 
+        }
+    }
+
 }
