@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.37
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 729c2262bbfa2c146858c43cca75dc19, type: 2}
   m_HaloStrength: 0.167
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -205049,6 +205049,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1785497661}
+    - target: {fileID: 3646393472060686195, guid: 2ab84b471bd52c14cbe7167334979c4d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4403687288611249110, guid: 2ab84b471bd52c14cbe7167334979c4d, type: 3}
       propertyPath: player
       value: 
