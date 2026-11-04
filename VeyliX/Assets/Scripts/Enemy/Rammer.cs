@@ -116,7 +116,6 @@ public class Rammer : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("Runner collided with: " + collision.gameObject.name);
         Vector3 collisionDirection = collision.contacts[0].point - transform.position;
         if (Vector3.Dot(collisionDirection.normalized, transform.forward) < 0f)
         {

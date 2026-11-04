@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5000782204294340950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776677822229817871}
+  m_Layer: 0
+  m_Name: ShootPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776677822229817871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5000782204294340950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0049, y: -0, z: 0.0008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 810692713061297005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6151097385179399797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6772461477009567278}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6772461477009567278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151097385179399797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0065, y: -0.0024, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 810692713061297005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9176919049955060428
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +247,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8203604344701347363}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6772461477009567278}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 776677822229817871}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       insertIndex: -1
@@ -201,9 +269,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8624389283782704533}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 893211568521898665}
   m_SourcePrefab: {fileID: 100100000, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
 --- !u!1 &3369000980738519 stripped
 GameObject:
@@ -250,12 +315,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runner
   speed: 10
-  shootInterval: 0.2
+  shootInterval: 5
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 30
   bulletDamage: 5
   maxDistance: 15
   distanceToShoot: 12
+  shootPoints:
+  - {fileID: 6772461477009567278}
+  - {fileID: 776677822229817871}
 --- !u!114 &7860152352716113205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,28 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6f6e645064a3a479cffeb31c00803c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCollisionDamage
---- !u!114 &893211568521898665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369000980738519}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96236f6cba4b524ca9cc6a53b5eac36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Rammer
-  speed: 5
-  shootInterval: 2
-  bulletPrefab: {fileID: 0}
-  bulletSpeed: 0
-  bulletDamage: 0
-  maxDistance: 15
-  distanceToDash: 12
-  dashForce: 5000
-  dashDuration: 1
-  dashCooldown: 5
 --- !u!4 &810692713061297005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}

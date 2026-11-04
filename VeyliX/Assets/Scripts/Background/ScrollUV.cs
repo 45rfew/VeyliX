@@ -27,9 +27,7 @@ public class ScrollUV : MonoBehaviour
 ship stun when hit 
 boss alien 
 more enemies 
-stats ui 
-hide minimap 
 sound 
 check if enemy is outside the zone 
-
+alien can have multiple cannons 
 */
