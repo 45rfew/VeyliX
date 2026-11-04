@@ -7,7 +7,7 @@ public class BulletScript : MonoBehaviour
     private Rigidbody rb;
     private float force;
     private int damage;
-    private float timeToLive = 5f;
+    private float timeToLive = 2f;
     public GameObject collisionEffectPrefab;
     //todo: make the bullet life base off its distance traveled
     void Awake()

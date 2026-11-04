@@ -145,13 +145,13 @@ public class GUIManager : MonoBehaviour
     }
     void UpdateHealth(int currentHealth, int maxHealth)
     {
-        healthText.text = $"Shield: {currentHealth}/{maxHealth}";
+        healthText.text = $"Shield: {Math.Round((double)currentHealth)}/{Math.Round((double)maxHealth)}";
         //healthBar.value = currentHealth / maxHealth * 100 <= 0 ? 0.01f : currentHealth / maxHealth * 100; 
         //healthText.text = currentHealth < 0 ? $"0 / {maxHealth}" : $"{currentHealth} / {maxHealth}";
     }
     void UpdateEnergy(float currentEnergy, float maxEnergy)
     {
-        energyText.text = $"Energy: {Mathf.Floor(currentEnergy)}/{Mathf.Floor(maxEnergy)}";    
+        energyText.text = $"Energy: {Mathf.Round(currentEnergy)}/{Mathf.Round(maxEnergy)}";    
     }
     void UpdateGem(int currentGem)
     { 

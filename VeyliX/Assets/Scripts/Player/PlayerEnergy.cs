@@ -15,6 +15,11 @@ public class PlayerEnergy : MonoBehaviour
 
     void Update()
     {
+        if (currentEnergy > maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+            OnEnergyRegen?.Invoke(currentEnergy, maxEnergy);
+        }
         if (currentEnergy < maxEnergy)
         {
             currentEnergy += energyRegen * Time.deltaTime;
@@ -36,6 +41,7 @@ public class PlayerEnergy : MonoBehaviour
         energyRegen = value;
     }
     public float GetEnergy() => currentEnergy;
+    public float GetMaxEnergy() => maxEnergy;
     public void NewShip()
     {
         playerStats = GetComponent<PlayerStats>();

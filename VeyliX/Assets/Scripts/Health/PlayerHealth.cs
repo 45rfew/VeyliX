@@ -97,6 +97,10 @@ public class PlayerHealth : Health
     {
         return lives;
     }
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
     void HandleDamage(int currentHealth, int maxHealth)
     {
         int damage = maxHealth - currentHealth;
