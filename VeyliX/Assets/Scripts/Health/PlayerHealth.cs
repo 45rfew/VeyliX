@@ -7,6 +7,7 @@ public class PlayerHealth : Health
 {
     public Action<int> OnScoreChanged;
     public Action<bool> OnShipDestroyed;
+    public Action<int> OnLivesChanged;
     private int score;
     private PlayerStats playerStats;
     private PlayerCrystals playerCrystals;
@@ -28,6 +29,7 @@ public class PlayerHealth : Health
         maxHealth = playerStats.GetCurrentShip().health.GetValue();
         currentHealth = maxHealth;
         OnDamage?.Invoke(maxHealth, maxHealth);
+        OnLivesChanged?.Invoke(lives);
         regen = playerStats.GetCurrentShip().healthRegen.GetValue();
     }
     void Update()
@@ -49,6 +51,7 @@ public class PlayerHealth : Health
         {
             isDead = false;
             NewShip();
+            OnLivesChanged?.Invoke(lives);
         }
     }
     public override void TakeDamage(int amount)
@@ -83,10 +86,16 @@ public class PlayerHealth : Health
     public void SetLives(int newLives)
     {
         lives = newLives;
+        OnLivesChanged?.Invoke(lives);
     }
     public void ResetLives()
     {
         lives = maxlives;
+        OnLivesChanged?.Invoke(lives);
+    }
+    public int GetLives()
+    {
+        return lives;
     }
     void HandleDamage(int currentHealth, int maxHealth)
     {
@@ -136,6 +145,7 @@ public class PlayerHealth : Health
         if (lives > 0)
         {
             lives--;
+            OnLivesChanged?.Invoke(lives);
             OnShipDestroyed?.Invoke(true);
             Debug.Log("Respawn player, lives left: " + lives);
         } 

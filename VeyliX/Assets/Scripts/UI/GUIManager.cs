@@ -22,6 +22,7 @@ public class GUIManager : MonoBehaviour
     public GameObject shipUpgrades;
     public UpgradeButtons upgradeButtons;
     public GameObject respawnUI;
+    public TextMeshProUGUI livesText;
     public Action<bool> OnRespawnTriggered; 
     private int playerScore;
     private RectTransform shipTierUpgradeRect;
@@ -70,8 +71,10 @@ public class GUIManager : MonoBehaviour
         crystalPickup.OnplayerCrystalChange += UpdateGem;
         playerEnergy.OnEnergyRegen += UpdateEnergy;
         playerStats.ShipChanged += UpdateShipTierUpgradeText;
+        health.OnLivesChanged += UpdateLives;
         UpdateEnergy(playerEnergy.GetEnergy(),playerEnergy.GetEnergy());
         UpdateGem(crystalPickup.GetCrystalCount());
+        UpdateLives(health.GetLives());
         SetShipTierUpgradeVisible(false);
    }
 
@@ -82,7 +85,10 @@ public class GUIManager : MonoBehaviour
             playerStats.ShipChanged -= UpdateShipTierUpgradeText;
         }
     }
-
+    void UpdateLives(int lives)
+    {
+        livesText.text = $"{lives}";
+    }
     void ShowRespawnUI(bool visible)
     {
         if (respawnUI != null)
