@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 961739752}
   - component: {fileID: 961739751}
   - component: {fileID: 961739750}
+  - component: {fileID: 961739754}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -896,6 +897,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &961739754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961739749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a07969a02b9524caeccdfec07837b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraZoomOut
 --- !u!1 &1092670714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1119,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 961739754}
+        m_TargetAssemblyTypeName: CameraZoomOut, Assembly-CSharp
+        m_MethodName: ZoomOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
       - m_Target: {fileID: 1523671437}
         m_TargetAssemblyTypeName: MainMenuScreen, Assembly-CSharp
         m_MethodName: PlayGame
@@ -1117,7 +1142,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1256871869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88210b48bb15ad46b3f6136d1ed1956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuScreen
+  cameraZoomOut: {fileID: 961739754}
 --- !u!4 &1523671438
 Transform:
   m_ObjectHideFlags: 0
@@ -1457,6 +1483,6 @@ SceneRoots:
   - {fileID: 961739753}
   - {fileID: 2032126433}
   - {fileID: 896533236}
-  - {fileID: 1523671438}
   - {fileID: 68486298}
   - {fileID: 1092670717}
+  - {fileID: 1523671438}
