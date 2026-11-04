@@ -29,5 +29,7 @@ boss alien
 more enemies 
 stats ui 
 hide minimap 
-menu 
+sound 
+check if enemy is outside the zone 
+
 */
