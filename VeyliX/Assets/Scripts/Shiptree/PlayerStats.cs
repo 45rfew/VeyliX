@@ -128,11 +128,11 @@ public class PlayerStats : MonoBehaviour
         Ship ship101 =
             CreateShip(
                 code: 101,
-                name: "VeyliX",
+                name: "Peepeepoopoo",
                 zoom: 1f,
                 healthMin: 1000,
                 healthMax: 120,
-                healthRegenMin: 4,
+                healthRegenMin: 400,
                 healthRegenMax: 5,
                 energyMin: 600,
                 energyMax: 80,
@@ -149,7 +149,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship201 = CreateShip(
             code: 201,
-            name: "Excelsior",
+            name: "Striker",
             zoom: 1.05f,
             healthMin: 100,
             healthMax: 120,
@@ -169,7 +169,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon", priority: 10, damageMin: 10, damageMax: 15, bulletSpeedMin: 30, bulletSpeedMax: 40, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 15, error: 3));
         Ship ship202 = CreateShip(
             code: 202,
-            name: "Avalon",
+            name: "Twinwing",
             zoom: 1.05f,
             healthMin: 100,
             healthMax: 110,
@@ -192,7 +192,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship301 = CreateShip(
             code: 301,
-            name: "Atreyu",
+            name: "Vanguard",
             zoom: 1.1f,
             healthMin: 120,
             healthMax: 160,
@@ -212,7 +212,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon", priority: 10, damageMin: 30, damageMax: 40, bulletSpeedMin: 40, bulletSpeedMax: 50, fireRateMin: 1.2f, fireRateMax: 1.2f, recoilValue: 25, error: 0));
         Ship ship302 = CreateShip(
             code: 302,
-            name: "Messiah",
+            name: "Rook",
             zoom: 1.1f,
             healthMin: 110,
             healthMax: 140,
@@ -234,7 +234,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Side Cannon 2", priority: 1, damageMin: 4, damageMax: 7, bulletSpeedMin: 28, bulletSpeedMax: 38, fireRateMin: 2.1f, fireRateMax: 2.1f, recoilValue: 0, error: 6));
         Ship ship303 = CreateShip(
             code: 303,
-            name: "Daedalus",
+            name: "Crosswind",
             zoom: 1.1f,
             healthMin: 120,
             healthMax: 160,
@@ -255,7 +255,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Side Cannon 2", priority: 10, damageMin: 7, damageMax: 10, bulletSpeedMin: 30, bulletSpeedMax: 40, fireRateMin: 4f, fireRateMax: 4f, recoilValue: 0, error: 10));
         Ship ship304 = CreateShip(
             code: 304,
-            name: "Ransu",
+            name: "Lancer",
             zoom: 1.1f,
             healthMin: 110,
             healthMax: 150,
@@ -278,7 +278,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship401 = CreateShip(
             code: 401,
-            name: "Teraser",
+            name: "Bulwark",
             zoom: 1.2f,
             healthMin: 120,
             healthMax: 200,
@@ -300,7 +300,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Side Cannon 2", priority: 1, damageMin: 4, damageMax: 6, bulletSpeedMin: 45, bulletSpeedMax: 70, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 2));
         Ship ship402 = CreateShip(
             code: 402,
-            name: "Sunder",
+            name: "Twin Lance",
             zoom: 1.1f,
             healthMin: 130,
             healthMax: 220,
@@ -321,7 +321,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon 2", priority: 10, damageMin: 40, damageMax: 55, bulletSpeedMin: 40, bulletSpeedMax: 50, fireRateMin: 1.8f, fireRateMax: 1.8f, recoilValue: 35, error: 0));
         Ship ship403 = CreateShip(
             code: 403,
-            name: "Icarus",
+            name: "Cyclone",
             zoom: 1.1f,
             healthMin: 140,
             healthMax: 200,
@@ -342,7 +342,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon 2", priority: 10, damageMin: 10, damageMax: 12, bulletSpeedMin: 34, bulletSpeedMax: 48, fireRateMin: 6f, fireRateMax: 6f, recoilValue: 0, error: 2));
         Ship ship404 = CreateShip(
             code: 404,
-            name: "Calamity",
+            name: "Broadside",
             zoom: 1.1f,
             healthMin: 140,
             healthMax: 220,
@@ -368,7 +368,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship405 = CreateShip(
             code: 405,
-            name: "Trishula",
+            name: "Phantom",
             zoom: 1.1f,
             healthMin: 150,
             healthMax: 240,
@@ -392,7 +392,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship501 = CreateShip(
             code: 501,
-            name: "Excelion",
+            name: "Dreadnought",
             zoom: 1.3f,
             healthMin: 280,
             healthMax: 400,
@@ -414,7 +414,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Right Cannon", priority: 1, damageMin: 4, damageMax: 6, bulletSpeedMin: 25, bulletSpeedMax: 32, fireRateMin: 1.5f, fireRateMax: 1.5f, recoilValue: 0, error: 5));
         Ship ship502 = CreateShip(
             code: 502,
-            name: "Fergus",
+            name: "Aegis",
             zoom: 1.3f,
             healthMin: 250,
             healthMax: 420,
@@ -436,7 +436,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Side Cannon", priority: 1, damageMin: 6, damageMax: 7, bulletSpeedMin: 33, bulletSpeedMax: 40, fireRateMin: 2.5f, fireRateMax: 2.5f, recoilValue: 0, error: 1));
         Ship ship503 = CreateShip(
             code: 503,
-            name: "Seyfork",
+            name: "Crossfire",
             zoom: 1.3f,
             healthMin: 220,
             healthMax: 400,
@@ -459,7 +459,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Right Cannon 2", priority: 1, damageMin: 10, damageMax: 12, bulletSpeedMin: 30, bulletSpeedMax: 52, fireRateMin: 4f, fireRateMax: 4f, recoilValue: 0, error: 3));
         Ship ship504 = CreateShip(
             code: 504,
-            name: "Cyborg",
+            name: "Bastion",
             zoom: 1.3f,
             healthMin: 240,
             healthMax: 400,
@@ -480,7 +480,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon 2", priority: 1, damageMin: 10, damageMax: 15, bulletSpeedMin: 20, bulletSpeedMax: 45, fireRateMin: 3f, fireRateMax: 3f, recoilValue: 0, error: 4));
         Ship ship505 = CreateShip(
             code: 505,
-            name: "Armityle",
+            name: "Wraith",
             zoom: 1.3f,
             healthMin: 350,
             healthMax: 500,
@@ -501,7 +501,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon 2", priority: 1, damageMin: 5, damageMax: 7, bulletSpeedMin: 42, bulletSpeedMax: 55, fireRateMin: 8f, fireRateMax: 8f, recoilValue: 0, error: 2));
         Ship ship506 = CreateShip(
             code: 506,
-            name: "Goliath",
+            name: "Colossus",
             zoom: 1.4f,
             healthMin: 300,
             healthMax: 350,
@@ -523,7 +523,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship601 = CreateShip(
             code: 601,
-            name: "Epiloguer",
+            name: "Sovereign",
             zoom: 1.7f,
             healthMin: 300,
             healthMax: 400,
@@ -546,7 +546,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship602 = CreateShip(
             code: 602,
-            name: "Raigeki",
+            name: "Tempest",
             zoom: 1.5f,
             healthMin: 460,
             healthMax: 560,
@@ -586,7 +586,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship603 = CreateShip(
             code: 603,
-            name: "Vuaniha",
+            name: "Pulsar",
             zoom: 1.5f,
             healthMin: 700,
             healthMax: 770,
@@ -620,7 +620,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship604 = CreateShip(
             code: 604,
-            name: "Tiaramisu",
+            name: "Eclipse",
             zoom: 1.5f,
             healthMin: 800,
             healthMax: 900,
@@ -650,7 +650,7 @@ public class PlayerStats : MonoBehaviour
 
         Ship ship605 = CreateShip(
             code: 605,
-            name: "Tsimtsum",
+            name: "Armada",
             zoom: 1.5f,
             healthMin: 700,
             healthMax: 820,
@@ -670,7 +670,7 @@ public class PlayerStats : MonoBehaviour
             new Cannon(name: "Main Cannon", priority: 10, damageMin: 80, damageMax: 100, bulletSpeedMin: 40, bulletSpeedMax: 55, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 50, error: 0));
         Ship ship606 = CreateShip(
             code: 606,
-            name: "Pusat",
+            name: "Leviathan",
             zoom: 1.5f,
             healthMin: 800,
             healthMax: 940,
@@ -764,6 +764,13 @@ public class PlayerStats : MonoBehaviour
         int mass,
         params Cannon[] cannons)
     {
+        int tier = code / 100;
+        if (tier >= 2 && tier <= 5)
+        {
+            energyRegenMin = Mathf.RoundToInt(energyRegenMin * 1.2f);
+            energyRegenMax = Mathf.RoundToInt(energyRegenMax * 1.2f);
+        }
+
         Ship ship = new Ship
         {
             code = code,

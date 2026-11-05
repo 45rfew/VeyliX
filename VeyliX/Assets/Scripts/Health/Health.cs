@@ -37,6 +37,7 @@ public class Health : MonoBehaviour
             effect.transform.localScale = Vector3.one * scale * 0.8f;
             Destroy(effect, 1.5f);
         }
+        SoundManager.PlayExplosionSound();
 
     }
 }

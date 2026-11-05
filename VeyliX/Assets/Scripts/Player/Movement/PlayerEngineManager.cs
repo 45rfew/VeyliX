@@ -11,8 +11,9 @@ public class PlayerEngineManager : MonoBehaviour
             {
                 if (flame != null)
                 {
-                    flame.Play();       
+                    flame.Play();
                 }
+                SoundManager.ToggleTrustSound(true);
             }
         }
         else
@@ -21,8 +22,9 @@ public class PlayerEngineManager : MonoBehaviour
             {
                 if (flame != null)
                 {
-                    flame.Stop(false,ParticleSystemStopBehavior.StopEmitting);
+                    flame.Stop(false, ParticleSystemStopBehavior.StopEmitting);
                 }
+                SoundManager.ToggleTrustSound(false);
             }
         }
     }

@@ -81,7 +81,7 @@ public class PlayerShoot : MonoBehaviour
         bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
         bulletRb.linearVelocity = bulletVelocity;
         playerMovement.AddRecoil(-cannonTransform.forward, cannonStats.recoil.GetValue());
-        SoundManager.PlaySound(SoundType.Shoot,damage);
+        SoundManager.PlayShootSound(SoundType.Shoot, damage, true);
     }
     public void ResetCannons(){
         EnsureCannonTimers();

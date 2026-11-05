@@ -182,6 +182,7 @@ public class Wanderer : MonoBehaviour
             bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
             bulletRb.rotation = Quaternion.LookRotation(direction);
             bulletRb.linearVelocity = bulletVelocity;
+            SoundManager.PlayShootSound(SoundType.EnemyShoot, damage, false);
         }
         shootTimer = 0;        
     }
