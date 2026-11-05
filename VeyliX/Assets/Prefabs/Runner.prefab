@@ -243,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 3613567641014311022, guid: 8b6965efd2c097c47b22cccbed87f3d0, type: 3}
     - target: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_Name
-      value: aa
+      value: Runner
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_TagString
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: -2865104911859505335, guid: c69792b9ee0e5f843a635b8e6a0b260c, type: 3}
     - target: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_Name
-      value: Rammer
+      value: Runner
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_TagString

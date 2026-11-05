@@ -71,6 +71,7 @@ public class Runner : MonoBehaviour
             directionToPlayer.y = 0f;
             directionToPlayer.Normalize();
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            //targetRotation.y = 0f;
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
         }
     }
@@ -85,7 +86,7 @@ public class Runner : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
         }
-    }
+    }   
     void Shoot()
     {
         if (shootPoints == null)

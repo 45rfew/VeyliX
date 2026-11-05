@@ -9,11 +9,11 @@ public class EnemyCollisionDamage : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {       
-        CollsionDamage(collision);
+        //CollsionDamage(collision);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        CollsionDamage(collision);
+        //CollsionDamage(collision);
     }
     private void CollsionDamage(Collision collision)
     {

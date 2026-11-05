@@ -45,27 +45,25 @@ public class Wanderer : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player == null)
+        if (player != null)
         {
-            return;
-        }
+            shootTimer += Time.fixedDeltaTime;
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            UpdateState(distanceToPlayer);
+            switch (currentState)
+            {
+                case EnemyState.Wandering:
+                    WanderAround();
+                    break;
 
-        shootTimer += Time.fixedDeltaTime;
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        UpdateState(distanceToPlayer);
-        switch (currentState)
-        {
-            case EnemyState.Wandering:
-                WanderAround();
-                break;
+                case EnemyState.Seeking:
+                    ApproachPlayer();
+                    break;
 
-            case EnemyState.Seeking:
-                ApproachPlayer();
-                break;
-
-            case EnemyState.Shooting:
-                CombatBehaviour();
-                break;
+                case EnemyState.Shooting:
+                    CombatBehaviour();
+                    break;
+            }
         }
     }
     void UpdateState(float distance)
@@ -94,7 +92,6 @@ public class Wanderer : MonoBehaviour
             OnStateChanged(next);
         }
     }
-
     void OnStateChanged(EnemyState newState)
     {
         stateTimer = 0f;

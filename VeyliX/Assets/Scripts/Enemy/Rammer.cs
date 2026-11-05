@@ -41,7 +41,6 @@ public class Rammer : MonoBehaviour
             {
                 return;
             }
-
             isDashing = false;
         }
 
@@ -136,5 +135,4 @@ public class Rammer : MonoBehaviour
             rb.transform.Rotate(0f, 90f, 0f); 
         }
     }
-
 }
