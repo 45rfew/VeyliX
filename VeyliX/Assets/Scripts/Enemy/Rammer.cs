@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Rammer : MonoBehaviour
 {
     public float speed; //follow speed, can be set in inspector
@@ -123,9 +124,16 @@ public class Rammer : MonoBehaviour
         }
         if (collision.gameObject.name == "Gate Segment")
         {
-            Quaternion oppositeDirection = Quaternion.LookRotation((transform.position - collision.contacts[0].point).normalized);
+            Vector3 directionAwayFromGate = transform.position - collision.contacts[0].point;
+            directionAwayFromGate.y = 0f;
+            if (directionAwayFromGate.sqrMagnitude < 0.0001f)
+            {
+                return;
+            }
+
+            Quaternion oppositeDirection = Quaternion.LookRotation(directionAwayFromGate);
             //rb.MoveRotation(Quaternion.Slerp(rb.rotation, oppositeDirection, Time.fixedDeltaTime * steeringSmoothness));
-            //rb.transform.Rotate(0f, 180f, 0f); 
+            rb.transform.Rotate(0f, 90f, 0f); 
         }
     }
 

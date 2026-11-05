@@ -127,8 +127,8 @@ public class Runner : MonoBehaviour
         {
             Debug.Log("sdasdasd");
             Quaternion oppositeDirection = Quaternion.LookRotation((transform.position - collision.contacts[0].point).normalized);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, oppositeDirection, Time.fixedDeltaTime * steeringSmoothness));
-            //rb.transform.Rotate(0f, 180f, 0f); 
+            //rb.MoveRotation(Quaternion.Slerp(rb.rotation, oppositeDirection, Time.fixedDeltaTime * steeringSmoothness));
+            rb.transform.Rotate(0f, 90f, 0f); 
         }
     }
 }
