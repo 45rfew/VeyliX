@@ -199,9 +199,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1868939384453405261}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -1717210058225184740}
   m_SourcePrefab: {fileID: 100100000, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
 --- !u!1 &3369000980738519 stripped
 GameObject:
@@ -235,18 +232,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
---- !u!114 &-1717210058225184740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369000980738519}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b667341d2003d4f91f4160a9859056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RotateEnemy
 --- !u!4 &810692713061297005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
@@ -440,6 +425,8 @@ MonoBehaviour:
   healthRegen: 10
   crystalDrop: 100
   enemySpawns: []
+  spawnKnockbackDuration: 0.35
+  spawnKnockbackSpeed: 8
 --- !u!64 &7948946731002677197
 MeshCollider:
   m_ObjectHideFlags: 0

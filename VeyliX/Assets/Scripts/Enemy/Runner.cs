@@ -66,7 +66,9 @@ public class Runner : MonoBehaviour
         Vector3 forward = transform.forward;
         forward.y = 0f;
         forward.Normalize();
-        rb.MovePosition(rb.position + forward * speed * Time.fixedDeltaTime);
+        Vector3 velocity = forward * speed;
+        velocity.y = rb.linearVelocity.y;
+        rb.linearVelocity = velocity;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer > maxDistance * 10f)
         {
@@ -128,11 +130,15 @@ public class Runner : MonoBehaviour
         {
             //collision is from the front
         }
-        if (collision.gameObject.name == "Gate Segment" || collision.gameObject.name == "Asteroid")
+        if (collision.gameObject.name == "Asteroid")
         {
             Quaternion oppositeDirection = Quaternion.LookRotation((transform.position - collision.contacts[0].point).normalized);
             //rb.MoveRotation(Quaternion.Slerp(rb.rotation, oppositeDirection, Time.fixedDeltaTime * steeringSmoothness));
-            rb.transform.Rotate(0f, UnityEngine.Random.Range(-80,80), 0f); 
+            rb.transform.Rotate(0f, UnityEngine.Random.Range(-80, 80), 0f);
+        }
+        if (collision.gameObject.name == "Gate Segment")
+        {
+            rb.transform.Rotate(0f, 180f, 0f);
         }
     }
 }

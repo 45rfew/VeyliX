@@ -279,7 +279,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship401 = CreateShip(
             code: 401,
             name: "Bulwark",
-            zoom: 1.2f,
+            zoom: 1.1f,
             healthMin: 120,
             healthMax: 200,
             healthRegenMin: 5,
@@ -393,7 +393,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship501 = CreateShip(
             code: 501,
             name: "Dreadnought",
-            zoom: 1.3f,
+            zoom: 1.2f,
             healthMin: 280,
             healthMax: 400,
             healthRegenMin: 10,
@@ -415,7 +415,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship502 = CreateShip(
             code: 502,
             name: "Aegis",
-            zoom: 1.3f,
+            zoom: 1.2f,
             healthMin: 250,
             healthMax: 420,
             healthRegenMin: 10,
@@ -437,7 +437,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship503 = CreateShip(
             code: 503,
             name: "Crossfire",
-            zoom: 1.3f,
+            zoom: 1.2f,
             healthMin: 220,
             healthMax: 400,
             healthRegenMin: 10,
@@ -460,7 +460,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship504 = CreateShip(
             code: 504,
             name: "Bastion",
-            zoom: 1.3f,
+            zoom: 1.2f,
             healthMin: 240,
             healthMax: 400,
             healthRegenMin: 10,
@@ -481,7 +481,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship505 = CreateShip(
             code: 505,
             name: "Wraith",
-            zoom: 1.3f,
+            zoom: 1.2f,
             healthMin: 350,
             healthMax: 500,
             healthRegenMin: 10,
@@ -502,7 +502,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship506 = CreateShip(
             code: 506,
             name: "Colossus",
-            zoom: 1.4f,
+            zoom: 1.3f,
             healthMin: 300,
             healthMax: 350,
             healthRegenMin: 10,
@@ -524,7 +524,7 @@ public class PlayerStats : MonoBehaviour
         Ship ship601 = CreateShip(
             code: 601,
             name: "Sovereign",
-            zoom: 1.7f,
+            zoom: 1.6f,
             healthMin: 300,
             healthMax: 400,
             healthRegenMin: 4,

@@ -44495,12 +44495,15 @@ MonoBehaviour:
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 3
     weight: 1
-  - alienPrefab: {fileID: 3369000980738519, guid: ee1f622c183f77448a28359818c4a832, type: 3}
+  - alienPrefab: {fileID: 3369000980738519, guid: 8161054c18cd0cf4e8c5100f109057cc, type: 3}
     ring: 1
     weight: 0.431
-  - alienPrefab: {fileID: 3369000980738519, guid: 41fb4dbf5a168b844bebd0699806b2fa, type: 3}
+  - alienPrefab: {fileID: 3369000980738519, guid: 5ff30589725129345afb1ae567bfaf0b, type: 3}
     ring: 1
     weight: 0.556
+  - alienPrefab: {fileID: 3369000980738519, guid: 08db3a1d89b3bd94eb349f501c345043, type: 3}
+    ring: 1
+    weight: 0.1
   ringProgression:
   - clearCondition: 1
     bossPrefab: {fileID: 3369000980738519, guid: fe424fd054615f945bf576321afd532d, type: 3}
@@ -44512,7 +44515,7 @@ MonoBehaviour:
   minAliensInFirstRing: 50
   maxAliensInFirstRing: 50
   additionalAliensPerRing: 50
-  activationDistance: 25
+  activationDistance: 15
   gateThickness: 5
   gateHeight: 100
   respawnAfterDefeat: 0

@@ -78,9 +78,10 @@ public class EnemyHealth : Health
             int amount = enemy.amount;
             for (int i = 0; i < amount; i++)
             {
-                float randomOffset = 5f;
+                float randomOffset = 3f;
                 Vector3 randomPos = new Vector3(transform.position.x + UnityEngine.Random.Range(-randomOffset, randomOffset), 0f, transform.position.z + UnityEngine.Random.Range(-randomOffset, randomOffset));
                 GameObject spawnedEnemy = Instantiate(enemy.enemyPrefab, randomPos, Quaternion.identity);
+                spawnedEnemy.transform.SetParent(transform.parent, true);
                 float randomX = UnityEngine.Random.Range(-1f, 1f);
                 float randomZ = UnityEngine.Random.Range(-1f, 1f);
                 Vector3 randomDir = new Vector3(randomX, 0, randomZ).normalized;

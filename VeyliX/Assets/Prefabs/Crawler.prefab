@@ -319,43 +319,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3230453886423149247}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7049828179062989148}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
---- !u!1 &3369000980738519 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
-  m_PrefabInstance: {fileID: 921709358955973766}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &7049828179062989148
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369000980738519}
-  serializedVersion: 5
-  m_Mass: 50
-  m_LinearDamping: 0
-  m_AngularDamping: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 1
 --- !u!4 &810692713061297005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
@@ -539,6 +504,8 @@ MonoBehaviour:
   healthRegen: 4
   crystalDrop: 20
   enemySpawns: []
+  spawnKnockbackDuration: 0.35
+  spawnKnockbackSpeed: 8
 --- !u!64 &7948946731002677197
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -590,8 +557,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 30
   bulletDamage: 2
-  maxDistance: 10
-  distanceToShoot: 8
+  maxDistance: 12
+  distanceToShoot: 10
   shootPoints:
   - {fileID: 3319873895304902971}
   - {fileID: 8921566924854626818}

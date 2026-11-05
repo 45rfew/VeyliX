@@ -190,6 +190,59 @@ public class CircularAlienRingSpawner : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        foreach (AlienRing ring in rings)
+        {
+            if (ring.activated)
+            {
+               // ReturnAliensOutsideRingToCenter(ring);
+            }
+        }
+    }
+
+    private void ReturnAliensOutsideRingToCenter(AlienRing ring)
+    {
+        HashSet<GameObject> trackedAliens = new HashSet<GameObject>(ring.aliens);
+        if (ring.waveRoot != null)
+        {
+            foreach (EnemyHealth enemyHealth in ring.waveRoot.GetComponentsInChildren<EnemyHealth>(true))
+            {
+                trackedAliens.Add(enemyHealth.gameObject);
+            }
+        }
+
+        foreach (GameObject alien in trackedAliens)
+        {
+            if (alien == null)
+            {
+                continue;
+            }
+
+            Rigidbody body = alien.GetComponentInParent<Rigidbody>();
+            Vector3 position = body != null ? body.position : alien.transform.position;
+            float radius = HorizontalDistance(position, centerPosition);
+            if (radius >= ring.innerRadius && radius <= ring.outerRadius)
+            {
+                continue;
+            }
+
+            if (body != null)
+            {
+                body.position = centerPosition;
+                if (!body.isKinematic)
+                {
+                    body.linearVelocity = Vector3.zero;
+                    body.angularVelocity = Vector3.zero;
+                }
+            }
+            else
+            {
+                alien.transform.position = centerPosition;
+            }
+        }
+    }
+
     private bool SpawnRing(AlienRing ring)
     {
         List<AlienSpawnEntry> entries = eligibleEntriesByRing[ring.ringIndex - 1];
