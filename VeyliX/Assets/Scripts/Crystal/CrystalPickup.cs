@@ -5,7 +5,7 @@ public class CrystalPickup : MonoBehaviour
 {
     private int value;
     private float timer;
-    private float pickupDelay = 0.5f;
+    private float pickupDelay = 0.38f;
     private Rigidbody rb;
     private float dir;
 

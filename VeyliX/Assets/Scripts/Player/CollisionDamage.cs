@@ -32,5 +32,9 @@ public class CollisionDamage : MonoBehaviour
             myHealth.TakeDamage(myDamage);
         }
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        SoundManager.PlayCollisionSound();
+    }
 }
 

@@ -532,12 +532,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d29623fd23849149ab4b2ab5e7f3771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 250
-  currentHealth: 250
+  maxHealth: 50
+  currentHealth: 50
   deathEffectPrefab: {fileID: 2876719849313751706, guid: 8353fbf9dd5730648a4047b0371e8404, type: 3}
   hitEffect: {fileID: 0}
-  healthRegen: 3
-  crystalDrop: 10
+  healthRegen: 4
+  crystalDrop: 20
   enemySpawns: []
 --- !u!64 &7948946731002677197
 MeshCollider:

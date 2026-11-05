@@ -50,7 +50,7 @@ public class Runner : MonoBehaviour
     {
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angleToPlayer <= 30f)
+        if (angleToPlayer <= 35f)
         {
             if (shootTimer >= shootInterval)
             {
@@ -82,7 +82,7 @@ public class Runner : MonoBehaviour
         directionToPlayer.y = 0f;
         directionToPlayer.Normalize();
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angleToPlayer <= 30f)
+        if (angleToPlayer <= 35f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * steeringSmoothness));
@@ -114,6 +114,7 @@ public class Runner : MonoBehaviour
                 bulletVelocity = Vector3.ClampMagnitude(bulletVelocity, bulletSpeed);
                 bulletRb.rotation = Quaternion.LookRotation(direction);
                 bulletRb.linearVelocity = bulletVelocity;
+                SoundManager.PlayShootSound(SoundType.EnemyShoot, damage, false);
             }
             shootTimer = 0;
         }

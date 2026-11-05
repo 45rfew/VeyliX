@@ -216,7 +216,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3369000980738519}
   serializedVersion: 5
-  m_Mass: 50
+  m_Mass: 200
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -262,15 +262,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,7 +383,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2855053590714150917}
   serializedVersion: 5
-  m_Mass: 50
+  m_Mass: 200
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -414,13 +414,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c404d99987c0de74c92e4668fee206c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wander
-  speed: 10
-  shootInterval: 1
+  speed: 5
+  shootInterval: 2.5
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
-  bulletSpeed: 40
-  bulletDamage: 10
+  bulletSpeed: 25
+  bulletDamage: 100
   maxDistance: 20
-  distanceToShoot: 12
+  distanceToShoot: 15
 --- !u!114 &5911053531716041113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,8 +437,8 @@ MonoBehaviour:
   currentHealth: 250
   deathEffectPrefab: {fileID: 2876719849313751706, guid: 8353fbf9dd5730648a4047b0371e8404, type: 3}
   hitEffect: {fileID: 0}
-  healthRegen: 3
-  crystalDrop: 10
+  healthRegen: 10
+  crystalDrop: 100
   enemySpawns: []
 --- !u!64 &7948946731002677197
 MeshCollider:

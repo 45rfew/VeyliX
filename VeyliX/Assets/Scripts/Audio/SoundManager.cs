@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource enemyAudioSource;
     [SerializeField] private AudioSource thrustingAudioSource;
     [SerializeField] private AudioSource explosionAudioSource;
+    [SerializeField] private AudioSource collisionAudioSource;
     private bool isThrusting;
     private static SoundManager instance;
 
@@ -83,12 +84,10 @@ public class SoundManager : MonoBehaviour
         AudioSource source = isPlayer ? instance.playerAudioSource : instance.enemyAudioSource;
         if (source == null)
         {
-            Debug.LogError($"SoundManager is missing the {(isPlayer ? "player" : "enemy")} AudioSource.", instance);
             return;
         }
         if (instance.soundList == null || (int)sound >= instance.soundList.Length || instance.soundList[(int)sound] == null)
         {
-            Debug.LogError($"SoundManager has no audio clip assigned for {sound}.", instance);
             return;
         }
 
@@ -102,6 +101,20 @@ public class SoundManager : MonoBehaviour
     }
     public static void PlayExplosionSound()
     {
+        if (instance == null)
+        {
+            return;
+        }
+        instance.explosionAudioSource.pitch = Random.Range(0.8f, 1);
         instance.explosionAudioSource.PlayOneShot(instance.explosionAudioSource.clip);
+    }
+    public static void PlayCollisionSound()
+    {
+        if (instance == null)
+        {
+            return;
+        }
+        //instance.collisionAudioSource.pitch = 1f;
+       // instance.collisionAudioSource.PlayOneShot(instance.collisionAudioSource.clip);
     }
 }

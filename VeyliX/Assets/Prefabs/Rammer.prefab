@@ -401,7 +401,7 @@ MonoBehaviour:
   deathEffectPrefab: {fileID: 2876719849313751706, guid: 8353fbf9dd5730648a4047b0371e8404, type: 3}
   hitEffect: {fileID: 0}
   healthRegen: 3
-  crystalDrop: 10
+  crystalDrop: 15
   enemySpawns: []
 --- !u!64 &7344295209576274837
 MeshCollider:
@@ -449,12 +449,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96236f6cba4b524ca9cc6a53b5eac36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rammer
-  speed: 4
+  speed: 5
   maxDistance: 15
   distanceToDash: 12
   dashForce: 2000
-  dashDuration: 1
-  dashCooldown: 5
+  dashDuration: 0.8
+  dashCooldown: 4
 --- !u!4 &9028486536311436861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}

@@ -586,12 +586,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runner
   speed: 15
-  shootInterval: 0.4
+  shootInterval: 0.2
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 30
   bulletDamage: 2
-  maxDistance: 10
-  distanceToShoot: 8
+  maxDistance: 14
+  distanceToShoot: 12
   shootPoints:
   - {fileID: 3319873895304902971}
   - {fileID: 8921566924854626818}
