@@ -44491,7 +44491,7 @@ MonoBehaviour:
   m_Name: Circular Alien Ring Spawner
   m_EditorClassIdentifier: Assembly-CSharp::CircularAlienRingSpawner
   alienEntries:
-  - alienPrefab: {fileID: 3369000980738519, guid: ab2261ecebf369643b3803ea7e656612, type: 3}
+  - alienPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
     ring: 1
     weight: 0.229
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
@@ -44509,15 +44509,15 @@ MonoBehaviour:
   - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
     ring: 6
     weight: 1
-  - alienPrefab: {fileID: 3369000980738519, guid: ab2261ecebf369643b3803ea7e656612, type: 3}
+  - alienPrefab: {fileID: 3369000980738519, guid: 8353c592c775a4d49b3c1ef4595b0893, type: 3}
     ring: 1
     weight: 0.153
-  - alienPrefab: {fileID: 3369000980738519, guid: 1fecf0397fa241a4ab4a30c094ddcd5c, type: 3}
+  - alienPrefab: {fileID: 3369000980738519, guid: 251aac5bcfc1ebc4d8cf91b62326d8a5, type: 3}
     ring: 1
-    weight: 0.085
+    weight: 0.207
   - alienPrefab: {fileID: 3369000980738519, guid: 4bc0f00039be24a4db758e81722bd8ad, type: 3}
     ring: 1
-    weight: 0.429
+    weight: 0.186
   ringProgression:
   - clearCondition: 1
     bossPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}

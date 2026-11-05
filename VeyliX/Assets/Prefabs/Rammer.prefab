@@ -351,9 +351,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2826504338283191545}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1505231636306749454}
   m_SourcePrefab: {fileID: 100100000, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
 --- !u!1 &8502919275643481223 stripped
 GameObject:
@@ -447,7 +444,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8502919275643481223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b96236f6cba4b524ca9cc6a53b5eac36, type: 3}
   m_Name: 
@@ -458,26 +455,6 @@ MonoBehaviour:
   dashForce: 2000
   dashDuration: 1
   dashCooldown: 5
---- !u!114 &1505231636306749454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8502919275643481223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e74f9490f5d9ee459227aff2999fab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Runner
-  speed: 5
-  shootInterval: 0
-  bulletPrefab: {fileID: 0}
-  bulletSpeed: 0
-  bulletDamage: 0
-  maxDistance: 0
-  distanceToShoot: 0
-  shootPoints: []
 --- !u!4 &9028486536311436861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
