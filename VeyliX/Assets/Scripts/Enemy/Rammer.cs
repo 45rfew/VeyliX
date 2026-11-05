@@ -114,25 +114,18 @@ public class Rammer : MonoBehaviour
         rb.AddForce(dashDirection * dashForce, ForceMode.Impulse);
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         Vector3 collisionDirection = collision.contacts[0].point - transform.position;
         if (Vector3.Dot(collisionDirection.normalized, transform.forward) < 0f)
         {
             //collision is from the front
         }
-        if (collision.gameObject.name == "Gate Segment")
+        if (collision.gameObject.name == "Gate Segment" || collision.gameObject.name == "Asteroid")
         {
-            Vector3 directionAwayFromGate = transform.position - collision.contacts[0].point;
-            directionAwayFromGate.y = 0f;
-            if (directionAwayFromGate.sqrMagnitude < 0.0001f)
-            {
-                return;
-            }
-
-            Quaternion oppositeDirection = Quaternion.LookRotation(directionAwayFromGate);
+            Quaternion oppositeDirection = Quaternion.LookRotation((transform.position - collision.contacts[0].point).normalized);
             //rb.MoveRotation(Quaternion.Slerp(rb.rotation, oppositeDirection, Time.fixedDeltaTime * steeringSmoothness));
-            rb.transform.Rotate(0f, 90f, 0f); 
+            rb.transform.Rotate(0f, UnityEngine.Random.Range(-80,80), 0f); 
         }
     }
 }
