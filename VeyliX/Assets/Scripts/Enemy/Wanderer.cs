@@ -11,6 +11,7 @@ public class Wanderer : MonoBehaviour
     public float distanceToShoot;
     private Transform player;
     private Rigidbody rb;
+    private EnemyHealth enemyHealth;
     private float shootTimer;
     private float seperationDistance = 1.0f;
     private float seperationForce = 2.0f; //force applied to the enemy when it is too close to other enemies 
@@ -33,6 +34,7 @@ public class Wanderer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        enemyHealth = GetComponent<EnemyHealth>();
         try
         {
             player = GameObject.FindGameObjectWithTag("Player").transform ?? null;
@@ -45,6 +47,11 @@ public class Wanderer : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (enemyHealth != null && enemyHealth.IsBeingSpawnKnockedBack)
+        {
+            return;
+        }
+
         if (player != null)
         {
             shootTimer += Time.fixedDeltaTime;

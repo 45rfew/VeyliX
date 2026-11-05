@@ -11,6 +11,7 @@ public class Rammer : MonoBehaviour
     public float dashCooldown;
     private Transform player;
     private Rigidbody rb;
+    private EnemyHealth enemyHealth;
     private float dashTimeRemaining;
     private float dashCooldownRemaining;
     private float steeringSmoothness = 8f;
@@ -20,6 +21,7 @@ public class Rammer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        enemyHealth = GetComponent<EnemyHealth>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -28,7 +30,7 @@ public class Rammer : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (player == null || rb == null)
+        if (player == null || rb == null || (enemyHealth != null && enemyHealth.IsBeingSpawnKnockedBack))
         {
             return;
         }

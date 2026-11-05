@@ -13,12 +13,14 @@ public class Runner : MonoBehaviour
     public List<Transform> shootPoints;
     private Transform player;
     private Rigidbody rb;
+    private EnemyHealth enemyHealth;
     private float shootTimer;
     private float steeringSmoothness = 8f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        enemyHealth = GetComponent<EnemyHealth>();
         try
         {
             player = GameObject.FindGameObjectWithTag("Player").transform ?? null;
@@ -30,7 +32,7 @@ public class Runner : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (player == null)
+        if (player == null || (enemyHealth != null && enemyHealth.IsBeingSpawnKnockedBack))
         {
             return;
         }
@@ -134,4 +136,3 @@ public class Runner : MonoBehaviour
         }
     }
 }
-

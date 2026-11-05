@@ -44503,17 +44503,17 @@ MonoBehaviour:
     weight: 0.556
   ringProgression:
   - clearCondition: 1
-    bossPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
+    bossPrefab: {fileID: 3369000980738519, guid: fe424fd054615f945bf576321afd532d, type: 3}
   player: {fileID: 1785497661}
   mapCenter: {fileID: 1785497661}
   ringCount: 7
   firstRingInnerRadius: 25
   ringWidth: 100
-  minAliensInFirstRing: 120
-  maxAliensInFirstRing: 120
-  additionalAliensPerRing: 100
-  activationDistance: 15
-  gateThickness: 1
+  minAliensInFirstRing: 50
+  maxAliensInFirstRing: 50
+  additionalAliensPerRing: 50
+  activationDistance: 25
+  gateThickness: 5
   gateHeight: 100
   respawnAfterDefeat: 0
   respawnDelay: 10
@@ -77098,10 +77098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7304bf7cc9dc1144595a5340fdd257b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
-  musicVolume: 0.5
-  sfxVolume: 1
 --- !u!4 &1055993329
 Transform:
   m_ObjectHideFlags: 0
@@ -203085,8 +203081,8 @@ MonoBehaviour:
   ringCount: 7
   firstRingInnerRadius: 20
   ringWidth: 100
-  minAsteroidsPerRing: 300
-  maxAsteroidsPerRing: 400
+  minAsteroidsPerRing: 200
+  maxAsteroidsPerRing: 300
   minAsteroidSize: 2
   maxAsteroidSize: 9
   seed: 0

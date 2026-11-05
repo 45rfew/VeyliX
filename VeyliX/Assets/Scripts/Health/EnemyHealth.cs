@@ -20,12 +20,24 @@ public class EnemyHealth : Health
     public int crystalDrop;
     public List<EnemySpawn> enemySpawns;
     private float regenAccumulator;
+    private float spawnKnockbackRemaining;
+    [SerializeField] private float spawnKnockbackDuration = 0.35f;
+    [SerializeField] private float spawnKnockbackSpeed = 8f;
+
+    public bool IsBeingSpawnKnockedBack => spawnKnockbackRemaining > 0f;
+
     protected override void Start()
     {
         base.Start();
         OnDamage += HandleDamage;
         OnDeath += HandleDeath;
     }
+
+    private void FixedUpdate()
+    {
+        spawnKnockbackRemaining = Mathf.Max(0f, spawnKnockbackRemaining - Time.fixedDeltaTime);
+    }
+
     void Update()
     {
         if (currentHealth < maxHealth)
@@ -66,7 +78,9 @@ public class EnemyHealth : Health
             int amount = enemy.amount;
             for (int i = 0; i < amount; i++)
             {
-                GameObject spawnedEnemy = Instantiate(enemy.enemyPrefab, transform.position, Quaternion.identity);
+                float randomOffset = 5f;
+                Vector3 randomPos = new Vector3(transform.position.x + UnityEngine.Random.Range(-randomOffset, randomOffset), 0f, transform.position.z + UnityEngine.Random.Range(-randomOffset, randomOffset));
+                GameObject spawnedEnemy = Instantiate(enemy.enemyPrefab, randomPos, Quaternion.identity);
                 float randomX = UnityEngine.Random.Range(-1f, 1f);
                 float randomZ = UnityEngine.Random.Range(-1f, 1f);
                 Vector3 randomDir = new Vector3(randomX, 0, randomZ).normalized;
@@ -74,11 +88,14 @@ public class EnemyHealth : Health
                 if (rb != null)
                 {
                     rb.transform.Rotate(0f, UnityEngine.Random.Range(0f, 360f), 0f);
-                    rb.AddForce(randomDir * 2, ForceMode.Impulse);
+                    EnemyHealth spawnedHealth = spawnedEnemy.GetComponent<EnemyHealth>();
+                    if (spawnedHealth != null)
+                    {
+                        //spawnedHealth.spawnKnockbackRemaining = spawnKnockbackDuration;
+                    }
+                    //rb.linearVelocity = randomDir * spawnKnockbackSpeed;
                 }
-
             }
-
         }
         Destroy(gameObject);
     }
