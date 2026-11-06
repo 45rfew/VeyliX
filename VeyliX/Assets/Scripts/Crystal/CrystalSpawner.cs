@@ -1,5 +1,3 @@
-using Unity.AppUI.Core;
-using Unity.AppUI.UI;
 using UnityEngine;
 
 public class CrystalSpawner : MonoBehaviour
