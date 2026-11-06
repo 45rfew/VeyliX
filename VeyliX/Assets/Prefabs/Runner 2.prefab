@@ -434,7 +434,7 @@ MonoBehaviour:
   deathEffectPrefab: {fileID: 2876719849313751706, guid: 8353fbf9dd5730648a4047b0371e8404, type: 3}
   hitEffect: {fileID: 0}
   healthRegen: 10
-  crystalDrop: 40
+  crystalDrop: 30
   enemySpawns:
   - enemyPrefab: {fileID: 3369000980738519, guid: 4bc0f00039be24a4db758e81722bd8ad, type: 3}
     amount: 2
@@ -491,7 +491,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 40
   bulletDamage: 40
-  maxDistance: 15
+  maxDistance: 50
   distanceToShoot: 12
   shootPoints:
   - {fileID: 4299884276427080374}

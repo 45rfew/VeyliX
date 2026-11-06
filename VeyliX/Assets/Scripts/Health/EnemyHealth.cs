@@ -70,7 +70,7 @@ public class EnemyHealth : Health
         CrystalSpawner.Instance.DropCrystals(crystalDrop, pos);
         if (enemySpawns == null || enemySpawns.Count == 0)
         {
-            Destroy(gameObject);
+Destroy(transform.parent.gameObject);
             return;
         }
         foreach (EnemySpawn enemy in enemySpawns)
@@ -81,7 +81,7 @@ public class EnemyHealth : Health
                 float randomOffset = 3f;
                 Vector3 randomPos = new Vector3(transform.position.x + UnityEngine.Random.Range(-randomOffset, randomOffset), 0f, transform.position.z + UnityEngine.Random.Range(-randomOffset, randomOffset));
                 GameObject spawnedEnemy = Instantiate(enemy.enemyPrefab, randomPos, Quaternion.identity);
-                spawnedEnemy.transform.SetParent(transform.parent, true);
+                //spawnedEnemy.transform.SetParent(transform.parent, true);
                 float randomX = UnityEngine.Random.Range(-1f, 1f);
                 float randomZ = UnityEngine.Random.Range(-1f, 1f);
                 Vector3 randomDir = new Vector3(randomX, 0, randomZ).normalized;
@@ -98,6 +98,6 @@ public class EnemyHealth : Health
                 }
             }
         }
-        Destroy(gameObject);
+Destroy(transform.parent.gameObject);
     }
 }

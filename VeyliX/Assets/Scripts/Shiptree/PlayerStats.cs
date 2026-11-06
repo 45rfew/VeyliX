@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         BuildShipTree();
-        currentShip = ships[601];
+        currentShip = ships[101];
         playerEnergy = GetComponent<PlayerEnergy>();
         playerHealth = GetComponent<PlayerHealth>();
         playerShoot = GetComponentInChildren<PlayerShoot>();
@@ -67,7 +67,7 @@ public class PlayerStats : MonoBehaviour
     }
     public int GetMaxCrystals()
     {
-        return GetShipTier() * GetShipTier() * 25;
+        return GetShipTier() * GetShipTier() * 30;
     }
     public void UpgradeHealth(int amount)
     {
@@ -130,22 +130,22 @@ public class PlayerStats : MonoBehaviour
                 code: 101,
                 name: "Peepeepoopoo",
                 zoom: 1f,
-                healthMin: 1000,
+                healthMin: 100,
                 healthMax: 120,
                 healthRegenMin: 400,
                 healthRegenMax: 5,
-                energyMin: 600,
+                energyMin: 60,
                 energyMax: 80,
-                energyRegenMin: 1000,
-                energyRegenMax: 15,
+                energyRegenMin: 15,
+                energyRegenMax: 20,
                 speedMin: 16f,
                 speedMax: 20f,
                 accelerationMin: 90f,
                 accelerationMax: 110f,
                 rotationMin: 400f,
                 rotationMax: 600f,
-                mass: 1000,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 500, damageMax: 20, bulletSpeedMin: 45, bulletSpeedMax: 52, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 10, error: 0));
+                mass: 100,
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 15, damageMax: 20, bulletSpeedMin: 45, bulletSpeedMax: 52, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 10, error: 0));
 
         Ship ship201 = CreateShip(
             code: 201,
@@ -166,7 +166,7 @@ public class PlayerStats : MonoBehaviour
             rotationMin: 300f,
             rotationMax: 400f,
             mass: 110,
-            new Cannon(name: "Main Cannon", priority: 10, damageMin: 10, damageMax: 15, bulletSpeedMin: 30, bulletSpeedMax: 40, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 15, error: 3));
+            new Cannon(name: "Main Cannon", priority: 10, damageMin: 20, damageMax: 24, bulletSpeedMin: 35, bulletSpeedMax: 45, fireRateMin: 2f, fireRateMax: 2f, recoilValue: 15, error: 3));
         Ship ship202 = CreateShip(
             code: 202,
             name: "Twinwing",

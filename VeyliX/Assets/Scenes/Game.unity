@@ -1758,6 +1758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12589,6 +12593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13307,6 +13315,10 @@ PrefabInstance:
     - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_Name
       value: Asteroid (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34140,6 +34152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44488,33 +44504,86 @@ MonoBehaviour:
   alienEntries:
   - alienPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
     ring: 1
-    weight: 0.229
-  - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
+    weight: 0.85
+  - alienPrefab: {fileID: 3369000980738519, guid: 292e3c8f8bbe3c346bd5c387e931e401, type: 3}
+    ring: 1
+    weight: 0.15
+  - alienPrefab: {fileID: 3369000980738519, guid: 292e3c8f8bbe3c346bd5c387e931e401, type: 3}
     ring: 2
-    weight: 1
-  - alienPrefab: {fileID: 8252915921869415082, guid: 15b34eb9614e0f64bb4769ac819850e4, type: 3}
-    ring: 3
-    weight: 1
+    weight: 0.5
+  - alienPrefab: {fileID: 3369000980738519, guid: c5fe2ed59cd3dbd41bed2181e4246176, type: 3}
+    ring: 2
+    weight: 0.25
+  - alienPrefab: {fileID: 3369000980738519, guid: 4bc0f00039be24a4db758e81722bd8ad, type: 3}
+    ring: 2
+    weight: 0.25
   - alienPrefab: {fileID: 3369000980738519, guid: 8161054c18cd0cf4e8c5100f109057cc, type: 3}
-    ring: 1
-    weight: 0.431
+    ring: 3
+    weight: 0.2
+  - alienPrefab: {fileID: 3369000980738519, guid: 68ac2576291aa75468a9af6a1f6b667b, type: 3}
+    ring: 3
+    weight: 0.3
+  - alienPrefab: {fileID: 3369000980738519, guid: a872a5c26da27474c82e2b03e226fbff, type: 3}
+    ring: 3
+    weight: 0.5
+  - alienPrefab: {fileID: 3369000980738519, guid: ee1f622c183f77448a28359818c4a832, type: 3}
+    ring: 4
+    weight: 0.5
+  - alienPrefab: {fileID: 3369000980738519, guid: e0393ad3e5ffcb94bb119c23f88651cf, type: 3}
+    ring: 4
+    weight: 0.5
+  - alienPrefab: {fileID: 3369000980738519, guid: abd56eaf50fe76b46aaf0c84fdd61875, type: 3}
+    ring: 5
+    weight: 0.25
+  - alienPrefab: {fileID: 3369000980738519, guid: 26314ae9d215cd7499430efcbbcea001, type: 3}
+    ring: 5
+    weight: 0.25
+  - alienPrefab: {fileID: 3369000980738519, guid: 68ac2576291aa75468a9af6a1f6b667b, type: 3}
+    ring: 5
+    weight: 0.25
+  - alienPrefab: {fileID: 3369000980738519, guid: 8ed927f44158eb54e9f615b02c0a10dc, type: 3}
+    ring: 5
+    weight: 0.25
+  - alienPrefab: {fileID: 3369000980738519, guid: b0ef9aa0021666e48b0d19db6f2a7ac1, type: 3}
+    ring: 6
+    weight: 0.3
   - alienPrefab: {fileID: 3369000980738519, guid: 5ff30589725129345afb1ae567bfaf0b, type: 3}
-    ring: 1
-    weight: 0.556
-  - alienPrefab: {fileID: 3369000980738519, guid: 08db3a1d89b3bd94eb349f501c345043, type: 3}
-    ring: 1
-    weight: 0.1
+    ring: 6
+    weight: 0.32
+  - alienPrefab: {fileID: 3369000980738519, guid: d7b1802611fd7f34c962d529978782f0, type: 3}
+    ring: 7
+    weight: 0.32
+  - alienPrefab: {fileID: 3369000980738519, guid: 5ff30589725129345afb1ae567bfaf0b, type: 3}
+    ring: 7
+    weight: 0.32
+  - alienPrefab: {fileID: 3369000980738519, guid: b646d5dddc528df4294546df157a5a77, type: 3}
+    ring: 7
+    weight: 0.03
   ringProgression:
   - clearCondition: 1
     bossPrefab: {fileID: 3369000980738519, guid: fe424fd054615f945bf576321afd532d, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: 309f3a8f30b73a14c952f2b59237356d, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: 324312069f15b83468f89072106776f3, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: b2be36e087dac704a92e09055e960685, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: a63a8329b3f864a49bf0afc38651d6f8, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: b646d5dddc528df4294546df157a5a77, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: 08db3a1d89b3bd94eb349f501c345043, type: 3}
+  - clearCondition: 1
+    bossPrefab: {fileID: 3369000980738519, guid: bb7fa852cebcfd04f9cb3f345cb2deff, type: 3}
   player: {fileID: 1785497661}
   mapCenter: {fileID: 1785497661}
   ringCount: 7
   firstRingInnerRadius: 25
-  ringWidth: 100
-  minAliensInFirstRing: 50
-  maxAliensInFirstRing: 50
-  additionalAliensPerRing: 50
+  ringWidth: 40
+  minAliensInFirstRing: 40
+  maxAliensInFirstRing: 40
+  additionalAliensPerRing: 40
   activationDistance: 15
   gateThickness: 5
   gateHeight: 100
@@ -44599,6 +44668,10 @@ PrefabInstance:
     - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_Name
       value: Asteroid (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61121,6 +61194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -61665,7 +61742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1006796421
 Transform:
   m_ObjectHideFlags: 0
@@ -71983,6 +72060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78051,6 +78132,10 @@ PrefabInstance:
     - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_Name
       value: Asteroid (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -109405,6 +109490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -140175,6 +140264,10 @@ PrefabInstance:
     - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_Name
       value: Asteroid (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -192079,6 +192172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -202852,6 +202949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -203083,9 +203184,9 @@ MonoBehaviour:
   player: {fileID: 1785497661}
   ringCount: 7
   firstRingInnerRadius: 20
-  ringWidth: 100
-  minAsteroidsPerRing: 200
-  maxAsteroidsPerRing: 300
+  ringWidth: 40
+  minAsteroidsPerRing: 60
+  maxAsteroidsPerRing: 70
   minAsteroidSize: 2
   maxAsteroidSize: 9
   seed: 0
@@ -203630,6 +203731,10 @@ PrefabInstance:
     - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
       propertyPath: m_Name
       value: Asteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 251579470489048318, guid: c32154cc669b20a4a9d618912c153eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

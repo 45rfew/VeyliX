@@ -123,7 +123,7 @@ public class Runner : MonoBehaviour
             shootTimer = 0;
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         Vector3 collisionDirection = collision.contacts[0].point - transform.position;
         if (Vector3.Dot(collisionDirection.normalized, transform.forward) < 0f)

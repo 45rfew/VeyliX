@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalPosition.x
@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_CastShadows
@@ -404,7 +404,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 50
   bulletDamage: 15
-  maxDistance: 20
+  maxDistance: 30
   distanceToShoot: 12
 --- !u!114 &5911053531716041113
 MonoBehaviour:
@@ -423,7 +423,7 @@ MonoBehaviour:
   deathEffectPrefab: {fileID: 2876719849313751706, guid: 8353fbf9dd5730648a4047b0371e8404, type: 3}
   hitEffect: {fileID: 0}
   healthRegen: 5
-  crystalDrop: 50
+  crystalDrop: 20
   enemySpawns:
   - enemyPrefab: {fileID: 3369000980738519, guid: c38859c1b51e2cf49821f514304dc1e9, type: 3}
     amount: 5

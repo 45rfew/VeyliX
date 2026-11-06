@@ -489,7 +489,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042844400039630682, guid: dbf64f310eb21a84daf2487964b7e312, type: 3}
   bulletSpeed: 40
   bulletDamage: 25
-  maxDistance: 15
+  maxDistance: 50
   distanceToShoot: 12
   shootPoints:
   - {fileID: 4299884276427080374}

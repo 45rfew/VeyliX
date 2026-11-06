@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_LocalPosition.x
@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 8ba4ae1925edf1e418652e74d12bb311, type: 3}
       propertyPath: m_CastShadows
@@ -422,9 +422,11 @@ MonoBehaviour:
   currentHealth: 30
   deathEffectPrefab: {fileID: 2876719849313751706, guid: 8353fbf9dd5730648a4047b0371e8404, type: 3}
   hitEffect: {fileID: 0}
-  healthRegen: 3
-  crystalDrop: 10
+  healthRegen: 1
+  crystalDrop: 5
   enemySpawns: []
+  spawnKnockbackDuration: 0.35
+  spawnKnockbackSpeed: 8
 --- !u!64 &7948946731002677197
 MeshCollider:
   m_ObjectHideFlags: 0

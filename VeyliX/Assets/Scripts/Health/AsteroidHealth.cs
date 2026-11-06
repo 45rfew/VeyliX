@@ -3,7 +3,7 @@ using UnityEngine;
 public class AsteroidHealth : Health
 {
     private float size;
-    private float yield = 10;
+    private float yield = 1;
     private int[] healthValues =
     {
         20,
@@ -16,7 +16,7 @@ public class AsteroidHealth : Health
         300,
         500
     };
-    private int healthDropMult = 10;
+    private int healthDropMult = 1;
     
     private int[] scoreValues =
     {
